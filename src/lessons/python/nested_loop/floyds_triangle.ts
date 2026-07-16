@@ -1,4 +1,4 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const floyds_triangle: LessonProgram = {
   id: 'floyds_triangle', language: 'python', topic: 'nested_loop', lessonNumber: 5,

@@ -1,4 +1,4 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const square_star: LessonProgram = {
   id: 'square_star', language: 'python', topic: 'nested_loop', lessonNumber: 1,

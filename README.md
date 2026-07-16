@@ -2,6 +2,14 @@
 
 Ever stared at a block of code, wishing you could shrink down and watch exactly how the computer steps through it? FlowTrace is built to do just that. It translates abstract, dry logic into a living, breathing canvas where variables, conditions, loops, and data structures come alive in real-time.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-FlowTrace-blueviolet?style=for-the-badge&logo=vercel)](https://flowtrace.vercel.app/)
+
+> [!IMPORTANT]
+> **📢 Project Notice & Status:**
+> * **Beta Version:** FlowTrace is currently in **Beta** and under active development.
+> * **Python Only:** Currently, only **Python** code visualization is supported.
+> * **PC / Desktop Optimized:** The interface is fully optimized for **PC and Desktop screens** to accommodate the extensive multi-panel timeline layouts. Responsive design for mobile screens is currently under development.
+
 ---
 
 ## 💡 The Problem We Solve

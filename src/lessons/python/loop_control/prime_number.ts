@@ -1,4 +1,4 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const prime_number: LessonProgram = {
   id: 'prime_number', language: 'python', topic: 'loop_control', lessonNumber: 4,
@@ -19,17 +19,18 @@ export const prime_number: LessonProgram = {
     { lineNum: 9, tokens: [{ type: 'keyword', value: 'else' }, { type: 'punctuation', value: ':' }] },
     { lineNum: 10, tokens: [{ type: 'text', value: '    ' }, { type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Not Prime"' }, { type: 'punctuation', value: ')' }] },
   ],
+  executionSteps: [],
   generateSteps: (variables) => {
     const num = Number(variables?.num || 7);
-    const steps = [];
+    const steps: ExecutionStep[] = [];
     let stepCount = 1;
-    let mem = {};
+    let mem: Record<string, string | number> = {};
 
     mem.num = num;
     steps.push({
       step: stepCount++, lineNum: 1,
       explanationEnglish: `Set num = ${num}.`,
-      explanationHinglish: `num ki value ${num} set ki.`,
+      explanationHinglish: `num की value ${num} set की.`,
       memorySnapshot: { ...mem },
       animationEvent: { type: 'CREATE_VARIABLE', name: 'num', value: num },
     });
@@ -37,8 +38,8 @@ export const prime_number: LessonProgram = {
     mem.is_prime = 'True';
     steps.push({
       step: stepCount++, lineNum: 2,
-      explanationEnglish: 'Initialize is_prime as True.',
-      explanationHinglish: 'Maan liya ki number prime hai (is_prime = True).',
+      explanationEnglish: `Initialize is_prime = True.`,
+      explanationHinglish: `is_prime = True set kiya.`,
       memorySnapshot: { ...mem },
       animationEvent: { type: 'CREATE_VARIABLE', name: 'is_prime', value: 'True' },
     });
@@ -51,15 +52,14 @@ export const prime_number: LessonProgram = {
       animationEvent: { type: 'NONE' },
     });
 
-    let foundDivisor = false;
     for (let i = 2; i < num; i++) {
       mem.i = i;
       steps.push({
         step: stepCount++, lineNum: 3,
         explanationEnglish: `Testing divisor i = ${i}.`,
-        explanationHinglish: `i ki value ${i} ho gayi.`,
+        explanationHinglish: `i की value ${i} हो गई.`,
         memorySnapshot: { ...mem },
-        animationEvent: mem.i === i && Object.keys(mem).includes('i') ? { type: 'UPDATE_VARIABLE', name: 'i', newValue: i } : { type: 'CREATE_VARIABLE', name: 'i', value: i },
+        animationEvent: mem.i === i && Object.keys(mem).includes('i') ? { type: 'UPDATE_VARIABLE', name: 'i', oldValue: i - 1, newValue: i } : { type: 'CREATE_VARIABLE', name: 'i', value: i },
       });
 
       const remainder = num % i;
@@ -79,7 +79,7 @@ export const prime_number: LessonProgram = {
           explanationEnglish: `Found a divisor (${i}). Number is not prime. Set is_prime = False.`,
           explanationHinglish: `Ek divisor mil gaya, iska matlab prime nahi hai. is_prime ko False set kiya.`,
           memorySnapshot: { ...mem },
-          animationEvent: { type: 'UPDATE_VARIABLE', name: 'is_prime', newValue: 'False' },
+          animationEvent: { type: 'UPDATE_VARIABLE', name: 'is_prime', oldValue: 'True', newValue: 'False' },
         });
 
         steps.push({
@@ -90,7 +90,6 @@ export const prime_number: LessonProgram = {
           animationEvent: { type: 'NONE' },
         });
         
-        foundDivisor = true;
         break;
       }
     }

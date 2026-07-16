@@ -1,4 +1,4 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const right_triangle: LessonProgram = {
   id: 'right_triangle', language: 'python', topic: 'nested_loop', lessonNumber: 2,

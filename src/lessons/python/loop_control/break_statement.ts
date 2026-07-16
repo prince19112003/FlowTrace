@@ -1,4 +1,4 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const break_statement: LessonProgram = {
   id: 'break_statement', language: 'python', topic: 'loop_control', lessonNumber: 1,
@@ -16,13 +16,14 @@ export const break_statement: LessonProgram = {
     { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'break' }] },
     { lineNum: 6, tokens: [{ type: 'text', value: '    ' }, { type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'i' }, { type: 'punctuation', value: ')' }] },
   ],
+  executionSteps: [],
   generateSteps: (variables) => {
     const limit = Number(variables?.limit || 6);
     const break_at = Number(variables?.break_at || 3);
-    const steps = [];
+    const steps: ExecutionStep[] = [];
     let stepCount = 1;
     let consoleOut = '';
-    let mem = {};
+    let mem: Record<string, string | number> = {};
 
     mem.limit = limit;
     steps.push({
