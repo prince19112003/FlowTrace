@@ -1,0 +1,85 @@
+import type { LessonProgram } from '../../types';
+
+export const largest_of_three: LessonProgram = {
+  id: 'largest_of_three', language: 'python', topic: 'functions', lessonNumber: 11,
+  friendlyName: 'Largest of Three Numbers Using Function',
+  learningObjective: 'Learn to use if-elif-else statements inside a function and return the correct result.',
+  lines: [
+    { lineNum: 1, tokens: [{ type: 'keyword', value: 'def' }, { type: 'text', value: ' ' }, { type: 'function', value: 'find_largest' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'a' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'c' }, { type: 'punctuation', value: ')' }, { type: 'punctuation', value: ':' }] },
+    { lineNum: 2, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'if' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '>=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'and' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '>=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'c' }, { type: 'punctuation', value: ':' }] },
+    { lineNum: 3, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'return' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }] },
+    { lineNum: 4, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'elif' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'text', value: ' ' }, { type: 'operator', value: '>=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'and' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'text', value: ' ' }, { type: 'operator', value: '>=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'c' }, { type: 'punctuation', value: ':' }] },
+    { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'return' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }] },
+    { lineNum: 6, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'else' }, { type: 'punctuation', value: ':' }] },
+    { lineNum: 7, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'return' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'c' }] },
+    { lineNum: 8, tokens: [{ type: 'variable', value: 'n1' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '10' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'n2' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '25' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'n3' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '15' }] },
+    { lineNum: 9, tokens: [{ type: 'variable', value: 'ans' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'function', value: 'find_largest' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'n1' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'n2' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'n3' }, { type: 'punctuation', value: ')' }] },
+    { lineNum: 10, tokens: [{ type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'ans' }, { type: 'punctuation', value: ')' }] },
+  ],
+  executionSteps: [
+    {
+      step: 1, lineNum: 1,
+      explanationEnglish: 'Define a function to find the largest of three numbers.',
+      explanationHinglish: 'Teen numbers mein se sabse bada dhoondhne ke liye function banaya.',
+      memorySnapshot: {},
+      animationEvent: { type: 'NONE' },
+    },
+    {
+      step: 2, lineNum: 8,
+      explanationEnglish: 'Set n1, n2, n3 to 10, 25, and 15.',
+      explanationHinglish: 'n1, n2, n3 mein 10, 25, aur 15 set kiya.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15 },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'n1', value: 10 },
+    },
+    {
+      step: 3, lineNum: 9,
+      explanationEnglish: 'Call find_largest(n1, n2, n3).',
+      explanationHinglish: 'find_largest(n1, n2, n3) ko call kiya.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15 },
+      animationEvent: { type: 'NONE' },
+    },
+    {
+      step: 4, lineNum: 1,
+      explanationEnglish: 'Parameters receive: a=10, b=25, c=15.',
+      explanationHinglish: 'Parameters mein values aayi: a=10, b=25, c=15.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15, a: 10, b: 25, c: 15 },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'a', value: 10 },
+    },
+    {
+      step: 5, lineNum: 2,
+      explanationEnglish: 'Check if a (10) >= b (25) and a >= c. This is False.',
+      explanationHinglish: 'Check kiya kya a dono b aur c se bada hai. Yeh False hai.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15, a: 10, b: 25, c: 15 },
+      animationEvent: { type: 'NONE' },
+    },
+    {
+      step: 6, lineNum: 4,
+      explanationEnglish: 'Go to elif: Check if b (25) >= a (10) and b >= c (15). This is True.',
+      explanationHinglish: 'Check kiya kya b dono a aur c se bada hai. Yeh True hai.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15, a: 10, b: 25, c: 15 },
+      animationEvent: { type: 'NONE' },
+    },
+    {
+      step: 7, lineNum: 5,
+      explanationEnglish: 'Return b (25) as the largest number.',
+      explanationHinglish: 'b (25) ko sabse bada number mankar return kiya.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15, a: 10, b: 25, c: 15 },
+      animationEvent: { type: 'COMPUTE', inputs: [], operator: 'return', result: 25, storeIn: 'ReturnValue' },
+    },
+    {
+      step: 8, lineNum: 9,
+      explanationEnglish: 'Store the returned value (25) into ans.',
+      explanationHinglish: 'Returned value "ans" mein store ki.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15, ans: 25 },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'ans', value: 25 },
+    },
+    {
+      step: 9, lineNum: 10,
+      explanationEnglish: 'Print the largest number.',
+      explanationHinglish: 'Sabse bada number print kiya.',
+      memorySnapshot: { n1: 10, n2: 25, n3: 15, ans: 25 },
+      consoleOutput: '25',
+      animationEvent: { type: 'PRINT_VALUE', variableName: 'ans', outputValue: 25 },
+    }
+  ],
+};

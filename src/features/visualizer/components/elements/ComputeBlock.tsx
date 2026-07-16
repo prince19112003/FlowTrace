@@ -1,0 +1,300 @@
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { VariableBox } from './VariableBox';
+import { Operator } from './Operator';
+import { DataStructureBox } from './DataStructureBox';
+
+const isDataStructure = (val: any) => {
+  if (typeof val !== 'string') return false;
+  let cleaned = val.trim();
+  if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
+    cleaned = cleaned.slice(1, -1).trim();
+  }
+  cleaned = cleaned.replace(/\\"/g, '"').replace(/\\'/g, "'");
+  return (cleaned.startsWith('[') && cleaned.endsWith(']')) || 
+         (cleaned.startsWith('{') && cleaned.endsWith('}')) ||
+         (cleaned.startsWith('(') && cleaned.endsWith(')'));
+};
+
+const parseDataStructure = (val: any) => {
+  let cleaned = String(val).trim();
+  if ((cleaned.startsWith('"') && cleaned.endsWith('"')) || (cleaned.startsWith("'") && cleaned.endsWith("'"))) {
+    cleaned = cleaned.slice(1, -1).trim();
+  }
+  cleaned = cleaned.replace(/\\"/g, '"').replace(/\\'/g, "'");
+  const isTuple = cleaned.startsWith('(') && cleaned.endsWith(')');
+  
+  if (cleaned.startsWith('[') || isTuple) {
+    try {
+      const jsonStr = isTuple ? `[${cleaned.slice(1, -1)}]` : cleaned;
+      const formattedJson = jsonStr.replace(/'/g, '"');
+      return {
+        variant: 'array' as const,
+        items: JSON.parse(formattedJson) as Array<string | number>
+      };
+    } catch {
+      const items = cleaned.slice(1, -1).split(',').map(s => {
+        const v = s.trim();
+        return isNaN(Number(v)) ? v.replace(/['"]/g, '') : Number(v);
+      });
+      return { variant: 'array' as const, items };
+    }
+  } else {
+    try {
+      const formattedJson = cleaned.replace(/'/g, '"');
+      return {
+        variant: 'table' as const,
+        items: JSON.parse(formattedJson) as Record<string, string | number>
+      };
+    } catch {
+      const items: Record<string, string | number> = {};
+      const pairs = cleaned.slice(1, -1).split(',');
+      pairs.forEach(p => {
+        const parts = p.split(':');
+        if (parts.length === 2) {
+          const k = parts[0].trim().replace(/['"]/g, '');
+          const v = parts[1].trim();
+          items[k] = isNaN(Number(v)) ? v.replace(/['"]/g, '') : Number(v);
+        }
+      });
+      return { variant: 'table' as const, items };
+    }
+  }
+};
+
+interface ComputeBlockProps {
+  inputs: string[];
+  operator: string;
+  storeIn: string;
+  result: string | number;
+  memorySnapshot: Record<string, string | number>;
+  prevMemorySnapshot?: Record<string, string | number>;
+  isActive?: boolean;
+  colorTheme?: 'default' | 'grey' | 'orange' | 'fuchsia' | 'teal';
+  isSmall?: boolean;
+}
+
+export const ComputeBlock: React.FC<ComputeBlockProps> = ({
+  inputs,
+  operator,
+  storeIn,
+  result,
+  memorySnapshot,
+  prevMemorySnapshot = {},
+  isActive,
+  colorTheme = 'default',
+  isSmall,
+}) => {
+  const [calcState, setCalcState] = useState<'inputs' | 'calculating' | 'done'>('inputs');
+
+  const isLenCalc = operator === 'len()' && inputs.length === 1;
+  const isCaseCalc = (operator === 'upper()' || operator === 'lower()') && inputs.length === 1;
+  const isStringCalc = isLenCalc || isCaseCalc;
+
+  const rawVal = String(prevMemorySnapshot[inputs[0]] ?? memorySnapshot[inputs[0]] ?? inputs[0]);
+  const isListVal = rawVal.replace(/['"]/g, '').trim().startsWith('[') && rawVal.replace(/['"]/g, '').trim().endsWith(']');
+  
+  const itemsList: Array<string | number> = isListVal 
+    ? (() => {
+        const cleaned = rawVal.replace(/['"]/g, '').trim();
+        try {
+          return JSON.parse(cleaned) as Array<string | number>;
+        } catch {
+          return cleaned.slice(1, -1).split(',').map(s => {
+            const v = s.trim();
+            return isNaN(Number(v)) ? v : Number(v);
+          });
+        }
+      })()
+    : rawVal.replace(/['"]/g, '').split('');
+
+  const [activeCountIdx, setActiveCountIdx] = useState(-1);
+
+  useEffect(() => {
+    if (!isActive) {
+      setCalcState('done');
+      return;
+    }
+    
+    // Reset animation state when it becomes active
+    setCalcState('inputs');
+    
+    // Step 1: Show inputs for 600ms, then show calculating spark
+    const t1 = setTimeout(() => {
+      setCalcState('calculating');
+    }, 600);
+    
+    // Step 2: Show result flowing into box after 1.8s
+    const t2 = setTimeout(() => {
+      setCalcState('done');
+    }, 2000);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [isActive, result]); // depend on result to re-trigger if same step updates
+
+  useEffect(() => {
+    if (isStringCalc && calcState === 'calculating') {
+      setActiveCountIdx(0);
+      const intervalMs = Math.max(100, Math.min(250, 1000 / Math.max(1, itemsList.length)));
+      const timer = setInterval(() => {
+        setActiveCountIdx(prev => {
+          if (prev < itemsList.length - 1) {
+            return prev + 1;
+          } else {
+            clearInterval(timer);
+            return itemsList.length; // finished counting/converting
+          }
+        });
+      }, intervalMs);
+      return () => clearInterval(timer);
+    } else if (calcState === 'done') {
+      setActiveCountIdx(itemsList.length);
+    } else {
+      setActiveCountIdx(-1);
+    }
+  }, [calcState, isStringCalc, itemsList.length]);
+
+  return (
+    <div className="flex items-center gap-3 relative">
+      {/* 1. Left side: The inputs being calculated */}
+      {isStringCalc ? (
+        <div className="flex flex-col items-center p-3 bg-slate-950/60 border border-slate-800/80 rounded-2xl gap-3 min-w-[240px] shadow-lg backdrop-blur-xs relative overflow-hidden">
+          {/* Function badge */}
+          <div className="text-[9px] font-black tracking-widest text-indigo-400 font-mono uppercase bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
+            {operator === 'len()' ? 'len() function' : operator === 'upper()' ? '.upper() function' : '.lower() function'}
+          </div>
+
+          {/* Letter/Element by letter/element boxes */}
+          <div className="flex gap-2.5 pb-1 pt-1 flex-wrap justify-center">
+            {itemsList.map((item, i) => {
+              let displayVal = String(item);
+              if (isCaseCalc) {
+                if (calcState === 'done' || i < activeCountIdx) {
+                  displayVal = operator === 'upper()' ? displayVal.toUpperCase() : displayVal.toLowerCase();
+                }
+              }
+              const isConverted = isCaseCalc && (calcState === 'done' || i < activeCountIdx);
+
+              return (
+                <div 
+                  key={i}
+                  className={`relative min-w-8 h-8 px-2 flex items-center justify-center border font-mono rounded-lg font-bold text-sm transition-all duration-300 ${
+                    calcState === 'inputs'
+                      ? 'border-slate-800 bg-slate-900/50 text-slate-400'
+                      : i === activeCountIdx 
+                        ? 'border-amber-400 bg-amber-500/20 text-white scale-110 shadow-[0_0_12px_rgba(245,158,11,0.6)] ring-1 ring-amber-400/40' 
+                        : isConverted
+                          ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-300 shadow-sm scale-105'
+                          : i < activeCountIdx 
+                            ? 'border-indigo-500/50 bg-indigo-500/10 text-indigo-200 shadow-sm' 
+                            : 'border-slate-800 bg-slate-900/50 text-slate-500'
+                  }`}
+                >
+                  {displayVal}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Dynamic counter text */}
+          <div className="text-[10px] font-bold font-mono text-slate-400 h-4 flex items-center">
+            {calcState === 'inputs' && (
+              <span>
+                {operator === 'len()' 
+                  ? (isListVal ? 'Awaiting list size calculation...' : 'Awaiting Length calculation...') 
+                  : 'Awaiting Case transformation...'}
+              </span>
+            )}
+            {calcState === 'calculating' && activeCountIdx < itemsList.length && (
+              <span className="text-amber-400 animate-pulse">
+                {operator === 'len()' 
+                  ? (isListVal ? `Counting list element ${activeCountIdx + 1}...` : `Counting character ${activeCountIdx + 1}...`) 
+                  : `Converting character ${activeCountIdx + 1}...`}
+              </span>
+            )}
+            {(calcState === 'done' || (calcState === 'calculating' && activeCountIdx >= itemsList.length)) && (
+              <span className="text-indigo-400 font-extrabold">
+                {operator === 'len()' 
+                  ? (isListVal ? `Total elements counted = ${itemsList.length}` : `Total characters counted = ${itemsList.length}`) 
+                  : 'Transformation Complete!'}
+              </span>
+            )}
+          </div>
+        </div>
+      ) : (
+        (() => {
+          const operatorSymbols = operator.split(' ');
+          const highlightIdx = (operator === 'insert' || operator === 'del') ? Number(inputs[1]) : undefined;
+          return (
+            <>
+              {inputs.map((inp, i) => {
+                const val = prevMemorySnapshot[inp] ?? memorySnapshot[inp] ?? inp;
+                return (
+                  <React.Fragment key={i}>
+                    {isDataStructure(val) ? (() => {
+                      const { variant, items } = parseDataStructure(val);
+                      return <DataStructureBox name={inp} variant={variant} items={items} isActive={isActive && calcState === 'inputs'} highlightedIndex={highlightIdx} />;
+                    })() : (
+                      <VariableBox 
+                        name={inp} 
+                        value={val} 
+                        isActive={isActive && calcState === 'inputs'} 
+                        colorTheme={colorTheme} 
+                        isSmall={isSmall}
+                      />
+                    )}
+                    {i < inputs.length - 1 && <Operator symbol={operatorSymbols[i] || operatorSymbols[0] || '+'} isSmall={isSmall} />}
+                  </React.Fragment>
+                );
+              })}
+              {inputs.length === 1 && operator && <Operator symbol={operator} isSmall={isSmall} />}
+            </>
+          );
+        })()
+      )}
+      
+      <Operator symbol="=" isSmall={isSmall} />
+      
+      {/* 2. Right side: The Assignment Box */}
+      <div className="relative flex items-center justify-center">
+        {(() => {
+          const val = calcState === 'done' ? result : (prevMemorySnapshot[storeIn] ?? '');
+          const showOutput = calcState === 'done';
+          const outHighlightIdx = (operator === 'insert' && showOutput) ? Number(inputs[1]) : undefined;
+          
+          return isDataStructure(val) ? (() => {
+            const { variant, items } = parseDataStructure(val);
+            return <DataStructureBox name={storeIn} variant={variant} items={items} isActive={isActive && showOutput} highlightedIndex={outHighlightIdx} />;
+          })() : (
+            <VariableBox 
+              name={storeIn} 
+              value={showOutput ? result : undefined} 
+              oldValue={prevMemorySnapshot[storeIn]}
+              isActive={isActive && showOutput} 
+              colorTheme={colorTheme}
+              isSmall={isSmall}
+            />
+          );
+        })()}
+        
+        {/* Floating calculation result animation */}
+        <AnimatePresence>
+          {calcState === 'calculating' && !isDataStructure(result) && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0, y: -20, x: -30 }}
+              animate={{ opacity: 1, scale: 1.2, y: -30, x: -10 }}
+              exit={{ opacity: 0, scale: 0.5, y: 0, x: 20 }}
+              transition={{ duration: 0.5, type: 'spring' }}
+              className="absolute z-10 font-mono font-black text-2xl text-yellow-300 drop-shadow-[0_0_10px_rgba(253,224,71,0.8)]"
+            >
+              {result}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
