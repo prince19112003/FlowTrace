@@ -2,7 +2,13 @@
 
 Ever stared at a block of code, wishing you could shrink down and watch exactly how the computer steps through it? FlowTrace is built to do just that. It translates abstract, dry logic into a living, breathing canvas where variables, conditions, loops, and data structures come alive in real-time.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-FlowTrace-blueviolet?style=for-the-badge&logo=vercel)](https://flowtrace.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-FlowTrace-blueviolet?style=for-the-badge&logo=vercel)](https://flow-trace-smoky.vercel.app/)
+
+<p align="center">
+  <img src="public/preview1.png" alt="FlowTrace Dashboard Preview" width="48%" />
+  &nbsp;
+  <img src="public/preview2.png" alt="FlowTrace Visualizer Preview" width="48%" />
+</p>
 
 > [!IMPORTANT]
 > **📢 Project Notice & Status:**

@@ -53,23 +53,27 @@ export const list_modify: LessonProgram = {
       });
     }
 
+    const formatPythonList = (arr: Array<string | number>) => {
+      return "[" + arr.map(x => typeof x === 'string' ? `'${x}'` : x).join(', ') + "]";
+    };
+
     const insIdx = Math.max(0, Math.min(listItems.length, Number(insert_index) ?? 1));
     const insVal = String(insert_value).replace(/['"]/g, '').trim() || 'X';
-    const fInsVal = `"${insVal}"`;
+    const fInsVal = `'${insVal}'`;
 
-    const firstListStr = JSON.stringify(listItems);
+    const firstListStr = formatPythonList(listItems);
 
     // Perform Insert
     const listAfterInsert = [...listItems];
     listAfterInsert.splice(insIdx, 0, insVal);
-    const insertListStr = JSON.stringify(listAfterInsert);
+    const insertListStr = formatPythonList(listAfterInsert);
 
     // Perform Delete
     const delIdx = Math.max(0, Math.min(listAfterInsert.length - 1, Number(delete_index) ?? 2));
     const deletedVal = listAfterInsert[delIdx];
     const listAfterDelete = [...listAfterInsert];
     listAfterDelete.splice(delIdx, 1);
-    const deleteListStr = JSON.stringify(listAfterDelete);
+    const deleteListStr = formatPythonList(listAfterDelete);
 
     let stepNum = 1;
     return [

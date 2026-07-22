@@ -1,4 +1,4 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const list_sort_reverse: LessonProgram = {
   id: 'list_sort_reverse', language: 'python', topic: 'lists', lessonNumber: 5,
@@ -11,43 +11,75 @@ export const list_sort_reverse: LessonProgram = {
     { lineNum: 4, tokens: [{ type: 'variable', value: 'arr' }, { type: 'punctuation', value: '.' }, { type: 'function', value: 'reverse' }, { type: 'punctuation', value: '()' }] },
     { lineNum: 5, tokens: [{ type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: ')' }] },
   ],
-  executionSteps: [
-    {
-      step: 1, lineNum: 1,
-      explanationEnglish: 'Create an unsorted list of numbers named arr.',
-      explanationHinglish: 'arr naam ka ek unsorted list banaya.',
-      memorySnapshot: { arr: '"[40, 10, 30, 20]"' },
-      animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: '"[40, 10, 30, 20]"' },
-    },
-    {
-      step: 2, lineNum: 2,
-      explanationEnglish: 'Sort the list in ascending order.',
-      explanationHinglish: 'List ko ascending (chhote se bada) order mein sort kiya.',
-      memorySnapshot: { arr: '"[10, 20, 30, 40]"' },
-      animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[40, 10, 30, 20]"', newValue: '"[10, 20, 30, 40]"' },
-    },
-    {
-      step: 3, lineNum: 3,
-      explanationEnglish: 'Print the sorted list.',
-      explanationHinglish: 'Sorted list print kiya.',
-      memorySnapshot: { arr: '"[10, 20, 30, 40]"' },
-      consoleOutput: '[10, 20, 30, 40]',
-      animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: '"[10, 20, 30, 40]"' },
-    },
-    {
-      step: 4, lineNum: 4,
-      explanationEnglish: 'Reverse the order of elements in the list.',
-      explanationHinglish: 'List ke elements ko ulta (reverse) kar diya.',
-      memorySnapshot: { arr: '"[40, 30, 20, 10]"' },
-      animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[10, 20, 30, 40]"', newValue: '"[40, 30, 20, 10]"' },
-    },
-    {
-      step: 5, lineNum: 5,
-      explanationEnglish: 'Print the reversed list.',
-      explanationHinglish: 'Reverse hua list print kiya.',
-      memorySnapshot: { arr: '"[40, 30, 20, 10]"' },
-      consoleOutput: '[10, 20, 30, 40]\n[40, 30, 20, 10]',
-      animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: '"[40, 30, 20, 10]"' },
+  editableVariables: {
+    arr: { default: '40, 10, 30, 20', type: 'text', label: 'List Elements', noQuotes: true }
+  },
+  generateSteps: ({ arr }): ExecutionStep[] => {
+    let listItems: Array<number | string> = [40, 10, 30, 20];
+    const rawVal = String(arr).trim();
+    const cleaned = rawVal.replace(/[\[\]]/g, '').trim();
+    if (cleaned) {
+      listItems = cleaned.split(',').map(s => {
+        const v = s.trim();
+        return isNaN(Number(v)) ? v.replace(/['"]/g, '') : Number(v);
+      });
     }
-  ],
+
+    const formatPythonList = (items: Array<number | string>) => {
+      return "[" + items.map(x => typeof x === 'string' ? `'${x}'` : x).join(', ') + "]";
+    };
+
+    const initialListStr = formatPythonList(listItems);
+
+    const sortedList = [...listItems].sort((a, b) => {
+      if (typeof a === 'number' && typeof b === 'number') return a - b;
+      return String(a).localeCompare(String(b));
+    });
+    const sortedListStr = formatPythonList(sortedList);
+
+    const reversedList = [...sortedList].reverse();
+    const reversedListStr = formatPythonList(reversedList);
+
+    let stepNum = 1;
+    return [
+      {
+        step: stepNum++, lineNum: 1,
+        explanationEnglish: `Create list arr containing: ${initialListStr}.`,
+        explanationHinglish: `arr naam ka list banaya jisme elements hain: ${initialListStr}.`,
+        memorySnapshot: { arr: initialListStr },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: initialListStr },
+      },
+      {
+        step: stepNum++, lineNum: 2,
+        explanationEnglish: `Sort the list in ascending order: ${sortedListStr}.`,
+        explanationHinglish: `List ko ascending order mein sort kiya: ${sortedListStr}.`,
+        memorySnapshot: { arr: sortedListStr },
+        animationEvent: { type: 'COMPUTE', inputs: ['arr'], operator: 'sort()', result: sortedListStr, storeIn: 'arr' },
+      },
+      {
+        step: stepNum++, lineNum: 3,
+        explanationEnglish: `Print the sorted list.`,
+        explanationHinglish: `Sorted list print kiya.`,
+        memorySnapshot: { arr: sortedListStr },
+        consoleOutput: sortedListStr,
+        animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: sortedListStr },
+      },
+      {
+        step: stepNum++, lineNum: 4,
+        explanationEnglish: `Reverse the sorted list: ${reversedListStr}.`,
+        explanationHinglish: `List ko reverse order mein badla: ${reversedListStr}.`,
+        memorySnapshot: { arr: reversedListStr },
+        animationEvent: { type: 'COMPUTE', inputs: ['arr'], operator: 'reverse()', result: reversedListStr, storeIn: 'arr' },
+      },
+      {
+        step: stepNum++, lineNum: 5,
+        explanationEnglish: `Print the reversed list.`,
+        explanationHinglish: `Reversed list print kiya.`,
+        memorySnapshot: { arr: reversedListStr },
+        consoleOutput: `${sortedListStr}\n${reversedListStr}`,
+        animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: reversedListStr },
+      }
+    ];
+  },
+  executionSteps: [],
 };
