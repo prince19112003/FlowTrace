@@ -2649,6 +2649,165 @@ export const javaStringConcat: LessonProgram = {
   executionSteps: []
 };
 
+export const javaScannerNumber: LessonProgram = {
+  id: 'java_scanner_number',
+  language: 'java',
+  topic: 'user_input',
+  lessonNumber: 1,
+  friendlyName: 'Read User Integer Input (Scanner.nextInt)',
+  learningObjective: 'Learn Scanner initialization and integer user input reading with sc.nextInt().',
+  lines: [
+    { lineNum: 1, tokens: [{ type: 'keyword', value: 'import' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'java.util.Scanner' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 2, tokens: [{ type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'class' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Main' }, { type: 'text', value: ' {' }] },
+    { lineNum: 3, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'static' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'void' }, { type: 'text', value: ' ' }, { type: 'function', value: 'main' }, { type: 'punctuation', value: '(' }, { type: 'keyword', value: 'String' }, { type: 'punctuation', value: '[]' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'args' }, { type: 'punctuation', value: ')' }, { type: 'text', value: ' {' }] },
+    { lineNum: 4, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'Scanner' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'sc' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'new' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Scanner' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'System.in' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.print' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Enter age: "' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 6, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'int' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'age' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'sc' }, { type: 'punctuation', value: '.' }, { type: 'function', value: 'nextInt' }, { type: 'punctuation', value: '()' }, { type: 'punctuation', value: ';' }, { type: 'text', value: ' ' }, { type: 'comment', value: '// Reads integer' }] },
+    { lineNum: 7, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.println' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Your age is: "' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'age' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 8, tokens: [{ type: 'text', value: '    ' }, { type: 'punctuation', value: '}' }] },
+    { lineNum: 9, tokens: [{ type: 'punctuation', value: '}' }] },
+  ],
+  editableVariables: {
+    age: { default: 21, min: 1, max: 100, label: 'sc.nextInt() value' }
+  },
+  generateSteps: (vars): ExecutionStep[] => {
+    const userAge = Number(vars.age ?? 21);
+    return [
+      {
+        step: 1, lineNum: 4,
+        explanationEnglish: 'Initialize Scanner object sc connected to System.in.',
+        explanationHinglish: 'Scanner object sc (System.in) initialize hua.',
+        memorySnapshot: { sc: 'Scanner [Obj]' },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'sc', value: 'Scanner' }
+      },
+      {
+        step: 2, lineNum: 5,
+        explanationEnglish: 'System.out.print prompt: "Enter age: ".',
+        explanationHinglish: 'Console pe prompt: "Enter age: " print hua.',
+        memorySnapshot: { sc: 'Scanner [Obj]' },
+        consoleOutput: 'Enter age: ',
+        animationEvent: { type: 'PRINT_VALUE' as const, variableName: 'sc', outputValue: 'Enter age: ' }
+      },
+      {
+        step: 3, lineNum: 6,
+        explanationEnglish: `sc.nextInt() reads user integer input -> ${userAge}.`,
+        explanationHinglish: `sc.nextInt() ne console se input ${userAge} read kiya. age = ${userAge} store hua.`,
+        memorySnapshot: { sc: 'Scanner [Obj]', age: `${userAge} [int]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'age', value: userAge }
+      },
+      {
+        step: 4, lineNum: 7,
+        explanationEnglish: `System.out.println prints Your age is: ${userAge}.`,
+        explanationHinglish: `Console pe "Your age is: ${userAge}" print hua.`,
+        memorySnapshot: { sc: 'Scanner [Obj]', age: `${userAge} [int]` },
+        consoleOutput: `Enter age: \nYour age is: ${userAge}`,
+        animationEvent: { type: 'PRINT_VALUE' as const, variableName: 'age', outputValue: String(userAge) }
+      }
+    ];
+  },
+  executionSteps: []
+};
+
+export const javaScannerFloat: LessonProgram = {
+  id: 'java_scanner_float',
+  language: 'java',
+  topic: 'user_input',
+  lessonNumber: 2,
+  friendlyName: 'Read User Double Input (Scanner.nextDouble)',
+  learningObjective: 'Read decimal floating point input from user using sc.nextDouble().',
+  lines: [
+    { lineNum: 1, tokens: [{ type: 'keyword', value: 'import' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'java.util.Scanner' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 2, tokens: [{ type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'class' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Main' }, { type: 'text', value: ' {' }] },
+    { lineNum: 3, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'static' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'void' }, { type: 'text', value: ' ' }, { type: 'function', value: 'main' }, { type: 'punctuation', value: '(' }, { type: 'keyword', value: 'String' }, { type: 'punctuation', value: '[]' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'args' }, { type: 'punctuation', value: ')' }, { type: 'text', value: ' {' }] },
+    { lineNum: 4, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'Scanner' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'sc' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'new' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Scanner' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'System.in' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.print' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Enter salary: "' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 6, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'double' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'salary' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'sc' }, { type: 'punctuation', value: '.' }, { type: 'function', value: 'nextDouble' }, { type: 'punctuation', value: '()' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.println' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Salary: ₹"' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'salary' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 8, tokens: [{ type: 'text', value: '    ' }, { type: 'punctuation', value: '}' }] },
+    { lineNum: 9, tokens: [{ type: 'punctuation', value: '}' }] },
+  ],
+  editableVariables: {
+    salary: { default: 45000.5, min: 1000, max: 200000, label: 'sc.nextDouble() value' }
+  },
+  generateSteps: (vars): ExecutionStep[] => {
+    const sal = Number(vars.salary ?? 45000.5);
+    return [
+      {
+        step: 1, lineNum: 4,
+        explanationEnglish: 'Initialize Scanner object sc.',
+        explanationHinglish: 'Scanner object sc declare hua.',
+        memorySnapshot: { sc: 'Scanner [Obj]' },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'sc', value: 'Scanner' }
+      },
+      {
+        step: 2, lineNum: 6,
+        explanationEnglish: `sc.nextDouble() reads decimal input -> ${sal}.`,
+        explanationHinglish: `sc.nextDouble() ne decimal input ${sal} read kiya. salary = ${sal} store hua.`,
+        memorySnapshot: { sc: 'Scanner [Obj]', salary: `${sal} [double]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'salary', value: sal }
+      },
+      {
+        step: 3, lineNum: 7,
+        explanationEnglish: `System.out.println prints Salary: ₹${sal}.`,
+        explanationHinglish: `Console pe "Salary: ₹${sal}" print hua.`,
+        memorySnapshot: { sc: 'Scanner [Obj]', salary: `${sal} [double]` },
+        consoleOutput: `Salary: ₹${sal}`,
+        animationEvent: { type: 'PRINT_VALUE' as const, variableName: 'salary', outputValue: String(sal) }
+      }
+    ];
+  },
+  executionSteps: []
+};
+
+export const javaScannerString: LessonProgram = {
+  id: 'java_scanner_string',
+  language: 'java',
+  topic: 'user_input',
+  lessonNumber: 3,
+  friendlyName: 'Read User String Line (Scanner.nextLine)',
+  learningObjective: 'Read full text line input from user using sc.nextLine().',
+  lines: [
+    { lineNum: 1, tokens: [{ type: 'keyword', value: 'import' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'java.util.Scanner' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 2, tokens: [{ type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'class' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Main' }, { type: 'text', value: ' {' }] },
+    { lineNum: 3, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'static' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'void' }, { type: 'text', value: ' ' }, { type: 'function', value: 'main' }, { type: 'punctuation', value: '(' }, { type: 'keyword', value: 'String' }, { type: 'punctuation', value: '[]' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'args' }, { type: 'punctuation', value: ')' }, { type: 'text', value: ' {' }] },
+    { lineNum: 4, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'Scanner' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'sc' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'new' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Scanner' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'System.in' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.print' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Enter full name: "' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 6, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'String' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'name' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'sc' }, { type: 'punctuation', value: '.' }, { type: 'function', value: 'nextLine' }, { type: 'punctuation', value: '()' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.println' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Welcome, "' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'name' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 8, tokens: [{ type: 'text', value: '    ' }, { type: 'punctuation', value: '}' }] },
+    { lineNum: 9, tokens: [{ type: 'punctuation', value: '}' }] },
+  ],
+  editableVariables: {},
+  generateSteps: (): ExecutionStep[] => {
+    const strName = 'Rahul Sharma';
+    return [
+      {
+        step: 1, lineNum: 4,
+        explanationEnglish: 'Initialize Scanner object sc.',
+        explanationHinglish: 'Scanner object sc initialize hua.',
+        memorySnapshot: { sc: 'Scanner [Obj]' },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'sc', value: 'Scanner' }
+      },
+      {
+        step: 2, lineNum: 6,
+        explanationEnglish: `sc.nextLine() reads string line input -> "${strName}".`,
+        explanationHinglish: `sc.nextLine() ne string line "${strName}" read ki. name = "${strName}" store hua.`,
+        memorySnapshot: { sc: 'Scanner [Obj]', name: `"${strName}" [String]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'name', value: `"${strName}"` }
+      },
+      {
+        step: 3, lineNum: 7,
+        explanationEnglish: `System.out.println prints Welcome, ${strName}.`,
+        explanationHinglish: `Console pe "Welcome, ${strName}" print hua.`,
+        memorySnapshot: { sc: 'Scanner [Obj]', name: `"${strName}" [String]` },
+        consoleOutput: `Welcome, ${strName}`,
+        animationEvent: { type: 'PRINT_VALUE' as const, variableName: 'name', outputValue: `Welcome, ${strName}` }
+      }
+    ];
+  },
+  executionSteps: []
+};
+
 // Export all Java lessons map
 export const javaLessons = {
   java_types: javaTypes,
@@ -2660,6 +2819,9 @@ export const javaLessons = {
   java_swap_no_temp: javaSwapNoTemp,
   java_widening: javaWidening,
   java_simple_interest: javaSimpleInterest,
+  java_scanner_number: javaScannerNumber,
+  java_scanner_float: javaScannerFloat,
+  java_scanner_string: javaScannerString,
   java_even_odd: javaEvenOdd,
   java_largest_three: javaLargestThree,
   java_grade: javaGrade,

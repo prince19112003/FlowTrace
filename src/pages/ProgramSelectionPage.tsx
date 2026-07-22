@@ -195,6 +195,11 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
       { id: 'java_circle_area', number: '02', friendlyName: 'Area & Circumference of Circle', description: 'Learn floating point math formulas using double precision in Java.' },
       { id: 'java_simple_interest', number: '03', friendlyName: 'Simple Interest Calculator', description: 'Compute interest formula (P * R * T) / 100 using double arithmetic expressions.' },
     ],
+    user_input: [
+      { id: 'java_scanner_number', number: '01', friendlyName: 'Read User Integer Input (Scanner.nextInt)', description: 'Learn Scanner initialization and integer user input reading with sc.nextInt().' },
+      { id: 'java_scanner_float', number: '02', friendlyName: 'Read User Double Input (Scanner.nextDouble)', description: 'Read decimal floating point input from user using sc.nextDouble().' },
+      { id: 'java_scanner_string', number: '03', friendlyName: 'Read User String Line (Scanner.nextLine)', description: 'Read full text line input from user using sc.nextLine().' },
+    ],
     if_else: [
       { id: 'java_even_odd', number: '01', friendlyName: 'Even or Odd Check', description: 'Understand binary branch decision execution using if-else and modulo % in Java.' },
       { id: 'java_largest_three', number: '02', friendlyName: 'Largest of Three Numbers', description: 'Learn logical AND (&&) combination in Java if-else if decision trees.' },

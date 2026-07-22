@@ -92,6 +92,11 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
       java_circle_area: javaLessons.java_circle_area,
       java_simple_interest: javaLessons.java_simple_interest,
     },
+    user_input: {
+      java_scanner_number: javaLessons.java_scanner_number,
+      java_scanner_float: javaLessons.java_scanner_float,
+      java_scanner_string: javaLessons.java_scanner_string,
+    },
     if_else: {
       java_even_odd: javaLessons.java_even_odd,
       java_largest_three: javaLessons.java_largest_three,
