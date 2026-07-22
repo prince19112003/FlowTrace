@@ -297,6 +297,23 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
       { id: 'cpp_matrix_transpose', number: '03', friendlyName: '2D Matrix Transpose', description: 'Transpose matrix rows into columns in C++.' },
     ],
   },
+  dsa: {
+    searching_sorting: [
+      { id: 'binary_search', number: '01', friendlyName: 'Binary Search Algorithm (O(log N))', description: 'Divide-and-conquer search on sorted array with low, mid, high pointers.' },
+      { id: 'bubble_sort', number: '02', friendlyName: 'Bubble Sort Algorithm (O(N^2))', description: 'Compare adjacent elements and swap them to sort array.' },
+      { id: 'selection_sort', number: '03', friendlyName: 'Selection Sort Algorithm (O(N^2))', description: 'Find minimum element in unsorted array and swap to front.' },
+      { id: 'insertion_sort', number: '04', friendlyName: 'Insertion Sort Algorithm', description: 'Build sorted array one element at a time by shifting elements.' },
+      { id: 'linear_search', number: '05', friendlyName: 'Linear Search Algorithm (O(N))', description: 'Sequential element scanning from index 0 to N-1.' },
+    ],
+    stack_queue: [
+      { id: 'stack_operations', number: '01', friendlyName: 'Stack Operations (Push & Pop)', description: 'Understand LIFO (Last-In-First-Out) stack push, pop, and top pointer.' },
+      { id: 'queue_operations', number: '02', friendlyName: 'Queue Operations (Enqueue & Dequeue)', description: 'Understand FIFO (First-In-First-Out) queue front and rear pointers.' },
+    ],
+    linked_list: [
+      { id: 'singly_linked_list', number: '01', friendlyName: 'Singly Linked List Traversal', description: 'Traverse node memory pointers (data + next pointer).' },
+      { id: 'reverse_linked_list', number: '02', friendlyName: 'Reverse a Linked List', description: 'Reverse next pointer links using prev, curr, and next pointers.' },
+    ],
+  },
   java: {
     variables: [
       { id: 'java_types', number: '01', friendlyName: 'Java Primitive Data Types (int, double, boolean, char)', description: 'Understand Java strongly-typed primitives, explicit byte sizes, and memory allocation.' },

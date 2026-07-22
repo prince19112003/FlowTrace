@@ -139,6 +139,12 @@ const javaTopics = [
   { id: 'arrays_2d', number: '13', name: '2D Arrays', subtitle: 'Row-Column Matrix Grids', programsCount: 3, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#d97706' },
 ];
 
+const dsaTopics = [
+  { id: 'searching_sorting', number: '01', name: 'Searching & Sorting', subtitle: 'Binary Search, Bubble & Selection Sort', programsCount: 5, difficulty: 'Intermediate' as const, category: 'algo', accentColor: '#a855f7' },
+  { id: 'stack_queue', number: '02', name: 'Stacks & Queues', subtitle: 'LIFO & FIFO Data Structure Operations', programsCount: 4, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#ec4899' },
+  { id: 'linked_list', number: '03', name: 'Linked Lists', subtitle: 'Node Memory Pointers & Traversal', programsCount: 4, difficulty: 'Advanced' as const, category: 'data', accentColor: '#06b6d4' },
+];
+
 const difficultyConfig = {
   Beginner:     { color: '#22c55e', bg: 'rgba(34,197,94,0.08)',   border: 'rgba(34,197,94,0.22)' },
   Intermediate: { color: '#f59e0b', bg: 'rgba(245,158,11,0.08)',  border: 'rgba(245,158,11,0.22)' },
@@ -156,12 +162,13 @@ export const TopicSelectionPage: React.FC = () => {
     if (languageId === 'c') return cTopics;
     if (languageId === 'cpp') return cppTopics;
     if (languageId === 'java') return javaTopics;
+    if (languageId === 'dsa') return dsaTopics;
     return pythonTopics;
   }, [languageId]);
 
   const totalPrograms = useMemo(() => topics.reduce((s, t) => s + t.programsCount, 0), [topics]);
   const langDisplay = languageId
-    ? (languageId === 'cpp' ? 'C++' : languageId.charAt(0).toUpperCase() + languageId.slice(1))
+    ? (languageId === 'cpp' ? 'C++' : languageId === 'dsa' ? 'DSA & Algorithms' : languageId.charAt(0).toUpperCase() + languageId.slice(1))
     : 'Python';
 
   return (

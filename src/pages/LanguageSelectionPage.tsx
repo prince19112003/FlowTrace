@@ -93,6 +93,28 @@ const languages = [
     ),
   },
   {
+    id: 'dsa',
+    name: 'DSA & Algorithms',
+    enabled: true,
+    creator: 'CS Fundamentals',
+    year: 'Polyglot',
+    tagline: 'Master Algorithms in Python, C++, Java & C.',
+    topics: 8,
+    programs: 32,
+    accentColor: '#a855f7',
+    accentGlow: 'rgba(168,85,247,0.22)',
+    accentBorder: 'rgba(168,85,247,0.35)',
+    bgGradient: 'radial-gradient(ellipse at top right, rgba(168,85,247,0.15) 0%, transparent 60%)',
+    Icon: () => (
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <circle cx="12" cy="12" r="5" fill="#a855f7"/>
+        <circle cx="36" cy="12" r="5" fill="#a855f7"/>
+        <circle cx="24" cy="36" r="5" fill="#a855f7"/>
+        <path d="M15 15L21 33M33 15L27 33M17 12H31" stroke="#a855f7" strokeWidth="2.5" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
     id: 'javascript',
     name: 'JavaScript',
     enabled: false,

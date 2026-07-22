@@ -41,6 +41,9 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     dictionaries: dictionariesLessons,
     searching_sorting: searchingSortingLessons,
   },
+  dsa: {
+    searching_sorting: searchingSortingLessons,
+  },
   c: {
     variables: {
       c_int: cLessons.c_int,
