@@ -12,7 +12,7 @@ export const VisualizerWorkspace: React.FC = () => {
   const { lesson, isFullScreen } = useLesson();
   const [isConsoleFullScreen, setIsConsoleFullScreen] = useState(false);
   
-  const isFlowchartTopic = ['variables', 'if_statement', 'if_else', 'if_elif_else', 'match_case', 'for_loop', 'while_loop', 'nested_loop', 'loop_control', 'functions', 'strings', 'lists', 'tuples', 'dictionaries'].includes(lesson?.topic || '');
+  const isFlowchartTopic = ['variables', 'if_statement', 'if_else', 'if_elif_else', 'match_case', 'for_loop', 'while_loop', 'nested_loop', 'loop_control', 'functions', 'strings', 'lists', 'tuples', 'dictionaries', 'searching_sorting'].includes(lesson?.topic || '');
 
   if (isConsoleFullScreen) {
     return (
