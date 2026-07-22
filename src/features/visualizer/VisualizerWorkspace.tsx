@@ -12,7 +12,7 @@ export const VisualizerWorkspace: React.FC = () => {
   const { lesson, isFullScreen } = useLesson();
   const [isConsoleFullScreen, setIsConsoleFullScreen] = useState(false);
   
-  const isFlowchartTopic = ['variables', 'type_casting', 'operators_expressions', 'user_input', 'data_types', 'if_statement', 'if_else', 'if_elif_else', 'match_case', 'switch_case', 'for_loop', 'while_loop', 'do_while_loop', 'nested_loop', 'loop_control', 'loops', 'functions', 'recursion', 'strings', 'lists', 'tuples', 'dictionaries', 'arrays', 'arrays_1d', 'arrays_2d', 'searching_sorting', 'stack_queue', 'linked_list'].includes(lesson?.topic || '');
+  const isFlowchartTopic = ['variables', 'type_casting', 'operators_expressions', 'user_input', 'data_types', 'if_statement', 'if_else', 'if_elif_else', 'match_case', 'switch_case', 'for_loop', 'while_loop', 'do_while_loop', 'nested_loop', 'loop_control', 'loops', 'functions', 'recursion', 'strings', 'lists', 'tuples', 'dictionaries', 'arrays', 'arrays_1d', 'arrays_2d', 'searching_sorting', 'array_operations', 'searching', 'sorting', 'stack', 'queue', 'singly_linked_list', 'doubly_linked_list', 'recursion_dsa', 'binary_tree', 'graph_basics'].includes(lesson?.topic || '');
 
   if (isConsoleFullScreen) {
     return (

@@ -42,7 +42,16 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     searching_sorting: searchingSortingLessons,
   },
   dsa: {
-    searching_sorting: searchingSortingLessons,
+    array_operations: searchingSortingLessons,
+    searching: searchingSortingLessons,
+    sorting: searchingSortingLessons,
+    stack: searchingSortingLessons,
+    queue: searchingSortingLessons,
+    singly_linked_list: searchingSortingLessons,
+    doubly_linked_list: searchingSortingLessons,
+    recursion_dsa: searchingSortingLessons,
+    binary_tree: searchingSortingLessons,
+    graph_basics: searchingSortingLessons,
   },
   c: {
     variables: {

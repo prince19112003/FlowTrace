@@ -298,20 +298,47 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
     ],
   },
   dsa: {
-    searching_sorting: [
+    array_operations: [
+      { id: 'linear_search', number: '01', friendlyName: 'Array Element Traversal', description: 'Traverse array elements from index 0 to N-1.' },
+      { id: 'cpp_array_max', number: '02', friendlyName: 'Find Maximum & Minimum in Array', description: 'Linear scan to track maximum and minimum values.' },
+      { id: 'cpp_array_reverse', number: '03', friendlyName: 'In-place Array Reversal', description: 'Reverse array elements using two pointers.' },
+    ],
+    searching: [
       { id: 'binary_search', number: '01', friendlyName: 'Binary Search Algorithm (O(log N))', description: 'Divide-and-conquer search on sorted array with low, mid, high pointers.' },
-      { id: 'bubble_sort', number: '02', friendlyName: 'Bubble Sort Algorithm (O(N^2))', description: 'Compare adjacent elements and swap them to sort array.' },
-      { id: 'selection_sort', number: '03', friendlyName: 'Selection Sort Algorithm (O(N^2))', description: 'Find minimum element in unsorted array and swap to front.' },
-      { id: 'insertion_sort', number: '04', friendlyName: 'Insertion Sort Algorithm', description: 'Build sorted array one element at a time by shifting elements.' },
-      { id: 'linear_search', number: '05', friendlyName: 'Linear Search Algorithm (O(N))', description: 'Sequential element scanning from index 0 to N-1.' },
+      { id: 'linear_search', number: '02', friendlyName: 'Linear Search Algorithm (O(N))', description: 'Sequential element scanning from index 0 to N-1.' },
     ],
-    stack_queue: [
-      { id: 'stack_operations', number: '01', friendlyName: 'Stack Operations (Push & Pop)', description: 'Understand LIFO (Last-In-First-Out) stack push, pop, and top pointer.' },
-      { id: 'queue_operations', number: '02', friendlyName: 'Queue Operations (Enqueue & Dequeue)', description: 'Understand FIFO (First-In-First-Out) queue front and rear pointers.' },
+    sorting: [
+      { id: 'bubble_sort', number: '01', friendlyName: 'Bubble Sort Algorithm (O(N^2))', description: 'Compare adjacent elements and swap them to sort array.' },
+      { id: 'selection_sort', number: '02', friendlyName: 'Selection Sort Algorithm (O(N^2))', description: 'Find minimum element in unsorted array and swap to front.' },
+      { id: 'insertion_sort', number: '03', friendlyName: 'Insertion Sort Algorithm', description: 'Build sorted array one element at a time by shifting elements.' },
     ],
-    linked_list: [
+    stack: [
+      { id: 'stack_operations', number: '01', friendlyName: 'Stack Push Operation', description: 'Push elements onto LIFO stack memory.' },
+      { id: 'stack_operations', number: '02', friendlyName: 'Stack Pop & Top Pointer', description: 'Pop element from stack top and inspect top index.' },
+    ],
+    queue: [
+      { id: 'queue_operations', number: '01', friendlyName: 'Queue Enqueue Operation', description: 'Add elements to FIFO queue rear.' },
+      { id: 'queue_operations', number: '02', friendlyName: 'Queue Dequeue Operation', description: 'Remove elements from FIFO queue front.' },
+    ],
+    singly_linked_list: [
       { id: 'singly_linked_list', number: '01', friendlyName: 'Singly Linked List Traversal', description: 'Traverse node memory pointers (data + next pointer).' },
-      { id: 'reverse_linked_list', number: '02', friendlyName: 'Reverse a Linked List', description: 'Reverse next pointer links using prev, curr, and next pointers.' },
+      { id: 'reverse_linked_list', number: '02', friendlyName: 'Reverse a Singly Linked List', description: 'Reverse next pointer links using prev, curr, and next pointers.' },
+    ],
+    doubly_linked_list: [
+      { id: 'singly_linked_list', number: '01', friendlyName: 'Doubly Linked List Structure', description: 'Understand prev, data, and next pointers in doubly linked list.' },
+      { id: 'reverse_linked_list', number: '02', friendlyName: 'Insert Node in Doubly Linked List', description: 'Update prev and next node pointers.' },
+    ],
+    recursion_dsa: [
+      { id: 'py_factorial', number: '01', friendlyName: 'Factorial Call Stack Recursion', description: 'Visualize function stack frames during recursive call.' },
+      { id: 'py_fibonacci_rec', number: '02', friendlyName: 'Fibonacci Call Stack Tree', description: 'Track overlapping recursive calls in Fibonacci execution.' },
+    ],
+    binary_tree: [
+      { id: 'singly_linked_list', number: '01', friendlyName: 'Binary Tree Node Structure', description: 'Understand root, left child, and right child memory pointers.' },
+      { id: 'singly_linked_list', number: '02', friendlyName: 'Inorder Tree Traversal (Left-Root-Right)', description: 'Recursive Inorder tree traversal visualization.' },
+    ],
+    graph_basics: [
+      { id: 'cpp_matrix_2d', number: '01', friendlyName: 'Graph Adjacency Matrix', description: 'Represent graph vertices and edges using 2D matrix.' },
+      { id: 'linear_search', number: '02', friendlyName: 'Breadth First Search (BFS) Concept', description: 'Level-order graph traversal using queue data structure.' },
     ],
   },
   java: {
