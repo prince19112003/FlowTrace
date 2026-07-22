@@ -1244,16 +1244,21 @@ export const CustomFlowchartStage: React.FC = () => {
                             isTrue={ev.result === 'True' || String(ev.result) === 'true'}
                             isActive={isLatest}
                           />
-                        ) : (
-                          <ComputeBlock
-                            inputs={ev.inputs}
-                            operator={ev.operator || '+'}
-                            storeIn={ev.storeIn}
-                            result={ev.result}
-                            memorySnapshot={step.memorySnapshot}
-                            isActive={isLatest}
-                          />
-                        )
+                        ) : (() => {
+                          const prevStep = index > 0 ? visibleSteps[index - 1] : undefined;
+                          const prevMemorySnapshot = prevStep ? prevStep.memorySnapshot : {};
+                          return (
+                            <ComputeBlock
+                              inputs={ev.inputs}
+                              operator={ev.operator || '+'}
+                              storeIn={ev.storeIn}
+                              result={ev.result}
+                              memorySnapshot={step.memorySnapshot}
+                              prevMemorySnapshot={prevMemorySnapshot}
+                              isActive={isLatest}
+                            />
+                          );
+                        })()
                       )}
 
                       {ev?.type === 'NONE' && (
