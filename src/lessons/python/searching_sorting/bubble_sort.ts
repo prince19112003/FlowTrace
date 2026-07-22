@@ -100,8 +100,8 @@ export const bubble_sort: LessonProgram = {
         const isSwap = items[j] > items[j + 1];
         steps.push({
           step: stepNum++, lineNum: 5,
-          explanationEnglish: `Check if arr[${j}] (${items[j]}) > arr[${j + 1}] (${items[j + 1]}): Result is ${isSwap ? 'TRUE (Swap needed)' : 'FALSE (No swap)'}.`,
-          explanationHinglish: `Check kiya kya arr[${j}] (${items[j]}) > arr[${j + 1}] (${items[j + 1]}): Result ${isSwap ? 'SAHI (Swap karenge)' : 'GALAT (Swap nahi hoga)'}.`,
+          explanationEnglish: `Check if arr[${j}] (${items[j]}) > arr[${j + 1}] (${items[j + 1]}): ${isSwap ? 'TRUE (Swap needed)' : 'FALSE (No swap)'}.`,
+          explanationHinglish: `Check kiya kya arr[${j}] (${items[j]}) > arr[${j + 1}] (${items[j + 1]}): ${isSwap ? 'SAHI (Swap karenge)' : 'GALAT (Swap nahi hoga)'}.`,
           memorySnapshot: {
             ...mem,
             comparingIndices: [j, j + 1],
@@ -115,16 +115,6 @@ export const bubble_sort: LessonProgram = {
           const valJ = items[j];
           const valJNext = items[j + 1];
 
-          // Step 6: temp = arr[j]
-          mem.temp = valJ;
-          steps.push({
-            step: stepNum++, lineNum: 6,
-            explanationEnglish: `Store arr[${j}] (${valJ}) in temp variable.`,
-            explanationHinglish: `arr[${j}] (${valJ}) ko temp variable mein save kiya.`,
-            memorySnapshot: { ...mem, comparingIndices: [j, j + 1], sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
-            animationEvent: { type: 'CREATE_VARIABLE', name: 'temp', value: valJ },
-          });
-
           // Perform actual swap in array
           items[j] = valJNext;
           items[j + 1] = valJ;
@@ -132,25 +122,14 @@ export const bubble_sort: LessonProgram = {
           arrStr = formatListStr(items);
           mem.arr = arrStr;
 
-          // Step 7: arr[j] = arr[j+1]
-          steps.push({
-            step: stepNum++, lineNum: 7,
-            explanationEnglish: `Move arr[${j + 1}] (${valJNext}) into index ${j}.`,
-            explanationHinglish: `arr[${j + 1}] (${valJNext}) ko index ${j} par shift kiya.`,
-            memorySnapshot: { ...mem, swappingIndices: [j, j + 1], sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
-            animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: prevArrStr, newValue: arrStr },
-          });
-
-          // Step 8: arr[j+1] = temp
+          // Single clean Swap step
           steps.push({
             step: stepNum++, lineNum: 8,
-            explanationEnglish: `Move temp (${valJ}) into index ${j + 1}. Swapped ${valJ} ⇄ ${valJNext}!`,
-            explanationHinglish: `temp (${valJ}) ko index ${j + 1} par rakha. ${valJ} ⇄ ${valJNext} swap ho gaya!`,
+            explanationEnglish: `Swapped arr[${j}] (${valJ}) ⇄ arr[${j + 1}] (${valJNext}). New array: ${arrStr}.`,
+            explanationHinglish: `Swap kiya: arr[${j}] (${valJ}) ⇄ arr[${j + 1}] (${valJNext}). Naya array: ${arrStr}.`,
             memorySnapshot: { ...mem, swappingIndices: [j, j + 1], sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
             animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: prevArrStr, newValue: arrStr },
           });
-
-          delete mem.temp;
         }
       }
 

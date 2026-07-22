@@ -1567,23 +1567,26 @@ export const CustomFlowchartStage: React.FC = () => {
                                   ✨ Locked: {pSnap.lockedValue} at [{pSnap.lockedIndex}]
                                 </span>
                               </div>
-                              <div className="flex gap-1 items-center font-bold overflow-x-auto custom-scrollbar py-1">
+                              <div className="flex border border-slate-800 rounded-lg overflow-hidden bg-slate-950/90 p-0.5 mt-1">
                                 {pSnap.array.map((val: any, cellIdx: number) => {
                                   const isJustLocked = cellIdx === pSnap.lockedIndex;
                                   const isLocked = cellIdx >= pSnap.array.length - pSnap.pass;
                                   return (
-                                    <span 
+                                    <div 
                                       key={cellIdx} 
-                                      className={`px-2 py-1 rounded-md text-[11px] font-mono transition-all ${
+                                      className={`flex-1 flex flex-col items-center justify-center py-1 px-1 border-r last:border-0 border-slate-800 transition-all ${
                                         isJustLocked
-                                          ? 'bg-amber-500/35 text-amber-200 border-2 border-amber-400 font-black shadow-[0_0_12px_rgba(245,158,11,0.6)] animate-pulse scale-105'
+                                          ? 'bg-amber-500/30 border border-amber-400/60 text-amber-200 font-black shadow-[inset_0_0_8px_rgba(245,158,11,0.5)]'
                                           : isLocked
-                                          ? 'bg-emerald-500/25 text-emerald-200 border border-emerald-400/50 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]'
-                                          : 'bg-slate-950/80 text-slate-400 border border-slate-800'
+                                          ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-200 font-black'
+                                          : 'text-slate-400'
                                       }`}
                                     >
-                                      [{cellIdx}]: {val}
-                                    </span>
+                                      <span className="text-[7.5px] font-mono text-slate-500 font-bold mb-0.5">[{cellIdx}]</span>
+                                      <span className={`text-xs font-mono font-extrabold ${isJustLocked ? 'text-amber-200' : isLocked ? 'text-emerald-200' : 'text-slate-300'}`}>
+                                        {val}
+                                      </span>
+                                    </div>
                                   );
                                 })}
                               </div>
