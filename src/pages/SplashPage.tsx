@@ -222,32 +222,16 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
               className="relative flex items-center justify-center"
             >
               <svg className="w-[340px] sm:w-[500px] h-[140px] overflow-visible" viewBox="0 0 500 140">
-                <defs>
-                  <linearGradient id="penGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#38bdf8" />
-                    <stop offset="50%" stopColor="#818cf8" />
-                    <stop offset="100%" stopColor="#c084fc" />
-                  </linearGradient>
-                  <filter id="penGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="4" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                {/* Handwriting Pen Outline Stroke Draw */}
+                {/* Simple, Clean Solid Pen Handwriting Stroke Draw */}
                 <motion.text
                   x="50%"
                   y="62%"
                   textAnchor="middle"
                   dominantBaseline="middle"
                   fill="none"
-                  stroke="url(#penGrad)"
-                  strokeWidth="2.8"
-                  filter="url(#penGlow)"
-                  style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", fontSize: '90px' }}
+                  stroke="#ffffff"
+                  strokeWidth="2.2"
+                  style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", fontSize: '92px' }}
                   initial={{ strokeDasharray: 800, strokeDashoffset: 800 }}
                   animate={{ strokeDashoffset: 0 }}
                   transition={{ duration: 1.8, ease: 'easeInOut' }}
@@ -255,18 +239,17 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
                   FlowTrace
                 </motion.text>
 
-                {/* Filled Calligraphy Fade-In upon completion */}
+                {/* Solid Clean Ink Fade-In upon completion */}
                 <motion.text
                   x="50%"
                   y="62%"
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fill="url(#penGrad)"
-                  filter="url(#penGlow)"
-                  style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", fontSize: '90px' }}
+                  fill="#ffffff"
+                  style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", fontSize: '92px' }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 1.4, duration: 0.6, ease: 'easeOut' }}
+                  transition={{ delay: 1.4, duration: 0.5, ease: 'easeOut' }}
                 >
                   FlowTrace
                 </motion.text>
