@@ -5,7 +5,7 @@ export const list_sort_reverse: LessonProgram = {
   friendlyName: 'Sort and Reverse List',
   learningObjective: 'Learn how to rearrange list elements using the sort() and reverse() methods.',
   lines: [
-    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '40' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '10' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '30' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '20' }, { type: 'punctuation', value: ']' }] },
+    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '40, 10, 30, 20' }, { type: 'punctuation', value: ']' }] },
     { lineNum: 2, tokens: [{ type: 'variable', value: 'arr' }, { type: 'punctuation', value: '.' }, { type: 'function', value: 'sort' }, { type: 'punctuation', value: '()' }] },
     { lineNum: 3, tokens: [{ type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: ')' }] },
     { lineNum: 4, tokens: [{ type: 'variable', value: 'arr' }, { type: 'punctuation', value: '.' }, { type: 'function', value: 'reverse' }, { type: 'punctuation', value: '()' }] },
