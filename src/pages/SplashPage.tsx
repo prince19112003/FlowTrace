@@ -21,17 +21,17 @@ interface Particle {
 export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [phase, setPhase] = useState<'constellation' | 'assemble' | 'resolved'>('constellation');
+  const [phase, setPhase] = useState<'constellation' | 'assemble' | 'writing'>('constellation');
 
   useEffect(() => {
     // Phase transitions
     const assembleTimer = setTimeout(() => {
       setPhase('assemble');
-    }, 1200);
+    }, 1000);
 
-    const resolvedTimer = setTimeout(() => {
-      setPhase('resolved');
-    }, 2200);
+    const writingTimer = setTimeout(() => {
+      setPhase('writing');
+    }, 1800);
 
     const completeTimer = setTimeout(() => {
       if (onComplete) {
@@ -39,11 +39,11 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
       } else {
         navigate('/languages', { replace: true });
       }
-    }, 3500);
+    }, 4200); // 4.2s for complete handwriting animation experience
 
     return () => {
       clearTimeout(assembleTimer);
-      clearTimeout(resolvedTimer);
+      clearTimeout(writingTimer);
       clearTimeout(completeTimer);
     };
   }, [navigate, onComplete]);
@@ -65,15 +65,15 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
     };
     window.addEventListener('resize', handleResize);
 
-    const particleCount = 70;
+    const particleCount = 65;
     const particles: Particle[] = [];
 
     const logoCenterX = width / 2;
     const logoCenterY = height / 2;
 
-    // Create target coordinates forming a glowing halo ring around the central name
+    // Create target coordinates forming a glowing halo ring around the central handwriting area
     const targets: { x: number; y: number }[] = [];
-    const haloRadius = 150;
+    const haloRadius = 160;
     for (let k = 0; k < particleCount; k++) {
       const angle = (k / particleCount) * Math.PI * 2;
       const r = haloRadius + (Math.sin(k * 3) * 15);
@@ -97,7 +97,7 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
       });
     }
 
-    let animationPhase: 'constellation' | 'assemble' | 'resolved' = 'constellation';
+    let animationPhase: 'constellation' | 'assemble' | 'writing' = 'constellation';
 
     const renderLoop = () => {
       ctx.clearRect(0, 0, width, height);
@@ -110,8 +110,8 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
         }
       }
 
-      // Update particle targets if in assembly phase
-      if (animationPhase === 'assemble' || animationPhase === 'resolved') {
+      // Update particle targets if in assembly / writing phase
+      if (animationPhase === 'assemble' || animationPhase === 'writing') {
         particles.forEach((p, index) => {
           const target = targets[index % targets.length];
           p.targetX = target.x;
@@ -141,33 +141,28 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
       // Update and Draw particles
       particles.forEach((p, index) => {
         if (animationPhase === 'assemble' && p.targetX && p.targetY) {
-          // Accelerating magnetic pull towards coordinates
           const dx = p.targetX - p.x;
           const dy = p.targetY - p.y;
           p.x += dx * 0.12;
           p.y += dy * 0.12;
           p.alpha = 0.85;
-        } else if (animationPhase === 'resolved' && p.targetX && p.targetY) {
-          // Settle tightly on target halo ring
+        } else if (animationPhase === 'writing' && p.targetX && p.targetY) {
           p.x = p.targetX;
           p.y = p.targetY;
-          p.alpha = 0.5;
+          p.alpha = 0.4;
         } else {
-          // Slow floating drift
           p.x += p.vx;
           p.y += p.vy;
 
-          // Boundary bounce/wrap
           if (p.x < 0 || p.x > width) p.vx *= -1;
           if (p.y < 0 || p.y > height) p.vy *= -1;
         }
 
-        // Draw particle node
         const glowColor = index % 3 === 0 
-          ? 'rgba(34, 211, 238, ' // Cyan
+          ? 'rgba(34, 211, 238, ' 
           : index % 3 === 1 
-          ? 'rgba(168, 85, 247, ' // Purple
-          : 'rgba(99, 102, 241, '; // Indigo
+          ? 'rgba(168, 85, 247, ' 
+          : 'rgba(99, 102, 241, '; 
 
         ctx.fillStyle = glowColor + p.alpha + ')';
         ctx.shadowColor = glowColor + p.alpha * 0.8 + ')';
@@ -175,7 +170,7 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        ctx.shadowBlur = 0;
       });
 
       animationFrameId = requestAnimationFrame(renderLoop);
@@ -191,19 +186,19 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
 
   return (
     <PageTransition className="items-center justify-center bg-[#020306] text-slate-100 overflow-hidden relative font-sans">
-      {/* Import Google Cursive Font */}
+      {/* Google Cursive Calligraphy Font */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap');
       `}</style>
 
-      {/* 1. Canvas Layer */}
+      {/* 1. Background Particles Canvas */}
       <canvas 
         ref={canvasRef} 
         data-phase={phase}
         className="absolute inset-0 w-full h-full pointer-events-none z-0" 
       />
 
-      {/* 2. Interactive Background Grids */}
+      {/* 2. Background Grid */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
         style={{ 
@@ -212,23 +207,71 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
         }} 
       />
 
-      {/* 3. Glow Ambient Orbs */}
+      {/* 3. Glow Ambient Orb */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none" />
 
-      {/* 4. Centered Cursive Brand Title Reveal */}
+      {/* 4. Handwriting Pen Calligraphy Reveal */}
       <div className="flex flex-col items-center justify-center z-10 select-none">
         <AnimatePresence mode="wait">
-          {phase === 'resolved' && (
-            <motion.h1
-              key="cursiveTitle"
-              initial={{ opacity: 0, scale: 0.85, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-6xl md:text-8xl text-transparent bg-clip-text bg-linear-to-r from-cyan-300 via-indigo-300 to-purple-400 drop-shadow-[0_0_30px_rgba(168,85,247,0.55)]"
-              style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", letterSpacing: '1px' }}
+          {phase === 'writing' && (
+            <motion.div
+              key="handwritingContainer"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="relative flex items-center justify-center"
             >
-              FlowTrace
-            </motion.h1>
+              <svg className="w-[340px] sm:w-[500px] h-[140px] overflow-visible" viewBox="0 0 500 140">
+                <defs>
+                  <linearGradient id="penGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#38bdf8" />
+                    <stop offset="50%" stopColor="#818cf8" />
+                    <stop offset="100%" stopColor="#c084fc" />
+                  </linearGradient>
+                  <filter id="penGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                {/* Handwriting Pen Outline Stroke Draw */}
+                <motion.text
+                  x="50%"
+                  y="62%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fill="none"
+                  stroke="url(#penGrad)"
+                  strokeWidth="2.8"
+                  filter="url(#penGlow)"
+                  style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", fontSize: '90px' }}
+                  initial={{ strokeDasharray: 800, strokeDashoffset: 800 }}
+                  animate={{ strokeDashoffset: 0 }}
+                  transition={{ duration: 1.8, ease: 'easeInOut' }}
+                >
+                  FlowTrace
+                </motion.text>
+
+                {/* Filled Calligraphy Fade-In upon completion */}
+                <motion.text
+                  x="50%"
+                  y="62%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fill="url(#penGrad)"
+                  filter="url(#penGlow)"
+                  style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", fontSize: '90px' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.4, duration: 0.6, ease: 'easeOut' }}
+                >
+                  FlowTrace
+                </motion.text>
+              </svg>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
