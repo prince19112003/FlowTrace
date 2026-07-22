@@ -77,7 +77,8 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
       </div>
       
       {isArrayOrTuple ? (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-3">
+          {/* Main Full Array Grid */}
           <div className={`flex border ${gridBorderClass} rounded-lg overflow-hidden bg-slate-950/60 p-0.5`}>
             {arrayItems.map((val, idx) => {
               const isHighlighted = idx === highlightedIndex || highlightedIndices?.includes(idx);
@@ -142,6 +143,93 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
               );
             })}
           </div>
+
+          {/* Physically Divided Sub-Arrays Breakdown */}
+          {hasRange && (searchRange[0] > 0 || searchRange[1] < arrayItems.length - 1) && (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-col gap-2 pt-2.5 border-t border-cyan-500/20 mt-1"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] font-black uppercase tracking-wider font-mono text-cyan-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                  DIVIDED SUB-ARRAY BREAKDOWN
+                </span>
+                <span className="text-[8.5px] font-mono font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded">
+                  {searchRange[1] - searchRange[0] + 1} of {arrayItems.length} elements active
+                </span>
+              </div>
+
+              {/* Split Sub-Array Boxes Row */}
+              <div className="flex items-center gap-3">
+                {/* 1. Left Eliminated Sub-Array */}
+                {searchRange[0] > 0 && (
+                  <div className="flex flex-col items-center gap-1 opacity-50 grayscale border border-rose-500/30 bg-rose-950/20 p-2 rounded-lg">
+                    <span className="text-[8px] font-black font-mono text-rose-400 uppercase tracking-widest">
+                      ✕ ELIMINATED LEFT HALF
+                    </span>
+                    <div className="flex border border-rose-500/30 rounded overflow-hidden bg-slate-950/60">
+                      {arrayItems.slice(0, searchRange[0]).map((val, i) => (
+                        <div key={i} className="flex flex-col items-center px-2 py-1 border-r border-rose-500/20 last:border-0 min-w-[36px]">
+                          <span className="text-[8px] font-mono text-slate-500">[{i}]</span>
+                          <span className="text-xs font-mono font-bold text-slate-400 line-through">{val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Active Search Sub-Array */}
+                <div className="flex flex-col items-center gap-1 border-2 border-cyan-400 bg-cyan-950/40 p-2 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.3)] scale-[1.02] z-10">
+                  <span className="text-[8px] font-black font-mono text-cyan-300 uppercase tracking-widest flex items-center gap-1">
+                    <span>⚡ ACTIVE SUB-ARRAY</span>
+                    <span>[{searchRange[0]}...{searchRange[1]}]</span>
+                  </span>
+                  <div className="flex border border-cyan-400/50 rounded-lg overflow-hidden bg-slate-950/80 p-0.5">
+                    {arrayItems.slice(searchRange[0], searchRange[1] + 1).map((val, offset) => {
+                      const actualIdx = searchRange[0] + offset;
+                      const isMid = pointers?.mid === actualIdx;
+                      return (
+                        <div 
+                          key={actualIdx} 
+                          className={`flex flex-col items-center px-3 py-1.5 border-r border-cyan-500/30 last:border-0 min-w-[44px] rounded-sm transition-all duration-300 ${
+                            isMid ? 'bg-amber-500/30 border border-amber-400 shadow-[inset_0_0_8px_rgba(245,158,11,0.5)] scale-105' : ''
+                          }`}
+                        >
+                          {isMid && (
+                            <span className="text-[7px] font-black text-amber-200 bg-amber-950 border border-amber-400 px-1 rounded uppercase mb-0.5">MID</span>
+                          )}
+                          <span className={`text-[8.5px] font-mono font-bold ${isMid ? 'text-amber-300 font-black' : 'text-cyan-400/80'}`}>[{actualIdx}]</span>
+                          <span className={`text-xs font-mono font-extrabold ${isMid ? 'text-amber-100 font-black' : 'text-white'}`}>{val}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 3. Right Eliminated Sub-Array */}
+                {searchRange[1] < arrayItems.length - 1 && (
+                  <div className="flex flex-col items-center gap-1 opacity-50 grayscale border border-rose-500/30 bg-rose-950/20 p-2 rounded-lg">
+                    <span className="text-[8px] font-black font-mono text-rose-400 uppercase tracking-widest">
+                      ✕ ELIMINATED RIGHT HALF
+                    </span>
+                    <div className="flex border border-rose-500/30 rounded overflow-hidden bg-slate-950/60">
+                      {arrayItems.slice(searchRange[1] + 1).map((val, i) => {
+                        const actualIdx = searchRange[1] + 1 + i;
+                        return (
+                          <div key={actualIdx} className="flex flex-col items-center px-2 py-1 border-r border-rose-500/20 last:border-0 min-w-[36px]">
+                            <span className="text-[8px] font-mono text-slate-500">[{actualIdx}]</span>
+                            <span className="text-xs font-mono font-bold text-slate-400 line-through">{val}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
         </div>
       ) : (
         <div className={`flex flex-col border ${gridBorderClass} rounded-lg overflow-hidden bg-slate-950/40 min-w-44`}>
