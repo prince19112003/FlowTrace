@@ -1,60 +1,189 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const bubble_sort: LessonProgram = {
   id: 'bubble_sort', language: 'python', topic: 'searching_sorting', lessonNumber: 3,
   friendlyName: 'Bubble Sort',
   learningObjective: 'Learn how bubble sort repeatedly steps through the list, compares adjacent elements and swaps them.',
   lines: [
-    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '5' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '4' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '2' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '8' }, { type: 'punctuation', value: ']' }] },
+    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '50, 20, 40, 10, 30' }, { type: 'punctuation', value: ']' }] },
     { lineNum: 2, tokens: [{ type: 'variable', value: 'n' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'function', value: 'len' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: ')' }] },
     { lineNum: 3, tokens: [{ type: 'keyword', value: 'for' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'i' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'in' }, { type: 'text', value: ' ' }, { type: 'function', value: 'range' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'n' }, { type: 'punctuation', value: ')' }, { type: 'punctuation', value: ':' }] },
     { lineNum: 4, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'for' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'j' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'in' }, { type: 'text', value: ' ' }, { type: 'function', value: 'range' }, { type: 'punctuation', value: '(' }, { type: 'number', value: '0' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'n' }, { type: 'operator', value: '-' }, { type: 'variable', value: 'i' }, { type: 'operator', value: '-' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ')' }, { type: 'punctuation', value: ':' }] },
     { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'if' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'punctuation', value: ']' }, { type: 'text', value: ' ' }, { type: 'operator', value: '>' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'operator', value: '+' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ']' }, { type: 'punctuation', value: ':' }] },
     { lineNum: 6, tokens: [{ type: 'text', value: '            ' }, { type: 'variable', value: 'temp' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'punctuation', value: ']' }] },
     { lineNum: 7, tokens: [{ type: 'text', value: '            ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'punctuation', value: ']' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'operator', value: '+' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ']' }] },
-    { lineNum: 8, tokens: [{ type: 'text', value: '            ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'operator', value: '+' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ']' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'temp' }] },
+    { lineNum: 8, tokens: [{ type: 'text', value: '            ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'operator', value: '+' }, { type: 'number', value: '1' }, { type: 'punctuation', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'temp' }] },
     { lineNum: 9, tokens: [{ type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: ')' }] },
   ],
-  executionSteps: [
-    { step: 1, lineNum: 1, explanationEnglish: 'Initialize unsorted array.', explanationHinglish: 'Unsorted array banaya.', memorySnapshot: { arr: '"[5, 1, 4, 2, 8]"' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: '"[5, 1, 4, 2, 8]"' } },
-    { step: 2, lineNum: 2, explanationEnglish: 'Get array length n.', explanationHinglish: 'Array ki length n nikali.', memorySnapshot: { arr: '"[5, 1, 4, 2, 8]"', n: 5 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'n', value: 5 } },
-    { step: 3, lineNum: 3, explanationEnglish: 'Outer loop pass 0.', explanationHinglish: 'Outer loop pass 0.', memorySnapshot: { arr: '"[5,1,4,2,8]"', n: 5, i: 0 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 0 } },
-      { step: 4, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[5,1,4,2,8]"', n: 5, i: 0, j: 0 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 0 } },
-      { step: 5, lineNum: 5, explanationEnglish: 'Check if 5 > 1.', explanationHinglish: 'Check kiya kya 5 > 1.', memorySnapshot: { arr: '"[5,1,4,2,8]"', n: 5, i: 0, j: 0 }, animationEvent: { type: 'NONE' } },
-      { step: 6, lineNum: 6, explanationEnglish: 'Yes, save 5 in temp.', explanationHinglish: 'Haan, 5 ko temp mein save kiya.', memorySnapshot: { arr: '"[5,1,4,2,8]"', n: 5, i: 0, j: 0, temp: 5 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'temp', value: 5 } },
-      { step: 7, lineNum: 7, explanationEnglish: 'Move 1 left.', explanationHinglish: '1 ko left shift kiya.', memorySnapshot: { arr: '"[1,1,4,2,8]"', n: 5, i: 0, j: 0, temp: 5 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[5,1,4,2,8]"', newValue: '"[1,1,4,2,8]"' } },
-      { step: 8, lineNum: 8, explanationEnglish: 'Move temp to right.', explanationHinglish: 'temp ko right shift kiya (Swapped).', memorySnapshot: { arr: '"[1,5,4,2,8]"', n: 5, i: 0, j: 0, temp: 5 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[1,1,4,2,8]"', newValue: '"[1,5,4,2,8]"' } },
-      { step: 9, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,5,4,2,8]"', n: 5, i: 0, j: 1 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 1 } },
-      { step: 10, lineNum: 5, explanationEnglish: 'Check if 5 > 4.', explanationHinglish: 'Check kiya kya 5 > 4.', memorySnapshot: { arr: '"[1,5,4,2,8]"', n: 5, i: 0, j: 1 }, animationEvent: { type: 'NONE' } },
-      { step: 11, lineNum: 6, explanationEnglish: 'Yes, save 5 in temp.', explanationHinglish: 'Haan, 5 ko temp mein save kiya.', memorySnapshot: { arr: '"[1,5,4,2,8]"', n: 5, i: 0, j: 1, temp: 5 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'temp', value: 5 } },
-      { step: 12, lineNum: 7, explanationEnglish: 'Move 4 left.', explanationHinglish: '4 ko left shift kiya.', memorySnapshot: { arr: '"[1,4,4,2,8]"', n: 5, i: 0, j: 1, temp: 5 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[1,5,4,2,8]"', newValue: '"[1,4,4,2,8]"' } },
-      { step: 13, lineNum: 8, explanationEnglish: 'Move temp to right.', explanationHinglish: 'temp ko right shift kiya (Swapped).', memorySnapshot: { arr: '"[1,4,5,2,8]"', n: 5, i: 0, j: 1, temp: 5 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[1,4,4,2,8]"', newValue: '"[1,4,5,2,8]"' } },
-      { step: 14, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,4,5,2,8]"', n: 5, i: 0, j: 2 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 2 } },
-      { step: 15, lineNum: 5, explanationEnglish: 'Check if 5 > 2.', explanationHinglish: 'Check kiya kya 5 > 2.', memorySnapshot: { arr: '"[1,4,5,2,8]"', n: 5, i: 0, j: 2 }, animationEvent: { type: 'NONE' } },
-      { step: 16, lineNum: 6, explanationEnglish: 'Yes, save 5 in temp.', explanationHinglish: 'Haan, 5 ko temp mein save kiya.', memorySnapshot: { arr: '"[1,4,5,2,8]"', n: 5, i: 0, j: 2, temp: 5 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'temp', value: 5 } },
-      { step: 17, lineNum: 7, explanationEnglish: 'Move 2 left.', explanationHinglish: '2 ko left shift kiya.', memorySnapshot: { arr: '"[1,4,2,2,8]"', n: 5, i: 0, j: 2, temp: 5 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[1,4,5,2,8]"', newValue: '"[1,4,2,2,8]"' } },
-      { step: 18, lineNum: 8, explanationEnglish: 'Move temp to right.', explanationHinglish: 'temp ko right shift kiya (Swapped).', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 0, j: 2, temp: 5 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[1,4,2,2,8]"', newValue: '"[1,4,2,5,8]"' } },
-      { step: 19, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 0, j: 3 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 3 } },
-      { step: 20, lineNum: 5, explanationEnglish: 'Check if 5 > 8.', explanationHinglish: 'Check kiya kya 5 > 8.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 0, j: 3 }, animationEvent: { type: 'NONE' } },
-    { step: 21, lineNum: 3, explanationEnglish: 'Outer loop pass 1.', explanationHinglish: 'Outer loop pass 1.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 1 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 1 } },
-      { step: 22, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 1, j: 0 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 0 } },
-      { step: 23, lineNum: 5, explanationEnglish: 'Check if 1 > 4.', explanationHinglish: 'Check kiya kya 1 > 4.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 1, j: 0 }, animationEvent: { type: 'NONE' } },
-      { step: 24, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 1, j: 1 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 1 } },
-      { step: 25, lineNum: 5, explanationEnglish: 'Check if 4 > 2.', explanationHinglish: 'Check kiya kya 4 > 2.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 1, j: 1 }, animationEvent: { type: 'NONE' } },
-      { step: 26, lineNum: 6, explanationEnglish: 'Yes, save 4 in temp.', explanationHinglish: 'Haan, 4 ko temp mein save kiya.', memorySnapshot: { arr: '"[1,4,2,5,8]"', n: 5, i: 1, j: 1, temp: 4 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'temp', value: 4 } },
-      { step: 27, lineNum: 7, explanationEnglish: 'Move 2 left.', explanationHinglish: '2 ko left shift kiya.', memorySnapshot: { arr: '"[1,2,2,5,8]"', n: 5, i: 1, j: 1, temp: 4 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[1,4,2,5,8]"', newValue: '"[1,2,2,5,8]"' } },
-      { step: 28, lineNum: 8, explanationEnglish: 'Move temp to right.', explanationHinglish: 'temp ko right shift kiya (Swapped).', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 1, j: 1, temp: 4 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[1,2,2,5,8]"', newValue: '"[1,2,4,5,8]"' } },
-      { step: 29, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 1, j: 2 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 2 } },
-      { step: 30, lineNum: 5, explanationEnglish: 'Check if 4 > 5.', explanationHinglish: 'Check kiya kya 4 > 5.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 1, j: 2 }, animationEvent: { type: 'NONE' } },
-    { step: 31, lineNum: 3, explanationEnglish: 'Outer loop pass 2.', explanationHinglish: 'Outer loop pass 2.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 2 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 2 } },
-      { step: 32, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 2, j: 0 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 0 } },
-      { step: 33, lineNum: 5, explanationEnglish: 'Check if 1 > 2.', explanationHinglish: 'Check kiya kya 1 > 2.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 2, j: 0 }, animationEvent: { type: 'NONE' } },
-      { step: 34, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 2, j: 1 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 1 } },
-      { step: 35, lineNum: 5, explanationEnglish: 'Check if 2 > 4.', explanationHinglish: 'Check kiya kya 2 > 4.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 2, j: 1 }, animationEvent: { type: 'NONE' } },
-    { step: 36, lineNum: 3, explanationEnglish: 'Outer loop pass 3.', explanationHinglish: 'Outer loop pass 3.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 3 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 3 } },
-      { step: 37, lineNum: 4, explanationEnglish: 'Inner loop comparing adjacent elements.', explanationHinglish: 'Aas-paas ke elements compare kar rahe.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 3, j: 0 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 0 } },
-      { step: 38, lineNum: 5, explanationEnglish: 'Check if 1 > 2.', explanationHinglish: 'Check kiya kya 1 > 2.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 3, j: 0 }, animationEvent: { type: 'NONE' } },
-    { step: 39, lineNum: 3, explanationEnglish: 'Outer loop pass 4.', explanationHinglish: 'Outer loop pass 4.', memorySnapshot: { arr: '"[1,2,4,5,8]"', n: 5, i: 4 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 4 } },
-    { step: 40, lineNum: 9, explanationEnglish: 'Print sorted array.', explanationHinglish: 'Sorted array print kiya.', memorySnapshot: { arr: '"[1, 2, 4, 5, 8]"', n: 5, i: 4 }, consoleOutput: '[1, 2, 4, 5, 8]', animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: '"[1, 2, 4, 5, 8]"' } }
-  ],
+  editableVariables: {
+    arr: { default: '50, 20, 40, 10, 30', type: 'text', label: 'Array to Sort', noQuotes: true },
+  },
+  generateSteps: ({ arr }): ExecutionStep[] => {
+    let items: Array<number> = [50, 20, 40, 10, 30];
+    const rawVal = String(arr).trim();
+    const cleaned = rawVal.replace(/[\[\]]/g, '').trim();
+    if (cleaned) {
+      items = cleaned.split(',').map(s => {
+        const n = Number(s.trim());
+        return isNaN(n) ? 0 : n;
+      });
+    }
+
+    const formatListStr = (a: Array<number>) => {
+      return "[" + a.join(', ') + "]";
+    };
+
+    let arrStr = formatListStr(items);
+    const n = items.length;
+
+    let stepNum = 1;
+    const steps: ExecutionStep[] = [];
+    const sortedIndices: number[] = [];
+    const passSnapshots: Array<{ pass: number; lockedIndex: number; lockedValue: number; array: number[] }> = [];
+
+    let mem: Record<string, any> = {
+      arr: arrStr,
+      n,
+      sortedIndices: [...sortedIndices],
+      passSnapshots: [...passSnapshots],
+    };
+
+    // Step 1: Create arr
+    steps.push({
+      step: stepNum++, lineNum: 1,
+      explanationEnglish: `Initialize unsorted array: ${arrStr}.`,
+      explanationHinglish: `Unsorted array banaya: ${arrStr}.`,
+      memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: arrStr },
+    });
+
+    // Step 2: Create n
+    mem.n = n;
+    steps.push({
+      step: stepNum++, lineNum: 2,
+      explanationEnglish: `Calculate array length n = ${n}.`,
+      explanationHinglish: `Array ki length n = ${n} nikali.`,
+      memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'n', value: n },
+    });
+
+    for (let i = 0; i < n - 1; i++) {
+      mem.i = i;
+
+      // Step 3: Outer loop pass i
+      steps.push({
+        step: stepNum++, lineNum: 3,
+        explanationEnglish: `Pass ${i + 1} of ${n - 1}: Floating largest unsorted element to index ${n - 1 - i}.`,
+        explanationHinglish: `Pass ${i + 1} of ${n - 1}: Sabse bada unsorted element index ${n - 1 - i} ki taraf float karega.`,
+        memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: i },
+      });
+
+      for (let j = 0; j < n - 1 - i; j++) {
+        mem.j = j;
+
+        // Step 4: Inner loop j
+        steps.push({
+          step: stepNum++, lineNum: 4,
+          explanationEnglish: `Comparing adjacent pair: arr[${j}] (${items[j]}) and arr[${j + 1}] (${items[j + 1]}).`,
+          explanationHinglish: `Aas-paas ke pair ko compare kar rahe hain: arr[${j}] (${items[j]}) aur arr[${j + 1}] (${items[j + 1]}).`,
+          memorySnapshot: {
+            ...mem,
+            comparingIndices: [j, j + 1],
+            sortedIndices: [...sortedIndices],
+            passSnapshots: [...passSnapshots],
+          },
+          animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: j },
+        });
+
+        // Step 5: Check arr[j] > arr[j+1]
+        const isSwap = items[j] > items[j + 1];
+        steps.push({
+          step: stepNum++, lineNum: 5,
+          explanationEnglish: `Check if arr[${j}] (${items[j]}) > arr[${j + 1}] (${items[j + 1]}): Result is ${isSwap ? 'TRUE (Swap needed)' : 'FALSE (No swap)'}.`,
+          explanationHinglish: `Check kiya kya arr[${j}] (${items[j]}) > arr[${j + 1}] (${items[j + 1]}): Result ${isSwap ? 'SAHI (Swap karenge)' : 'GALAT (Swap nahi hoga)'}.`,
+          memorySnapshot: {
+            ...mem,
+            comparingIndices: [j, j + 1],
+            sortedIndices: [...sortedIndices],
+            passSnapshots: [...passSnapshots],
+          },
+          animationEvent: { type: 'COMPUTE', inputs: [`arr[${j}]`, `arr[${j + 1}]`], operator: '>', result: isSwap ? 'True' : 'False', storeIn: 'Condition' },
+        });
+
+        if (isSwap) {
+          const valJ = items[j];
+          const valJNext = items[j + 1];
+
+          // Step 6: temp = arr[j]
+          mem.temp = valJ;
+          steps.push({
+            step: stepNum++, lineNum: 6,
+            explanationEnglish: `Store arr[${j}] (${valJ}) in temp variable.`,
+            explanationHinglish: `arr[${j}] (${valJ}) ko temp variable mein save kiya.`,
+            memorySnapshot: { ...mem, comparingIndices: [j, j + 1], sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+            animationEvent: { type: 'CREATE_VARIABLE', name: 'temp', value: valJ },
+          });
+
+          // Perform actual swap in array
+          items[j] = valJNext;
+          items[j + 1] = valJ;
+          const prevArrStr = arrStr;
+          arrStr = formatListStr(items);
+          mem.arr = arrStr;
+
+          // Step 7: arr[j] = arr[j+1]
+          steps.push({
+            step: stepNum++, lineNum: 7,
+            explanationEnglish: `Move arr[${j + 1}] (${valJNext}) into index ${j}.`,
+            explanationHinglish: `arr[${j + 1}] (${valJNext}) ko index ${j} par shift kiya.`,
+            memorySnapshot: { ...mem, swappingIndices: [j, j + 1], sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+            animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: prevArrStr, newValue: arrStr },
+          });
+
+          // Step 8: arr[j+1] = temp
+          steps.push({
+            step: stepNum++, lineNum: 8,
+            explanationEnglish: `Move temp (${valJ}) into index ${j + 1}. Swapped ${valJ} ⇄ ${valJNext}!`,
+            explanationHinglish: `temp (${valJ}) ko index ${j + 1} par rakha. ${valJ} ⇄ ${valJNext} swap ho gaya!`,
+            memorySnapshot: { ...mem, swappingIndices: [j, j + 1], sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+            animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: prevArrStr, newValue: arrStr },
+          });
+
+          delete mem.temp;
+        }
+      }
+
+      // Lock element at end of pass i
+      const lockedIdx = n - 1 - i;
+      sortedIndices.push(lockedIdx);
+      passSnapshots.push({
+        pass: i + 1,
+        lockedIndex: lockedIdx,
+        lockedValue: items[lockedIdx],
+        array: [...items],
+      });
+
+      mem.sortedIndices = [...sortedIndices];
+      mem.passSnapshots = [...passSnapshots];
+    }
+
+    // Lock index 0 (final element)
+    if (!sortedIndices.includes(0)) {
+      sortedIndices.push(0);
+    }
+
+    // Step 9: Print sorted array
+    steps.push({
+      step: stepNum++, lineNum: 9,
+      explanationEnglish: `🎉 Bubble sort complete! Array is 100% sorted: ${arrStr}.`,
+      explanationHinglish: `🎉 Bubble sort poora hua! Array 100% sort ho gaya: ${arrStr}.`,
+      memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+      consoleOutput: arrStr,
+      animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: arrStr },
+    });
+
+    return steps;
+  },
+  executionSteps: [],
 };

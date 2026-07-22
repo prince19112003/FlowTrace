@@ -11,6 +11,9 @@ interface DataStructureBoxProps {
   highlightedKey?: string;
   pointers?: { low?: number; mid?: number; high?: number };
   searchRange?: [number, number];
+  sortedIndices?: number[];
+  comparingIndices?: [number, number];
+  swappingIndices?: [number, number];
 }
 
 export const DataStructureBox: React.FC<DataStructureBoxProps> = ({ 
@@ -22,7 +25,10 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
   highlightedIndices,
   highlightedKey,
   pointers,
-  searchRange
+  searchRange,
+  sortedIndices,
+  comparingIndices,
+  swappingIndices
 }) => {
   const isTuple = variant === 'tuple';
   const isTable = variant === 'table';
@@ -86,6 +92,9 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
               const isLow = pointers?.low === idx;
               const isMid = pointers?.mid === idx;
               const isHigh = pointers?.high === idx;
+              const isSorted = sortedIndices?.includes(idx);
+              const isComparing = comparingIndices?.includes(idx);
+              const isSwapping = swappingIndices?.includes(idx);
 
               return (
                 <div 
@@ -93,7 +102,13 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
                   className={`flex flex-col items-center justify-center min-w-[54px] p-2 transition-all duration-500 rounded-md relative ${
                     idx !== arrayItems.length - 1 ? `border-r ${gridBorderClass}` : ''
                   } ${
-                    isOutOfRange
+                    isSwapping
+                      ? 'bg-amber-500/35 border-2 border-amber-400 ring-2 ring-amber-400/50 shadow-[0_0_20px_rgba(245,158,11,0.6)] scale-110 z-30'
+                      : isComparing
+                      ? 'bg-cyan-500/25 border-2 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)] scale-105 z-20'
+                      : isSorted
+                      ? 'bg-emerald-500/20 border-2 border-emerald-400 text-emerald-200 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-10'
+                      : isOutOfRange
                       ? 'opacity-20 grayscale scale-90 line-through bg-slate-950/90 text-slate-600'
                       : isMid
                       ? 'bg-amber-500/30 border border-amber-400 ring-2 ring-amber-400/50 shadow-[0_0_20px_rgba(245,158,11,0.5)] scale-105 z-20'
@@ -106,9 +121,24 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
                       : ''
                   }`}
                 >
-                  {/* Pointer Badges on Top */}
-                  {(isLow || isMid || isHigh) && (
+                  {/* Top Badges */}
+                  {(isLow || isMid || isHigh || isSorted || isComparing || isSwapping) && (
                     <div className="flex gap-0.5 justify-center mb-1">
+                      {isSwapping && (
+                        <span className="text-[7px] font-black tracking-tighter text-amber-200 bg-amber-950 border border-amber-400 px-1 rounded uppercase shadow-[0_0_8px_rgba(245,158,11,0.6)] animate-pulse">
+                          ⇄ SWAP
+                        </span>
+                      )}
+                      {!isSwapping && isComparing && (
+                        <span className="text-[7px] font-black tracking-tighter text-cyan-300 bg-cyan-950 border border-cyan-500/60 px-1 rounded uppercase shadow-[0_0_6px_rgba(6,182,212,0.4)]">
+                          🔍 COMPARE
+                        </span>
+                      )}
+                      {!isSwapping && !isComparing && isSorted && (
+                        <span className="text-[7px] font-black tracking-tighter text-emerald-300 bg-emerald-950 border border-emerald-500/60 px-1 rounded uppercase shadow-[0_0_6px_rgba(16,185,129,0.4)]">
+                          🔒 SORTED
+                        </span>
+                      )}
                       {isLow && (
                         <span className="text-[7.5px] font-black tracking-tighter text-cyan-300 bg-cyan-950 border border-cyan-500/60 px-1 rounded uppercase shadow-[0_0_6px_rgba(6,182,212,0.4)]">
                           LOW
@@ -129,13 +159,13 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
 
                   {/* Index Number */}
                   <span className={`text-[9px] mb-0.5 select-none font-mono font-bold transition-colors duration-300 ${
-                    isMid ? 'text-amber-300 font-black' : isHighlighted ? 'text-amber-400 font-black' : indexTextClass
+                    isSwapping ? 'text-amber-300 font-black' : isComparing ? 'text-cyan-300 font-black' : isSorted ? 'text-emerald-300 font-black' : isMid ? 'text-amber-300 font-black' : isHighlighted ? 'text-amber-400 font-black' : indexTextClass
                   }`}>
                     [{idx}]
                   </span>
                   {/* Value */}
                   <span className={`font-mono font-bold text-sm transition-colors duration-300 ${
-                    isOutOfRange ? 'text-slate-600 line-through' : isMid ? 'text-amber-100 font-black' : isHighlighted ? 'text-amber-200' : 'text-white'
+                    isSwapping ? 'text-amber-100 font-black' : isComparing ? 'text-cyan-100 font-black' : isSorted ? 'text-emerald-100 font-black' : isOutOfRange ? 'text-slate-600 line-through' : isMid ? 'text-amber-100 font-black' : isHighlighted ? 'text-amber-200' : 'text-white'
                   }`}>
                     {typeof val === 'string' ? `"${val}"` : val}
                   </span>
@@ -144,7 +174,7 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
             })}
           </div>
 
-          {/* Physically Divided Sub-Arrays Breakdown */}
+          {/* Physically Divided Sub-Arrays Breakdown (Binary Search) */}
           {hasRange && (searchRange[0] > 0 || searchRange[1] < arrayItems.length - 1) && (
             <motion.div
               initial={{ opacity: 0, y: 8 }}

@@ -46,7 +46,7 @@ export interface ExecutionStep {
   lineNum: number;
   explanationEnglish: string;
   explanationHinglish: string;
-  memorySnapshot: Record<string, string | number>;
+  memorySnapshot: Record<string, any>;
   consoleOutput?: string;
   animationEvent: AnimationEvent;
 }

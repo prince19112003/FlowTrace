@@ -1193,7 +1193,22 @@ export const CustomFlowchartStage: React.FC = () => {
                         isDataStructure(ev.value) ? (() => {
                           const { variant, items } = parseDataStructure(ev.value);
                           const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
-                          return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} pointers={pointers} searchRange={searchRange} />;
+                          const sortedIndices = Array.isArray(step.memorySnapshot?.sortedIndices) ? (step.memorySnapshot.sortedIndices as number[]) : undefined;
+                          const comparingIndices = Array.isArray(step.memorySnapshot?.comparingIndices) ? (step.memorySnapshot.comparingIndices as [number, number]) : undefined;
+                          const swappingIndices = Array.isArray(step.memorySnapshot?.swappingIndices) ? (step.memorySnapshot.swappingIndices as [number, number]) : undefined;
+                          return (
+                            <DataStructureBox 
+                              name={ev.name} 
+                              variant={variant} 
+                              items={items} 
+                              isActive={isLatest} 
+                              pointers={pointers} 
+                              searchRange={searchRange} 
+                              sortedIndices={sortedIndices}
+                              comparingIndices={comparingIndices}
+                              swappingIndices={swappingIndices}
+                            />
+                          );
                         })() : (
                           <VariableBox name={ev.name} value={ev.value} isActive={isLatest} />
                         )
@@ -1203,7 +1218,22 @@ export const CustomFlowchartStage: React.FC = () => {
                         isDataStructure(ev.newValue) ? (() => {
                           const { variant, items } = parseDataStructure(ev.newValue);
                           const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
-                          return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} pointers={pointers} searchRange={searchRange} />;
+                          const sortedIndices = Array.isArray(step.memorySnapshot?.sortedIndices) ? (step.memorySnapshot.sortedIndices as number[]) : undefined;
+                          const comparingIndices = Array.isArray(step.memorySnapshot?.comparingIndices) ? (step.memorySnapshot.comparingIndices as [number, number]) : undefined;
+                          const swappingIndices = Array.isArray(step.memorySnapshot?.swappingIndices) ? (step.memorySnapshot.swappingIndices as [number, number]) : undefined;
+                          return (
+                            <DataStructureBox 
+                              name={ev.name} 
+                              variant={variant} 
+                              items={items} 
+                              isActive={isLatest} 
+                              pointers={pointers} 
+                              searchRange={searchRange} 
+                              sortedIndices={sortedIndices}
+                              comparingIndices={comparingIndices}
+                              swappingIndices={swappingIndices}
+                            />
+                          );
                         })() : (
                           <div className="flex flex-col items-center gap-3">
                             <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} />
@@ -1389,6 +1419,76 @@ export const CustomFlowchartStage: React.FC = () => {
                           [Step {step.step} Executed]
                         </div>
                       )}
+
+                      {/* Sorting Progress Tracker & Pass History Card */}
+                      {isLatest && step.memorySnapshot?.sortedIndices && Array.isArray(step.memorySnapshot.sortedIndices) && (() => {
+                        const arrItems = parseDataStructure(step.memorySnapshot.arr || '[]').items;
+                        const totalCount = Array.isArray(arrItems) ? arrItems.length : 1;
+                        const lockedCount = step.memorySnapshot.sortedIndices.length;
+                        const percent = Math.min(100, Math.round((lockedCount / totalCount) * 100));
+
+                        return (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="w-full max-w-lg border border-emerald-500/40 bg-slate-950/90 backdrop-blur-md rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_25px_rgba(16,185,129,0.2)] my-3"
+                          >
+                            <div className="flex flex-col gap-2 border-b border-emerald-500/20 pb-3">
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-black font-mono tracking-widest text-emerald-400 uppercase flex items-center gap-2">
+                                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                  SORTING PROGRESS TRACKER
+                                </span>
+                                <span className="text-xs font-mono font-extrabold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 rounded-md">
+                                  {percent}% SORTED
+                                </span>
+                              </div>
+                              
+                              {/* Animated Progress Bar */}
+                              <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800 p-0.5">
+                                <motion.div 
+                                  className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.7)]"
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${percent}%` }}
+                                  transition={{ duration: 0.5 }}
+                                />
+                              </div>
+                            </div>
+
+                            {/* Pass History Snapshots Log */}
+                            {step.memorySnapshot.passSnapshots && Array.isArray(step.memorySnapshot.passSnapshots) && step.memorySnapshot.passSnapshots.length > 0 && (
+                              <div className="flex flex-col gap-2 max-h-48 overflow-y-auto custom-scrollbar pr-1">
+                                <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
+                                  COMPLETED PASS SNAPSHOTS:
+                                </span>
+                                {step.memorySnapshot.passSnapshots.map((pSnap: any, idx: number) => (
+                                  <div key={idx} className="flex items-center justify-between bg-slate-900/90 border border-emerald-500/25 rounded-xl px-3 py-1.5 text-xs font-mono">
+                                    <span className="text-emerald-400 font-black">Pass {pSnap.pass}:</span>
+                                    <div className="flex gap-1 items-center font-bold">
+                                      {pSnap.array.map((val: any, cellIdx: number) => {
+                                        const isLocked = cellIdx >= pSnap.array.length - pSnap.pass;
+                                        return (
+                                          <span 
+                                            key={cellIdx} 
+                                            className={`px-1.5 py-0.5 rounded ${
+                                              isLocked ? 'bg-emerald-500/25 text-emerald-200 border border-emerald-400/50 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'text-slate-300'
+                                            }`}
+                                          >
+                                            {val}
+                                          </span>
+                                        );
+                                      })}
+                                    </div>
+                                    <span className="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded font-extrabold">
+                                      🔒 Locked: {pSnap.lockedValue}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </motion.div>
+                        );
+                      })()}
                     </motion.div>
                   );
                 })}
