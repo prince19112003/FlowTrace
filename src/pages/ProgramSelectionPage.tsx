@@ -143,13 +143,72 @@ const mockProgramsByTopic: Record<string, { id: string; number: string; friendly
   ],
 };
 
+const otherProgramsByLang: Record<string, Record<string, { id: string; number: string; friendlyName: string; description: string }[]>> = {
+  c: {
+    data_types: [
+      { id: 'c_int', number: '01', friendlyName: 'Integer Data Type (int)', description: 'Understand how C allocates 4 bytes of memory for storing integers.' },
+      { id: 'c_float', number: '02', friendlyName: 'Float & Double Data Types', description: 'Learn decimal storage with float and double precision in C.' },
+      { id: 'c_char', number: '03', friendlyName: 'Char & ASCII Storage', description: 'Learn how C stores single characters using 1-byte ASCII codes.' }
+    ],
+    if_else: [
+      { id: 'c_even_odd', number: '01', friendlyName: 'Even or Odd Check in C', description: 'Understand conditional branch execution using modulo % and if-else in C.' }
+    ],
+    loops: [
+      { id: 'c_for_loop', number: '01', friendlyName: 'For Loop Counter in C', description: 'Understand initialization, condition check, and increment in C for loop.' }
+    ],
+    functions: [
+      { id: 'c_functions', number: '01', friendlyName: 'Function Declaration & Return in C', description: 'Learn function parameter passing and value returning in C.' }
+    ],
+    arrays: [
+      { id: 'c_array_sum', number: '01', friendlyName: '1D Array Declaration & Element Sum', description: 'Understand contiguous memory allocation and zero-based indexing in C arrays.' }
+    ]
+  },
+  cpp: {
+    data_types: [
+      { id: 'cpp_types', number: '01', friendlyName: 'C++ Primitive Data Types (int, double, bool)', description: 'Learn C++ strongly-typed variable declarations and memory storage.' }
+    ],
+    if_else: [
+      { id: 'cpp_if_else', number: '01', friendlyName: 'Max of Two Numbers in C++', description: 'Learn conditional logic and std::cout output in C++.' }
+    ],
+    loops: [
+      { id: 'cpp_while', number: '01', friendlyName: 'While Loop Accumulator in C++', description: 'Learn while loop conditional repetition and state updates in C++.' }
+    ],
+    functions: [
+      { id: 'cpp_square_func', number: '01', friendlyName: 'Square Function in C++', description: 'Understand function parameters, local scope, and return values in C++.' }
+    ],
+    arrays: [
+      { id: 'cpp_array_max', number: '01', friendlyName: 'Find Maximum Element in C++ Array', description: 'Learn 1D array iteration and comparison logic in C++.' }
+    ]
+  },
+  java: {
+    data_types: [
+      { id: 'java_types', number: '01', friendlyName: 'Java Primitive Data Types (int, double, boolean)', description: 'Learn Java strongly-typed primitives and memory allocation.' }
+    ],
+    if_else: [
+      { id: 'java_grade', number: '01', friendlyName: 'Grade Calculator in Java (If-Else Ladder)', description: 'Learn multi-branch conditional execution using if-else if in Java.' }
+    ],
+    loops: [
+      { id: 'java_for_loop', number: '01', friendlyName: 'For Loop Counter in Java', description: 'Learn Java for loop iteration and block execution.' }
+    ],
+    functions: [
+      { id: 'java_method_add', number: '01', friendlyName: 'Static Method Call & Return in Java', description: 'Learn static method calls, argument passing, and stack frames in Java.' }
+    ],
+    arrays: [
+      { id: 'java_array_sum', number: '01', friendlyName: 'Java Array Allocation & Traversal', description: 'Learn Java array heap allocation and array traversal.' }
+    ]
+  }
+};
+
 /* =========================================================
    PAGE
    ========================================================= */
 export const ProgramSelectionPage: React.FC = () => {
   const navigate = useNavigate();
   const { languageId, topicId } = useParams();
-  const programs = topicId && mockProgramsByTopic[topicId] ? mockProgramsByTopic[topicId] : [];
+  const programs = (languageId && topicId && otherProgramsByLang[languageId]?.[topicId])
+    ? otherProgramsByLang[languageId][topicId]
+    : (topicId && mockProgramsByTopic[topicId] ? mockProgramsByTopic[topicId] : []);
+
   const topicDisplay = topicId
     ? topicId.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
     : 'Programs';

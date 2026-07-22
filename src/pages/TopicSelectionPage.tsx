@@ -7,7 +7,7 @@ import { motion } from 'motion/react';
 /* =========================================================
    TOPIC DATA with category color accents
    ========================================================= */
-const topics = [
+const pythonTopics = [
   {
     id: 'variables', number: '01', name: 'Variables', subtitle: 'Store & Manipulate Data',
     programsCount: 13, difficulty: 'Beginner' as const, category: 'basics',
@@ -90,6 +90,30 @@ const topics = [
   },
 ];
 
+const cTopics = [
+  { id: 'data_types', number: '01', name: 'Data Types & Variables', subtitle: 'int, float, double, char memory allocation', programsCount: 3, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#38bdf8' },
+  { id: 'if_else', number: '02', name: 'If Else & Conditionals', subtitle: 'Conditional Branching Execution', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
+  { id: 'loops', number: '03', name: 'Loops (For Loop)', subtitle: 'Counted Loop Repetition', programsCount: 1, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
+  { id: 'functions', number: '04', name: 'Functions', subtitle: 'Call Stack & Return Values', programsCount: 1, difficulty: 'Intermediate' as const, category: 'functions', accentColor: '#8b5cf6' },
+  { id: 'arrays', number: '05', name: '1D Arrays', subtitle: 'Contiguous Memory & Indexing', programsCount: 1, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
+];
+
+const cppTopics = [
+  { id: 'data_types', number: '01', name: 'Data Types & Variables', subtitle: 'int, double, bool strongly typed memory', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#818cf8' },
+  { id: 'if_else', number: '02', name: 'If Else Conditionals', subtitle: 'Logic Branching Execution', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
+  { id: 'loops', number: '03', name: 'While Loops', subtitle: 'Conditional Repetition', programsCount: 1, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
+  { id: 'functions', number: '04', name: 'Functions', subtitle: 'Parameters & Return Values', programsCount: 1, difficulty: 'Intermediate' as const, category: 'functions', accentColor: '#8b5cf6' },
+  { id: 'arrays', number: '05', name: '1D Arrays', subtitle: 'Memory & Element Comparisons', programsCount: 1, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
+];
+
+const javaTopics = [
+  { id: 'data_types', number: '01', name: 'Data Types & Variables', subtitle: 'int, double, boolean primitives in Java', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#f97316' },
+  { id: 'if_else', number: '02', name: 'If Else Ladder', subtitle: 'Multi-Branch Conditional Ladder', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
+  { id: 'loops', number: '03', name: 'For Loops', subtitle: 'Counter Loop Execution', programsCount: 1, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
+  { id: 'functions', number: '04', name: 'Static Methods', subtitle: 'Call Stack & Return Values', programsCount: 1, difficulty: 'Intermediate' as const, category: 'functions', accentColor: '#8b5cf6' },
+  { id: 'arrays', number: '05', name: '1D Arrays', subtitle: 'Heap Array Allocation & Traversal', programsCount: 1, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
+];
+
 const difficultyConfig = {
   Beginner:     { color: '#22c55e', bg: 'rgba(34,197,94,0.08)',   border: 'rgba(34,197,94,0.22)' },
   Intermediate: { color: '#f59e0b', bg: 'rgba(245,158,11,0.08)',  border: 'rgba(245,158,11,0.22)' },
@@ -103,9 +127,16 @@ export const TopicSelectionPage: React.FC = () => {
   const navigate = useNavigate();
   const { languageId } = useParams();
 
-  const totalPrograms = useMemo(() => topics.reduce((s, t) => s + t.programsCount, 0), []);
+  const topics = useMemo(() => {
+    if (languageId === 'c') return cTopics;
+    if (languageId === 'cpp') return cppTopics;
+    if (languageId === 'java') return javaTopics;
+    return pythonTopics;
+  }, [languageId]);
+
+  const totalPrograms = useMemo(() => topics.reduce((s, t) => s + t.programsCount, 0), [topics]);
   const langDisplay = languageId
-    ? languageId.charAt(0).toUpperCase() + languageId.slice(1)
+    ? (languageId === 'cpp' ? 'C++' : languageId.charAt(0).toUpperCase() + languageId.slice(1))
     : 'Python';
 
   return (

@@ -33,16 +33,16 @@ const languages = [
   {
     id: 'java',
     name: 'Java',
-    enabled: false,
+    enabled: true,
     creator: 'James Gosling',
     year: '1995',
     tagline: 'Write once, run anywhere.',
-    topics: 0,
-    programs: 0,
+    topics: 5,
+    programs: 5,
     accentColor: '#f97316',
-    accentGlow: 'rgba(249,115,22,0.12)',
-    accentBorder: 'rgba(249,115,22,0.20)',
-    bgGradient: 'none',
+    accentGlow: 'rgba(249,115,22,0.18)',
+    accentBorder: 'rgba(249,115,22,0.30)',
+    bgGradient: 'radial-gradient(ellipse at top right, rgba(249,115,22,0.12) 0%, transparent 60%)',
     Icon: () => (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <path d="M19 38.5c-1 0-1.5-.4-1.5-.4s1.3.8 7.5.8c6.2 0 8.5-2 8.5-2s-1.2.8-5 1.2c-3.8.4-7.5 0-7.5 0L19 38.5z" fill="#5382A1"/>
@@ -54,41 +54,41 @@ const languages = [
   {
     id: 'c',
     name: 'C',
-    enabled: false,
+    enabled: true,
     creator: 'Dennis Ritchie',
     year: '1972',
     tagline: 'The foundation of all systems.',
-    topics: 0,
-    programs: 0,
-    accentColor: '#94a3b8',
-    accentGlow: 'rgba(148,163,184,0.10)',
-    accentBorder: 'rgba(148,163,184,0.18)',
-    bgGradient: 'none',
+    topics: 5,
+    programs: 7,
+    accentColor: '#38bdf8',
+    accentGlow: 'rgba(56,189,248,0.18)',
+    accentBorder: 'rgba(56,189,248,0.30)',
+    bgGradient: 'radial-gradient(ellipse at top right, rgba(56,189,248,0.12) 0%, transparent 60%)',
     Icon: () => (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <path d="M36 14C33.5 9.5 29 7 24 7C16.8 7 11 12.8 11 20C11 27.2 16.8 33 24 33C29 33 33.5 30.5 36 26" stroke="#A8B9CC" strokeWidth="4" strokeLinecap="round"/>
-        <text x="20" y="25" fontFamily="monospace" fontSize="10" fill="#A8B9CC">C</text>
+        <path d="M36 14C33.5 9.5 29 7 24 7C16.8 7 11 12.8 11 20C11 27.2 16.8 33 24 33C29 33 33.5 30.5 36 26" stroke="#0284c7" strokeWidth="4" strokeLinecap="round"/>
+        <text x="20" y="25" fontFamily="monospace" fontSize="10" fill="#0284c7" fontWeight="bold">C</text>
       </svg>
     ),
   },
   {
     id: 'cpp',
     name: 'C++',
-    enabled: false,
+    enabled: true,
     creator: 'Bjarne Stroustrup',
     year: '1985',
     tagline: 'Power meets performance.',
-    topics: 0,
-    programs: 0,
-    accentColor: '#6366f1',
-    accentGlow: 'rgba(99,102,241,0.10)',
-    accentBorder: 'rgba(99,102,241,0.18)',
-    bgGradient: 'none',
+    topics: 5,
+    programs: 5,
+    accentColor: '#818cf8',
+    accentGlow: 'rgba(129,140,248,0.18)',
+    accentBorder: 'rgba(129,140,248,0.30)',
+    bgGradient: 'radial-gradient(ellipse at top right, rgba(129,140,248,0.12) 0%, transparent 60%)',
     Icon: () => (
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <path d="M30 11C27.5 8.5 24 7 20 7C13.4 7 8 12.4 8 19C8 25.6 13.4 31 20 31C24 31 27.5 29.5 30 27" stroke="#00599C" strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M34 16V24M30 20H38" stroke="#00599C" strokeWidth="2.5" strokeLinecap="round"/>
-        <path d="M42 16V24M38 20H46" stroke="#00599C" strokeWidth="2.5" strokeLinecap="round"/>
+        <path d="M30 11C27.5 8.5 24 7 20 7C13.4 7 8 12.4 8 19C8 25.6 13.4 31 20 31C24 31 27.5 29.5 30 27" stroke="#6366f1" strokeWidth="3.5" strokeLinecap="round"/>
+        <path d="M34 16V24M30 20H38" stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round"/>
+        <path d="M42 16V24M38 20H46" stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round"/>
       </svg>
     ),
   },

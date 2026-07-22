@@ -16,6 +16,10 @@ import { tuplesLessons } from './python/tuples/index';
 import { dictionariesLessons } from './python/dictionaries/index';
 import { searchingSortingLessons } from './python/searching_sorting/index';
 
+import { cLessons } from './c/index';
+import { cppLessons } from './cpp/index';
+import { javaLessons } from './java/index';
+
 // In the future, this registry will grow to include other topics and languages.
 export const lessonRegistry: Record<string, Record<string, Record<string, LessonProgram>>> = {
   python: {
@@ -36,6 +40,59 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     tuples: tuplesLessons,
     dictionaries: dictionariesLessons,
     searching_sorting: searchingSortingLessons,
+  },
+  c: {
+    data_types: {
+      c_int: cLessons.c_int,
+      c_float: cLessons.c_float,
+      c_char: cLessons.c_char,
+    },
+    if_else: {
+      c_even_odd: cLessons.c_even_odd,
+    },
+    loops: {
+      c_for_loop: cLessons.c_for_loop,
+    },
+    functions: {
+      c_functions: cLessons.c_functions,
+    },
+    arrays: {
+      c_array_sum: cLessons.c_array_sum,
+    },
+  },
+  cpp: {
+    data_types: {
+      cpp_types: cppLessons.cpp_types,
+    },
+    if_else: {
+      cpp_if_else: cppLessons.cpp_if_else,
+    },
+    loops: {
+      cpp_while: cppLessons.cpp_while,
+    },
+    functions: {
+      cpp_square_func: cppLessons.cpp_square_func,
+    },
+    arrays: {
+      cpp_array_max: cppLessons.cpp_array_max,
+    },
+  },
+  java: {
+    data_types: {
+      java_types: javaLessons.java_types,
+    },
+    if_else: {
+      java_grade: javaLessons.java_grade,
+    },
+    loops: {
+      java_for_loop: javaLessons.java_for_loop,
+    },
+    functions: {
+      java_method_add: javaLessons.java_method_add,
+    },
+    arrays: {
+      java_array_sum: javaLessons.java_array_sum,
+    },
   },
 };
 
