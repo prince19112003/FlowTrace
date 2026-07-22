@@ -143,7 +143,7 @@ const CodeLineRow: React.FC<{
   return (
     <div 
       ref={rowRef}
-      className={`relative flex items-center transition-all duration-300 ${isActive ? 'bg-indigo-500/20 shadow-[inset_0_0_15px_rgba(99,102,241,0.2)]' : 'hover:bg-white/5'}`}
+      className={`relative flex items-center transition-all duration-300 min-w-full w-max ${isActive ? 'bg-indigo-500/20 shadow-[inset_0_0_15px_rgba(99,102,241,0.2)]' : 'hover:bg-white/5'}`}
     >
       {/* Active line indicator */}
       <AnimatePresence>
@@ -169,7 +169,7 @@ const CodeLineRow: React.FC<{
 
       {/* Tokens */}
       <span
-        className={`font-mono py-1.5 pr-6 whitespace-pre flex items-center flex-wrap`}
+        className={`font-mono py-1.5 pr-6 whitespace-pre flex items-center flex-nowrap shrink-0`}
         style={{ fontSize: `${1 * zoomLevel}rem`, fontFeatureSettings: '"liga" 0', fontVariantLigatures: 'none' }}
       >
         {line.tokens.map((token, i) => {
@@ -297,7 +297,7 @@ export const CodeStepPanel: React.FC = () => {
       </div>
 
       {/* Code lines */}
-      <div className="flex-1 overflow-y-auto py-3 relative">
+      <div className="flex-1 overflow-auto custom-scrollbar py-3 relative">
         {lesson.lines.map(line => (
           <CodeLineRow
             key={line.lineNum}
