@@ -1162,7 +1162,7 @@ export const CustomFlowchartStage: React.FC = () => {
                 key="steps-canvas"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-row items-start justify-center gap-12 shrink-0 min-w-max"
+                className="flex flex-row items-start justify-start gap-24 shrink-0 min-w-max pl-4 pr-32 pb-16"
               >
                 {/* Left Column: Flowchart Nodes Chain */}
                 <div className="flex flex-col items-center gap-12 shrink-0">
@@ -1511,7 +1511,7 @@ export const CustomFlowchartStage: React.FC = () => {
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="w-80 border border-emerald-500/40 bg-slate-950/95 backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_30px_rgba(16,185,129,0.2)] sticky top-6 shrink-0"
+                      className="w-[420px] border border-emerald-500/40 bg-slate-950/95 backdrop-blur-xl rounded-2xl p-5 flex flex-col gap-4 shadow-[0_0_35px_rgba(16,185,129,0.25)] sticky top-8 shrink-0"
                     >
                       {/* Header & Progress Bar */}
                       <div className="flex flex-col gap-2 border-b border-emerald-500/20 pb-3">
