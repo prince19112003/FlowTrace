@@ -83,10 +83,16 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
       java_casting: javaLessons.java_casting,
       java_ascii: javaLessons.java_ascii,
       java_temp_convert: javaLessons.java_temp_convert,
+      java_circle_area: javaLessons.java_circle_area,
+      java_swap_temp: javaLessons.java_swap_temp,
     },
     if_else: {
       java_even_odd: javaLessons.java_even_odd,
       java_largest_three: javaLessons.java_largest_three,
+      java_leap_year: javaLessons.java_leap_year,
+      java_vowel_if: javaLessons.java_vowel_if,
+    },
+    if_elif_else: {
       java_grade: javaLessons.java_grade,
       java_tax_calc: javaLessons.java_tax_calc,
     },
@@ -94,20 +100,30 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
       java_switch_day: javaLessons.java_switch_day,
       java_switch_vowel: javaLessons.java_switch_vowel,
       java_switch_calc: javaLessons.java_switch_calc,
+      java_switch_month: javaLessons.java_switch_month,
+      java_switch_grade: javaLessons.java_switch_grade,
     },
-    loops: {
+    for_loop: {
       java_for_sum: javaLessons.java_for_sum,
+      java_multiplication_table: javaLessons.java_multiplication_table,
+    },
+    while_loop: {
       java_while_digits: javaLessons.java_while_digits,
       java_factorial: javaLessons.java_factorial,
+      java_reverse_num: javaLessons.java_reverse_num,
+      java_prime_check: javaLessons.java_prime_check,
+    },
+    do_while_loop: {
       java_do_while: javaLessons.java_do_while,
-      java_multiplication_table: javaLessons.java_multiplication_table,
     },
     arrays: {
       java_array_sum_1d: javaLessons.java_array_sum_1d,
       java_array_max_1d: javaLessons.java_array_max_1d,
       java_linear_search: javaLessons.java_linear_search,
+      java_array_reverse: javaLessons.java_array_reverse,
       java_matrix_2d: javaLessons.java_matrix_2d,
       java_diagonal_sum_2d: javaLessons.java_diagonal_sum_2d,
+      java_matrix_transpose: javaLessons.java_matrix_transpose,
     },
   },
 };

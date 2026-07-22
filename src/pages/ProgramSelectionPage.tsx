@@ -186,31 +186,47 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
       { id: 'java_casting', number: '02', friendlyName: 'Implicit & Explicit Type Casting', description: 'Learn automatic widening and manual narrowing casting in Java.' },
       { id: 'java_ascii', number: '03', friendlyName: 'Char to ASCII Integer Conversion', description: 'Understand character encoding and numeric ASCII representation in Java.' },
       { id: 'java_temp_convert', number: '04', friendlyName: 'Temperature Converter (Celsius to Fahrenheit)', description: 'Learn mixed double expression evaluation and formula computation in Java.' },
+      { id: 'java_circle_area', number: '05', friendlyName: 'Area & Circumference of Circle', description: 'Learn floating point math formulas using double precision in Java.' },
+      { id: 'java_swap_temp', number: '06', friendlyName: 'Swap Two Variables (Using Temp Variable)', description: 'Understand variable swapping logic and temporary memory slot usage.' },
     ],
     if_else: [
       { id: 'java_even_odd', number: '01', friendlyName: 'Even or Odd Check', description: 'Understand binary branch decision execution using if-else and modulo % in Java.' },
       { id: 'java_largest_three', number: '02', friendlyName: 'Largest of Three Numbers', description: 'Learn logical AND (&&) combination in Java if-else if decision trees.' },
-      { id: 'java_grade', number: '03', friendlyName: 'Student Grade Calculator (If-Else Ladder)', description: 'Learn multi-branch conditional execution using if-else if in Java.' },
-      { id: 'java_tax_calc', number: '04', friendlyName: 'Income Tax Slab Calculator', description: 'Calculate variable tax percentage slabs using Java conditionals.' },
+      { id: 'java_leap_year', number: '03', friendlyName: 'Leap Year Checker', description: 'Learn complex boolean expression logic (% 4, % 100, % 400).' },
+      { id: 'java_vowel_if', number: '04', friendlyName: 'Vowel or Consonant (If-Else Logical OR)', description: 'Learn multiple character comparisons using logical OR (||) in Java.' },
+    ],
+    if_elif_else: [
+      { id: 'java_grade', number: '01', friendlyName: 'Student Grade Calculator (If-Else Ladder)', description: 'Learn multi-branch conditional execution using if-else if in Java.' },
+      { id: 'java_tax_calc', number: '02', friendlyName: 'Income Tax Slab Calculator', description: 'Calculate variable tax percentage slabs using Java conditionals.' },
     ],
     switch_case: [
       { id: 'java_switch_day', number: '01', friendlyName: 'Day of Week Switch Case', description: 'Understand Java switch-case jumping and break statements.' },
       { id: 'java_switch_vowel', number: '02', friendlyName: 'Vowel or Consonant Check', description: 'Learn switch case fallthrough grouping for multiple matching conditions.' },
       { id: 'java_switch_calc', number: '03', friendlyName: 'Menu Driven Calculator', description: 'Learn operation selection using char switch in Java.' },
+      { id: 'java_switch_month', number: '04', friendlyName: 'Season Finder by Month Number', description: 'Learn range mapping with switch case statements.' },
+      { id: 'java_switch_grade', number: '05', friendlyName: 'Performance Comment by Grade', description: 'Learn character switch matching with descriptive output.' },
     ],
-    loops: [
+    for_loop: [
       { id: 'java_for_sum', number: '01', friendlyName: 'Sum of First N Natural Numbers', description: 'Learn accumulator variable accumulation in Java for loop.' },
-      { id: 'java_while_digits', number: '02', friendlyName: 'Sum of Digits (While Loop)', description: 'Learn digit extraction using % 10 and / 10 inside a while loop.' },
-      { id: 'java_factorial', number: '03', friendlyName: 'Factorial Calculation', description: 'Learn multiplicative accumulation in loops.' },
-      { id: 'java_do_while', number: '04', friendlyName: 'Do-While Guaranteed Execution', description: 'Learn exit-controlled do-while loops in Java.' },
-      { id: 'java_multiplication_table', number: '05', friendlyName: 'Multiplication Table Generator', description: 'Learn dynamic loop multiplier output formatting.' },
+      { id: 'java_multiplication_table', number: '02', friendlyName: 'Multiplication Table Generator', description: 'Learn dynamic loop multiplier output formatting.' },
+    ],
+    while_loop: [
+      { id: 'java_while_digits', number: '01', friendlyName: 'Sum of Digits (While Loop)', description: 'Learn digit extraction using % 10 and / 10 inside a while loop.' },
+      { id: 'java_factorial', number: '02', friendlyName: 'Factorial Calculation', description: 'Learn multiplicative accumulation in loops.' },
+      { id: 'java_reverse_num', number: '03', friendlyName: 'Reverse an Integer Number', description: 'Learn math digit shifting (rev = rev * 10 + digit) in loops.' },
+      { id: 'java_prime_check', number: '04', friendlyName: 'Prime Number Checker', description: 'Learn divisor testing using boolean flags in loops.' },
+    ],
+    do_while_loop: [
+      { id: 'java_do_while', number: '01', friendlyName: 'Do-While Guaranteed Execution', description: 'Learn exit-controlled do-while loops in Java.' },
     ],
     arrays: [
       { id: 'java_array_sum_1d', number: '01', friendlyName: '1D Array Sum & Average', description: 'Learn Java 1D array allocation, element indexing, and average computation.' },
       { id: 'java_array_max_1d', number: '02', friendlyName: 'Find Maximum & Minimum in 1D Array', description: 'Learn element comparisons and tracking extrema in Java arrays.' },
       { id: 'java_linear_search', number: '03', friendlyName: 'Linear Search in 1D Array', description: 'Learn target element search and early break execution in Java arrays.' },
-      { id: 'java_matrix_2d', number: '04', friendlyName: '2D Matrix Declaration & Traversal', description: 'Understand 2D array matrix row and column indexing in Java.' },
-      { id: 'java_diagonal_sum_2d', number: '05', friendlyName: 'Primary Diagonal Sum of 2D Matrix', description: 'Learn matrix primary diagonal indexing (matrix[i][i]) in Java 2D arrays.' },
+      { id: 'java_array_reverse', number: '04', friendlyName: 'Reverse 1D Array Elements', description: 'Learn in-place array swapping using two pointers.' },
+      { id: 'java_matrix_2d', number: '05', friendlyName: '2D Matrix Declaration & Traversal', description: 'Understand 2D array matrix row and column indexing in Java.' },
+      { id: 'java_diagonal_sum_2d', number: '06', friendlyName: 'Primary Diagonal Sum of 2D Matrix', description: 'Learn matrix primary diagonal indexing (matrix[i][i]) in Java 2D arrays.' },
+      { id: 'java_matrix_transpose', number: '07', friendlyName: '2D Matrix Transpose', description: 'Learn row-column swapping matrix transposition in Java.' },
     ],
   }
 };
