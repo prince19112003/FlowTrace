@@ -14,40 +14,44 @@ export const func_with_args: LessonProgram = {
     userName: { default: '"Alice"', type: 'text', label: 'Name' }
   },
   generateSteps: ({ userName }): ExecutionStep[] => {
+    const cleanName = String(userName).replace(/['"]/g, '');
+    const formattedName = `"${cleanName}"`;
+    const greetingText = `Hello, ${cleanName}`;
+
     return [
       {
         step: 1, lineNum: 1,
-        explanationEnglish: 'Define a function greet_user that accepts one parameter: name.',
-        explanationHinglish: 'greet_user function banaya jo ek parameter "name" leta hai.',
+        explanationEnglish: 'Define function greet_user(name) — registers function blueprint in memory with parameter "name".',
+        explanationHinglish: 'greet_user(name) function banaya — memory mein parameter "name" ke saath blueprint store hua.',
         memorySnapshot: {},
         animationEvent: { type: 'NONE' },
       },
       {
         step: 2, lineNum: 4,
-        explanationEnglish: `Call the function and pass the argument ${userName}.`,
-        explanationHinglish: `Function call kiya aur ${userName} bheja.`,
+        explanationEnglish: `Call function greet_user(${formattedName}) passing argument ${formattedName}. Program jumps to line 1.`,
+        explanationHinglish: `greet_user(${formattedName}) call kiya — argument ${formattedName} bhej ke line 1 par jump kiya.`,
         memorySnapshot: {},
-        animationEvent: { type: 'FUNCTION_CALL', functionName: 'greet_user', args: { name: userName } },
+        animationEvent: { type: 'FUNCTION_CALL', functionName: 'greet_user', args: { name: formattedName } },
       },
       {
         step: 3, lineNum: 1,
-        explanationEnglish: `The parameter "name" receives the value ${userName}.`,
-        explanationHinglish: `Parameter "name" mein ${userName} store ho gaya.`,
-        memorySnapshot: { name: userName },
-        animationEvent: { type: 'CREATE_VARIABLE', name: 'name', value: userName },
+        explanationEnglish: `Parameter "name" inside greet_user receives the argument value ${formattedName}.`,
+        explanationHinglish: `Function ke andar parameter "name" mein ${formattedName} value aa gayi.`,
+        memorySnapshot: { name: formattedName },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'name', value: formattedName },
       },
       {
         step: 4, lineNum: 2,
-        explanationEnglish: 'Print the greeting along with the provided name.',
-        explanationHinglish: 'Name ke sath greeting print kiya.',
-        memorySnapshot: { name: userName },
-        consoleOutput: `Hello, ${String(userName).replace(/"/g, '')}`,
-        animationEvent: { type: 'PRINT_VALUE', variableName: `"Hello, " + name`, outputValue: `"Hello, " + ${userName}` },
+        explanationEnglish: `Execute print("Hello,", name) -> Outputs "${greetingText}".`,
+        explanationHinglish: `print("Hello,", name) chala -> Output aaya: "${greetingText}".`,
+        memorySnapshot: { name: formattedName },
+        consoleOutput: greetingText,
+        animationEvent: { type: 'PRINT_VALUE', variableName: 'output', outputValue: `"${greetingText}"` },
       },
       {
-        step: 5, lineNum: 3,
-        explanationEnglish: 'Function execution is complete. Return to the caller.',
-        explanationHinglish: 'Function khatam hua. Wapas return kiya.',
+        step: 5, lineNum: 4,
+        explanationEnglish: 'Function execution finished. Program control returns back to line 4.',
+        explanationHinglish: 'Function execution poora hua. Control wapas line 4 par aa gaya.',
         memorySnapshot: {},
         animationEvent: { type: 'FUNCTION_RETURN', functionName: 'greet_user' },
       }

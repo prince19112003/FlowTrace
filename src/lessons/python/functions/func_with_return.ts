@@ -15,42 +15,44 @@ export const func_with_return: LessonProgram = {
     retVal: { default: 42, type: 'number', label: 'Return Value' }
   },
   generateSteps: ({ retVal }): ExecutionStep[] => {
+    const val = isNaN(Number(retVal)) ? String(retVal) : Number(retVal);
+
     return [
       {
         step: 1, lineNum: 1,
-        explanationEnglish: 'Define a function get_number that returns a static value.',
-        explanationHinglish: 'get_number naam ka function banaya jo value return karta hai.',
+        explanationEnglish: 'Define function get_number() that returns a value.',
+        explanationHinglish: 'get_number naam ka function banaya jo value return karega.',
         memorySnapshot: {},
         animationEvent: { type: 'NONE' },
       },
       {
         step: 2, lineNum: 4,
-        explanationEnglish: 'Call get_number() to fetch a value.',
-        explanationHinglish: 'Value lene ke liye get_number() call kiya.',
+        explanationEnglish: 'Call get_number() from line 4. Program jumps to function definition.',
+        explanationHinglish: 'Line 4 par get_number() call hua. Control function ke andar chala gaya.',
         memorySnapshot: {},
         animationEvent: { type: 'FUNCTION_CALL', functionName: 'get_number', args: {} },
       },
       {
         step: 3, lineNum: 2,
-        explanationEnglish: `Return the number ${retVal} from the function back to the caller.`,
-        explanationHinglish: `Function se ${retVal} wapas bheja.`,
+        explanationEnglish: `Execute "return ${val}". The function returns ${val} back to line 4.`,
+        explanationHinglish: `"return ${val}" chala. Function se ${val} value wapas line 4 ko bejhi.`,
         memorySnapshot: {},
-        animationEvent: { type: 'FUNCTION_RETURN', functionName: 'get_number', returnValue: retVal },
+        animationEvent: { type: 'FUNCTION_RETURN', functionName: 'get_number', returnValue: val },
       },
       {
         step: 4, lineNum: 4,
-        explanationEnglish: `Store the returned value (${retVal}) into the variable "result".`,
-        explanationHinglish: `Wapas aayi hui value (${retVal}) ko "result" mein store kiya.`,
-        memorySnapshot: { result: retVal },
-        animationEvent: { type: 'CREATE_VARIABLE', name: 'result', value: retVal },
+        explanationEnglish: `Store the returned value (${val}) into variable "result".`,
+        explanationHinglish: `Function se aayi value (${val}) ko variable "result" mein store kiya.`,
+        memorySnapshot: { result: val },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'result', value: val },
       },
       {
         step: 5, lineNum: 5,
-        explanationEnglish: 'Print the returned value stored in result.',
-        explanationHinglish: 'Result mein store ki gayi value print ki.',
-        memorySnapshot: { result: retVal },
-        consoleOutput: String(retVal),
-        animationEvent: { type: 'PRINT_VALUE', variableName: 'result', outputValue: retVal },
+        explanationEnglish: `Print the stored result: ${val}.`,
+        explanationHinglish: `result mein store ki gayi value print ki: ${val}.`,
+        memorySnapshot: { result: val },
+        consoleOutput: String(val),
+        animationEvent: { type: 'PRINT_VALUE', variableName: 'result', outputValue: val },
       }
     ];
   },

@@ -239,6 +239,14 @@ export const CodeStepPanel: React.FC = () => {
       });
     } else {
       lesson.lines.forEach(line => {
+        line.tokens.forEach((t, idx) => {
+          const pId = (t as any).paramId;
+          if (pId && editableVariables[pId]) {
+            if (!editableTokenMapping[line.lineNum]) editableTokenMapping[line.lineNum] = {};
+            editableTokenMapping[line.lineNum][idx] = pId;
+          }
+        });
+
         const varIdx = line.tokens.findIndex(t => t.type === 'variable');
         if (varIdx !== -1) {
           const varToken = line.tokens[varIdx];
@@ -246,7 +254,7 @@ export const CodeStepPanel: React.FC = () => {
           const isIndexed = nextToken && nextToken.type === 'punctuation' && nextToken.value === '[';
           
           const hasAssignment = line.tokens.some(t => t.type === 'operator' && t.value === '=');
-          const valTokenIdx = line.tokens.findIndex(t => t.type === 'number' || t.type === 'string');
+          const valTokenIdx = line.tokens.findIndex(t => t.type === 'number' || t.type === 'string' || t.type === 'parameter');
           
           if (varToken && hasAssignment && valTokenIdx !== -1 && !isIndexed && editableVariables[varToken.value]) {
             if (!editableTokenMapping[line.lineNum]) editableTokenMapping[line.lineNum] = {};
