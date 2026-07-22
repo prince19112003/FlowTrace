@@ -1,11 +1,11 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const linear_search: LessonProgram = {
   id: 'linear_search', language: 'python', topic: 'searching_sorting', lessonNumber: 1,
   friendlyName: 'Linear Search',
   learningObjective: 'Learn how linear search iterates sequentially to find a target.',
   lines: [
-    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '12' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '25' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '18' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '40' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '15' }, { type: 'punctuation', value: ']' }] },
+    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '12, 25, 18, 40, 15' }, { type: 'punctuation', value: ']' }] },
     { lineNum: 2, tokens: [{ type: 'variable', value: 'target' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '40' }] },
     { lineNum: 3, tokens: [{ type: 'variable', value: 'found' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'False' }] },
     { lineNum: 4, tokens: [{ type: 'keyword', value: 'for' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'i' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'in' }, { type: 'text', value: ' ' }, { type: 'function', value: 'range' }, { type: 'punctuation', value: '(' }, { type: 'function', value: 'len' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: ')' }, { type: 'punctuation', value: ')' }, { type: 'punctuation', value: ':' }] },
@@ -16,21 +16,147 @@ export const linear_search: LessonProgram = {
     { lineNum: 9, tokens: [{ type: 'keyword', value: 'if' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'not' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'found' }, { type: 'punctuation', value: ':' }] },
     { lineNum: 10, tokens: [{ type: 'text', value: '    ' }, { type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Not found"' }, { type: 'punctuation', value: ')' }] },
   ],
-  executionSteps: [
-    { step: 1, lineNum: 1, explanationEnglish: 'Initialize the array.', explanationHinglish: 'Array banaya.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: '"[12, 25, 18, 40, 15]"' } },
-    { step: 2, lineNum: 2, explanationEnglish: 'Set search target.', explanationHinglish: 'Search target set kiya.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'target', value: 40 } },
-    { step: 3, lineNum: 3, explanationEnglish: 'Initialize found flag to False.', explanationHinglish: 'found flag False kiya.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'found', value: '"False"' } },
-    { step: 4, lineNum: 4, explanationEnglish: 'Start loop index 0.', explanationHinglish: 'Index 0 pe loop.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 0 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 0 } },
-    { step: 5, lineNum: 5, explanationEnglish: 'Check if current element matches target.', explanationHinglish: 'Check kiya kya element target se match hota hai.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 0 }, animationEvent: { type: 'NONE' } },
-    { step: 6, lineNum: 4, explanationEnglish: 'Start loop index 1.', explanationHinglish: 'Index 1 pe loop.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 1 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 1 } },
-    { step: 7, lineNum: 5, explanationEnglish: 'Check if current element matches target.', explanationHinglish: 'Check kiya kya element target se match hota hai.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 1 }, animationEvent: { type: 'NONE' } },
-    { step: 8, lineNum: 4, explanationEnglish: 'Start loop index 2.', explanationHinglish: 'Index 2 pe loop.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 2 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 2 } },
-    { step: 9, lineNum: 5, explanationEnglish: 'Check if current element matches target.', explanationHinglish: 'Check kiya kya element target se match hota hai.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 2 }, animationEvent: { type: 'NONE' } },
-    { step: 10, lineNum: 4, explanationEnglish: 'Start loop index 3.', explanationHinglish: 'Index 3 pe loop.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 3 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 3 } },
-    { step: 11, lineNum: 5, explanationEnglish: 'Check if current element matches target.', explanationHinglish: 'Check kiya kya element target se match hota hai.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'False', i: 3 }, animationEvent: { type: 'NONE' } },
-    { step: 12, lineNum: 6, explanationEnglish: 'Match found! Set found flag to True.', explanationHinglish: 'Match mil gaya! found ko True kiya.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'True', i: 3 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'found', oldValue: '"False"', newValue: '"True"' } },
-    { step: 13, lineNum: 7, explanationEnglish: 'Print success message.', explanationHinglish: 'Success message print kiya.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'True', i: 3 }, consoleOutput: 'Found at index 3', animationEvent: { type: 'PRINT_VALUE', variableName: 'i', outputValue: '"Found at index 3"' } },
-    { step: 14, lineNum: 8, explanationEnglish: 'Break the loop.', explanationHinglish: 'Loop break kiya.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'True', i: 3 }, animationEvent: { type: 'NONE' } },
-    { step: 15, lineNum: 9, explanationEnglish: 'Check if found is False.', explanationHinglish: 'Check kiya kya found False hai.', memorySnapshot: { arr: '"[12, 25, 18, 40, 15]"', target: 40, found: 'True', i: 3 }, animationEvent: { type: 'NONE' } }
-  ],
+  editableVariables: {
+    arr: { default: '12, 25, 18, 40, 15', type: 'text', label: 'Search Array', noQuotes: true },
+    target: { default: 40, label: 'Search Target' },
+  },
+  generateSteps: ({ arr, target }): ExecutionStep[] => {
+    let items: Array<number | string> = [12, 25, 18, 40, 15];
+    const rawVal = String(arr).trim();
+    const cleaned = rawVal.replace(/[\[\]]/g, '').trim();
+    if (cleaned) {
+      items = cleaned.split(',').map(s => {
+        const v = s.trim();
+        return isNaN(Number(v)) ? v.replace(/['"]/g, '') : Number(v);
+      });
+    }
+
+    const formatListStr = (a: Array<string | number>) => {
+      return "[" + a.map(x => typeof x === 'string' ? `'${x}'` : x).join(', ') + "]";
+    };
+
+    const arrStr = formatListStr(items);
+    const targetVal = isNaN(Number(target)) ? String(target) : Number(target);
+
+    let stepNum = 1;
+    const steps: ExecutionStep[] = [];
+    let mem: Record<string, string | number> = { arr: arrStr };
+
+    // Step 1: Create arr
+    steps.push({
+      step: stepNum++, lineNum: 1,
+      explanationEnglish: `Initialize search array: ${arrStr}.`,
+      explanationHinglish: `Search array banaya: ${arrStr}.`,
+      memorySnapshot: { ...mem },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: arrStr },
+    });
+
+    // Step 2: Create target
+    mem.target = targetVal;
+    steps.push({
+      step: stepNum++, lineNum: 2,
+      explanationEnglish: `Set search target: ${targetVal}.`,
+      explanationHinglish: `Search target set kiya: ${targetVal}.`,
+      memorySnapshot: { ...mem },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'target', value: targetVal },
+    });
+
+    // Step 3: found = False
+    mem.found = 'False';
+    steps.push({
+      step: stepNum++, lineNum: 3,
+      explanationEnglish: `Initialize found flag to False.`,
+      explanationHinglish: `found flag ko False se set kiya.`,
+      memorySnapshot: { ...mem },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'found', value: '"False"' },
+    });
+
+    let foundMatchIndex = -1;
+
+    for (let i = 0; i < items.length; i++) {
+      const currentVal = items[i];
+      const prevI = mem.i;
+      mem.i = i;
+
+      // Step 4: Loop index i
+      steps.push({
+        step: stepNum++, lineNum: 4,
+        explanationEnglish: `Loop index i = ${i}: Checking element at index ${i} (${currentVal}).`,
+        explanationHinglish: `Index ${i} pe check kar rahe hain (element: ${currentVal}).`,
+        memorySnapshot: { ...mem },
+        animationEvent: prevI !== undefined 
+          ? { type: 'UPDATE_VARIABLE', name: 'i', oldValue: prevI, newValue: i }
+          : { type: 'CREATE_VARIABLE', name: 'i', value: i },
+      });
+
+      // Step 5: Check arr[i] == target
+      const isMatch = String(currentVal) === String(targetVal);
+      steps.push({
+        step: stepNum++, lineNum: 5,
+        explanationEnglish: `Check if arr[${i}] (${currentVal}) == target (${targetVal}). Result: ${isMatch ? 'True' : 'False'}.`,
+        explanationHinglish: `Check kiya kya arr[${i}] (${currentVal}) == target (${targetVal}) hai. Result: ${isMatch ? 'True' : 'False'}.`,
+        memorySnapshot: { ...mem },
+        animationEvent: { type: 'COMPUTE', inputs: [`arr[${i}]`, 'target'], operator: '==', result: isMatch ? 'True' : 'False', storeIn: 'Condition' },
+      });
+
+      if (isMatch) {
+        foundMatchIndex = i;
+        // Step 6: found = True
+        mem.found = 'True';
+        steps.push({
+          step: stepNum++, lineNum: 6,
+          explanationEnglish: `Match found! Set found = True.`,
+          explanationHinglish: `Match mil gaya! found को True kiya.`,
+          memorySnapshot: { ...mem },
+          animationEvent: { type: 'UPDATE_VARIABLE', name: 'found', oldValue: '"False"', newValue: '"True"' },
+        });
+
+        // Step 7: Print success
+        const msg = `Found at index ${i}`;
+        steps.push({
+          step: stepNum++, lineNum: 7,
+          explanationEnglish: `Print success message: "${msg}".`,
+          explanationHinglish: `Success message print kiya: "${msg}".`,
+          memorySnapshot: { ...mem },
+          consoleOutput: msg,
+          animationEvent: { type: 'PRINT_VALUE', variableName: 'output', outputValue: `"${msg}"` },
+        });
+
+        // Step 8: Break
+        steps.push({
+          step: stepNum++, lineNum: 8,
+          explanationEnglish: `Break the loop early since target was found.`,
+          explanationHinglish: `Target milne par loop break kar diya.`,
+          memorySnapshot: { ...mem },
+          animationEvent: { type: 'NONE' },
+        });
+
+        break;
+      }
+    }
+
+    if (foundMatchIndex === -1) {
+      // Step 9: if not found
+      steps.push({
+        step: stepNum++, lineNum: 9,
+        explanationEnglish: `Loop completed without match (found is False).`,
+        explanationHinglish: `Koyi match nahi mila (found False hai).`,
+        memorySnapshot: { ...mem },
+        animationEvent: { type: 'NONE' },
+      });
+
+      // Step 10: Print Not found
+      steps.push({
+        step: stepNum++, lineNum: 10,
+        explanationEnglish: `Print "Not found".`,
+        explanationHinglish: `"Not found" print kiya.`,
+        memorySnapshot: { ...mem },
+        consoleOutput: 'Not found',
+        animationEvent: { type: 'PRINT_VALUE', variableName: 'output', outputValue: '"Not found"' },
+      });
+    }
+
+    return steps;
+  },
+  executionSteps: [],
 };
