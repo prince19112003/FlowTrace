@@ -712,9 +712,12 @@ export const CustomFlowchartStage: React.FC = () => {
         {/* Zoomable Canvas Area */}
         <div
           id="flowchart-content"
-          className="p-12 flex flex-col items-center gap-10 min-w-max min-h-max transition-transform duration-300 origin-top"
+          className="relative p-12 flex flex-col items-center gap-10 min-w-max min-h-max transition-transform duration-300 origin-top"
           style={{ transform: `scale(${zoom})` }}
         >
+          {/* Pen Layer Target */}
+          <div id="canvas-pen-layer" className="absolute inset-0 z-50 pointer-events-none" />
+
           <AnimatePresence mode="wait">
             {visibleSteps.length === 0 && !isLoopTopic && !isFunctionTopic ? (
               /* ── Step 0: blank canvas ── program hasn't started yet */

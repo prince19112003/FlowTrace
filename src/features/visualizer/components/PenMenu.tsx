@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Pen, Undo2, Redo2, Trash2, X, Circle } from 'lucide-react';
 import { AnnotationCanvas } from './AnnotationCanvas';
 import type { Stroke } from './AnnotationCanvas';
+import ReactDOM from 'react-dom';
 
 export const PenMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,9 +81,12 @@ export const PenMenu: React.FC = () => {
     setPos({ x: targetX + slideOffset, y: targetY });
   };
 
+  const layer = document.getElementById('canvas-pen-layer');
+  const canvasElement = <AnnotationCanvas isActive={isPenActive} color={color} strokesRef={strokesRef} />;
+
   return (
     <>
-      <AnnotationCanvas isActive={isPenActive} color={color} strokesRef={strokesRef} />
+      {layer ? ReactDOM.createPortal(canvasElement, layer) : canvasElement}
 
       <motion.div
         drag
