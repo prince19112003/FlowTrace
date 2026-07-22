@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Expand, Shrink } from 'lucide-react';
+import { Expand, Shrink, ZoomIn, ZoomOut } from 'lucide-react';
 import { useLesson } from '../../../../lessons/LessonContext';
 
 import { VariableBox } from '../elements/VariableBox';
@@ -101,8 +101,12 @@ const parseDataStructure = (val: any) => {
 };
 
 export const CustomFlowchartStage: React.FC = () => {
-  const { lesson, currentStepIndex, zoom, isFullScreen, toggleFullScreen, editableValues } = useLesson();
+  const { lesson, currentStepIndex, isFullScreen, toggleFullScreen, editableValues } = useLesson();
+  const [zoom, setZoom] = useState(0.95);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  const handleZoomIn = () => setZoom(z => Math.min(z + 0.1, 1.5));
+  const handleZoomOut = () => setZoom(z => Math.max(z - 0.1, 0.5));
 
   if (!lesson) return null;
 
@@ -680,18 +684,50 @@ export const CustomFlowchartStage: React.FC = () => {
 };
 
   return (
-    <div className="flex-1 relative w-full h-full bg-[#060814]">
-      {/* Fixed Full Screen Toggle Button at bottom-left */}
-      <button
-        onClick={toggleFullScreen}
-        className="absolute bottom-4 left-4 z-50 p-2 bg-[#0d1126]/80 backdrop-blur-md border border-indigo-500/20 rounded-xl text-indigo-300 hover:bg-indigo-500/30 hover:scale-105 active:scale-95 transition-all shadow-[0_0_15px_rgba(0,0,0,0.4)] flex items-center justify-center"
-        title={isFullScreen ? "Exit Full Screen" : "Full Screen"}
-      >
-        {isFullScreen ? <Shrink size={16} /> : <Expand size={16} />}
-      </button>
+    <div className="h-full flex flex-col bg-[#0b0c14] border border-white/5 rounded-2xl overflow-hidden relative shadow-2xl shadow-black/60">
+      {/* Sleek Visual Panel Header Bar */}
+      <div className="flex items-center justify-between px-4 py-2 border-b border-white/5 shrink-0 bg-white/2 backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
+            <span className="text-xs text-cyan-400 font-mono font-bold tracking-widest uppercase">VISUAL FLOWCHART PANEL</span>
+          </div>
+          <span className="text-[10px] font-mono text-slate-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded-md uppercase font-bold tracking-wider">
+            {lesson?.friendlyName ?? 'Execution Flow'}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 bg-black/40 rounded-lg border border-white/10 p-0.5">
+            <button
+              onClick={handleZoomOut}
+              className="p-1 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors"
+              title="Zoom Out"
+            >
+              <ZoomOut size={14} />
+            </button>
+            <span className="text-[11px] font-mono font-bold text-slate-400 px-1.5 min-w-[36px] text-center">
+              {Math.round(zoom * 100)}%
+            </span>
+            <button
+              onClick={handleZoomIn}
+              className="p-1 text-slate-400 hover:text-white hover:bg-white/10 rounded transition-colors"
+              title="Zoom In"
+            >
+              <ZoomIn size={14} />
+            </button>
+          </div>
+          <button
+            onClick={toggleFullScreen}
+            className="p-1.5 bg-black/40 hover:bg-white/10 border border-white/10 rounded-lg text-slate-400 hover:text-white transition-all"
+            title={isFullScreen ? "Exit Full Screen" : "Full Screen"}
+          >
+            {isFullScreen ? <Shrink size={14} /> : <Expand size={14} />}
+          </button>
+        </div>
+      </div>
 
-      {/* Scrollable Container */}
-      <div id="flowchart-container" className="w-full h-full overflow-auto custom-scrollbar">
+      {/* Scrollable Container with Radial Grid Background */}
+      <div id="flowchart-container" className="flex-1 w-full h-full overflow-auto custom-scrollbar relative bg-[#060814] bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px]">
         {/* Zoomable Canvas Area */}
         <div
           id="flowchart-content"
