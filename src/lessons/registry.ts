@@ -80,18 +80,34 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
   java: {
     data_types: {
       java_types: javaLessons.java_types,
+      java_casting: javaLessons.java_casting,
+      java_ascii: javaLessons.java_ascii,
+      java_temp_convert: javaLessons.java_temp_convert,
     },
     if_else: {
+      java_even_odd: javaLessons.java_even_odd,
+      java_largest_three: javaLessons.java_largest_three,
       java_grade: javaLessons.java_grade,
+      java_tax_calc: javaLessons.java_tax_calc,
+    },
+    switch_case: {
+      java_switch_day: javaLessons.java_switch_day,
+      java_switch_vowel: javaLessons.java_switch_vowel,
+      java_switch_calc: javaLessons.java_switch_calc,
     },
     loops: {
-      java_for_loop: javaLessons.java_for_loop,
-    },
-    functions: {
-      java_method_add: javaLessons.java_method_add,
+      java_for_sum: javaLessons.java_for_sum,
+      java_while_digits: javaLessons.java_while_digits,
+      java_factorial: javaLessons.java_factorial,
+      java_do_while: javaLessons.java_do_while,
+      java_multiplication_table: javaLessons.java_multiplication_table,
     },
     arrays: {
-      java_array_sum: javaLessons.java_array_sum,
+      java_array_sum_1d: javaLessons.java_array_sum_1d,
+      java_array_max_1d: javaLessons.java_array_max_1d,
+      java_linear_search: javaLessons.java_linear_search,
+      java_matrix_2d: javaLessons.java_matrix_2d,
+      java_diagonal_sum_2d: javaLessons.java_diagonal_sum_2d,
     },
   },
 };

@@ -107,11 +107,11 @@ const cppTopics = [
 ];
 
 const javaTopics = [
-  { id: 'data_types', number: '01', name: 'Data Types & Variables', subtitle: 'int, double, boolean primitives in Java', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#f97316' },
-  { id: 'if_else', number: '02', name: 'If Else Ladder', subtitle: 'Multi-Branch Conditional Ladder', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
-  { id: 'loops', number: '03', name: 'For Loops', subtitle: 'Counter Loop Execution', programsCount: 1, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
-  { id: 'functions', number: '04', name: 'Static Methods', subtitle: 'Call Stack & Return Values', programsCount: 1, difficulty: 'Intermediate' as const, category: 'functions', accentColor: '#8b5cf6' },
-  { id: 'arrays', number: '05', name: '1D Arrays', subtitle: 'Heap Array Allocation & Traversal', programsCount: 1, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
+  { id: 'data_types', number: '01', name: 'Data Types & Variables', subtitle: 'Primitives (int, double, char, boolean) & Casting', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#f97316' },
+  { id: 'if_else', number: '02', name: 'If Else & Ladder', subtitle: 'Even/Odd, Largest of 3, Marks Grade & Tax Slabs', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
+  { id: 'switch_case', number: '03', name: 'Switch Case', subtitle: 'Day of Week, Vowel Check & Calculator', programsCount: 3, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#ec4899' },
+  { id: 'loops', number: '04', name: 'Loops (For, While, Do-While)', subtitle: 'Natural Sum, Digit Sum, Factorial, Do-While & Table', programsCount: 5, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
+  { id: 'arrays', number: '05', name: '1D & 2D Arrays', subtitle: 'Array Sum, Max/Min, Linear Search & 2D Matrix', programsCount: 5, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
 ];
 
 const difficultyConfig = {

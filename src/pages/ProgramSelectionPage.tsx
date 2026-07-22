@@ -182,20 +182,36 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
   },
   java: {
     data_types: [
-      { id: 'java_types', number: '01', friendlyName: 'Java Primitive Data Types (int, double, boolean)', description: 'Learn Java strongly-typed primitives and memory allocation.' }
+      { id: 'java_types', number: '01', friendlyName: 'Java Primitive Data Types (int, double, boolean, char)', description: 'Understand Java strongly-typed primitives, explicit byte sizes, and memory allocation.' },
+      { id: 'java_casting', number: '02', friendlyName: 'Implicit & Explicit Type Casting', description: 'Learn automatic widening and manual narrowing casting in Java.' },
+      { id: 'java_ascii', number: '03', friendlyName: 'Char to ASCII Integer Conversion', description: 'Understand character encoding and numeric ASCII representation in Java.' },
+      { id: 'java_temp_convert', number: '04', friendlyName: 'Temperature Converter (Celsius to Fahrenheit)', description: 'Learn mixed double expression evaluation and formula computation in Java.' },
     ],
     if_else: [
-      { id: 'java_grade', number: '01', friendlyName: 'Grade Calculator in Java (If-Else Ladder)', description: 'Learn multi-branch conditional execution using if-else if in Java.' }
+      { id: 'java_even_odd', number: '01', friendlyName: 'Even or Odd Check', description: 'Understand binary branch decision execution using if-else and modulo % in Java.' },
+      { id: 'java_largest_three', number: '02', friendlyName: 'Largest of Three Numbers', description: 'Learn logical AND (&&) combination in Java if-else if decision trees.' },
+      { id: 'java_grade', number: '03', friendlyName: 'Student Grade Calculator (If-Else Ladder)', description: 'Learn multi-branch conditional execution using if-else if in Java.' },
+      { id: 'java_tax_calc', number: '04', friendlyName: 'Income Tax Slab Calculator', description: 'Calculate variable tax percentage slabs using Java conditionals.' },
+    ],
+    switch_case: [
+      { id: 'java_switch_day', number: '01', friendlyName: 'Day of Week Switch Case', description: 'Understand Java switch-case jumping and break statements.' },
+      { id: 'java_switch_vowel', number: '02', friendlyName: 'Vowel or Consonant Check', description: 'Learn switch case fallthrough grouping for multiple matching conditions.' },
+      { id: 'java_switch_calc', number: '03', friendlyName: 'Menu Driven Calculator', description: 'Learn operation selection using char switch in Java.' },
     ],
     loops: [
-      { id: 'java_for_loop', number: '01', friendlyName: 'For Loop Counter in Java', description: 'Learn Java for loop iteration and block execution.' }
-    ],
-    functions: [
-      { id: 'java_method_add', number: '01', friendlyName: 'Static Method Call & Return in Java', description: 'Learn static method calls, argument passing, and stack frames in Java.' }
+      { id: 'java_for_sum', number: '01', friendlyName: 'Sum of First N Natural Numbers', description: 'Learn accumulator variable accumulation in Java for loop.' },
+      { id: 'java_while_digits', number: '02', friendlyName: 'Sum of Digits (While Loop)', description: 'Learn digit extraction using % 10 and / 10 inside a while loop.' },
+      { id: 'java_factorial', number: '03', friendlyName: 'Factorial Calculation', description: 'Learn multiplicative accumulation in loops.' },
+      { id: 'java_do_while', number: '04', friendlyName: 'Do-While Guaranteed Execution', description: 'Learn exit-controlled do-while loops in Java.' },
+      { id: 'java_multiplication_table', number: '05', friendlyName: 'Multiplication Table Generator', description: 'Learn dynamic loop multiplier output formatting.' },
     ],
     arrays: [
-      { id: 'java_array_sum', number: '01', friendlyName: 'Java Array Allocation & Traversal', description: 'Learn Java array heap allocation and array traversal.' }
-    ]
+      { id: 'java_array_sum_1d', number: '01', friendlyName: '1D Array Sum & Average', description: 'Learn Java 1D array allocation, element indexing, and average computation.' },
+      { id: 'java_array_max_1d', number: '02', friendlyName: 'Find Maximum & Minimum in 1D Array', description: 'Learn element comparisons and tracking extrema in Java arrays.' },
+      { id: 'java_linear_search', number: '03', friendlyName: 'Linear Search in 1D Array', description: 'Learn target element search and early break execution in Java arrays.' },
+      { id: 'java_matrix_2d', number: '04', friendlyName: '2D Matrix Declaration & Traversal', description: 'Understand 2D array matrix row and column indexing in Java.' },
+      { id: 'java_diagonal_sum_2d', number: '05', friendlyName: 'Primary Diagonal Sum of 2D Matrix', description: 'Learn matrix primary diagonal indexing (matrix[i][i]) in Java 2D arrays.' },
+    ],
   }
 };
 
