@@ -109,6 +109,7 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
     : rawVal.replace(/['"]/g, '').split('');
 
   const [activeCountIdx, setActiveCountIdx] = useState(-1);
+  const [highlightedIndices, setHighlightedIndices] = useState<number[]>([]);
 
   useEffect(() => {
     if (!isActive) {
@@ -156,6 +157,45 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
       setActiveCountIdx(-1);
     }
   }, [calcState, isStringCalc, itemsList.length]);
+
+  useEffect(() => {
+    if (calcState !== 'calculating') {
+      setHighlightedIndices([]);
+      return;
+    }
+
+    if (operator === 'sort()') {
+      let step = 0;
+      const len = itemsList.length;
+      if (len <= 1) return;
+
+      const timer = setInterval(() => {
+        const i = step % (len - 1);
+        setHighlightedIndices([i, i + 1]);
+        step++;
+      }, 300);
+
+      return () => clearInterval(timer);
+    } else if (operator === 'reverse()') {
+      let step = 0;
+      const len = itemsList.length;
+      if (len <= 1) return;
+
+      const timer = setInterval(() => {
+        const left = step;
+        const right = len - 1 - step;
+        if (left >= right) {
+          clearInterval(timer);
+          setHighlightedIndices([]);
+        } else {
+          setHighlightedIndices([left, right]);
+          step++;
+        }
+      }, 400);
+
+      return () => clearInterval(timer);
+    }
+  }, [calcState, operator, itemsList.length]);
 
   return (
     <div className="flex items-center gap-3 relative">
@@ -236,7 +276,7 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
                   <React.Fragment key={i}>
                     {isDataStructure(val) ? (() => {
                       const { variant, items } = parseDataStructure(val);
-                      return <DataStructureBox name={inp} variant={variant} items={items} isActive={isActive && calcState === 'inputs'} highlightedIndex={highlightIdx} />;
+                      return <DataStructureBox name={inp} variant={variant} items={items} isActive={isActive && calcState === 'inputs'} highlightedIndex={highlightIdx} highlightedIndices={highlightedIndices} />;
                     })() : (
                       <VariableBox 
                         name={inp} 

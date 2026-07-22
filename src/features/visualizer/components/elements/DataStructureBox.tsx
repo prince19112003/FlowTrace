@@ -7,6 +7,7 @@ interface DataStructureBoxProps {
   items: Array<string | number> | Record<string, string | number>;
   isActive?: boolean;
   highlightedIndex?: number;
+  highlightedIndices?: number[];
   highlightedKey?: string;
 }
 
@@ -16,6 +17,7 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
   items, 
   isActive,
   highlightedIndex,
+  highlightedIndices,
   highlightedKey
 }) => {
   const isArray = variant === 'array';
@@ -40,7 +42,7 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
       {isArray ? (
         <div className="flex border border-purple-500/30 rounded-lg overflow-hidden bg-slate-950/40">
           {arrayItems.map((val, idx) => {
-            const isHighlighted = idx === highlightedIndex;
+            const isHighlighted = idx === highlightedIndex || highlightedIndices?.includes(idx);
             return (
               <div 
                 key={idx} 
