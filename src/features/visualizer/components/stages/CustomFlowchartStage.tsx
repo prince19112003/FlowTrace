@@ -1422,81 +1422,17 @@ export const CustomFlowchartStage: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Sorting Progress Tracker & Pass History Card */}
-                      {isLatest && step.memorySnapshot?.sortedIndices && Array.isArray(step.memorySnapshot.sortedIndices) && (() => {
-                        const arrItems = parseDataStructure(step.memorySnapshot.arr || '[]').items;
-                        const totalCount = Array.isArray(arrItems) ? arrItems.length : 1;
-                        const lockedCount = step.memorySnapshot.sortedIndices.length;
-                        const percent = Math.min(100, Math.round((lockedCount / totalCount) * 100));
-
-                        return (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="w-full max-w-lg border border-emerald-500/40 bg-slate-950/90 backdrop-blur-md rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_25px_rgba(16,185,129,0.2)] my-3"
-                          >
-                            <div className="flex flex-col gap-2 border-b border-emerald-500/20 pb-3">
-                              <div className="flex items-center justify-between">
-                                <span className="text-xs font-black font-mono tracking-widest text-emerald-400 uppercase flex items-center gap-2">
-                                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                                  SORTING PROGRESS TRACKER
-                                </span>
-                                <span className="text-xs font-mono font-extrabold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 rounded-md">
-                                  {percent}% SORTED
-                                </span>
-                              </div>
-                              
-                              {/* Animated Progress Bar */}
-                              <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800 p-0.5">
-                                <motion.div 
-                                  className="h-full bg-linear-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.7)]"
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${percent}%` }}
-                                  transition={{ duration: 0.5 }}
-                                />
-                              </div>
-                            </div>
-
-                            {/* Pass History Snapshots Log */}
-                            {step.memorySnapshot.passSnapshots && Array.isArray(step.memorySnapshot.passSnapshots) && step.memorySnapshot.passSnapshots.length > 0 && (
-                              <div className="flex flex-col gap-2 max-h-48 overflow-y-auto custom-scrollbar pr-1">
-                                <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                                  COMPLETED PASS SNAPSHOTS:
-                                </span>
-                                {step.memorySnapshot.passSnapshots.map((pSnap: any, idx: number) => (
-                                  <div key={idx} className="flex items-center justify-between bg-slate-900/90 border border-emerald-500/25 rounded-xl px-3 py-1.5 text-xs font-mono">
-                                    <span className="text-emerald-400 font-black">Pass {pSnap.pass}:</span>
-                                    <div className="flex gap-1 items-center font-bold">
-                                      {pSnap.array.map((val: any, cellIdx: number) => {
-                                        const isLocked = cellIdx >= pSnap.array.length - pSnap.pass;
-                                        return (
-                                          <span 
-                                            key={cellIdx} 
-                                            className={`px-1.5 py-0.5 rounded ${
-                                              isLocked ? 'bg-emerald-500/25 text-emerald-200 border border-emerald-400/50 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'text-slate-300'
-                                            }`}
-                                          >
-                                            {val}
-                                          </span>
-                                        );
-                                      })}
-                                    </div>
-                                    <span className="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded font-extrabold">
-                                      🔒 Locked: {pSnap.lockedValue}
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </motion.div>
-                        );
-                      })()}
+                      {!['CREATE_VARIABLE', 'UPDATE_VARIABLE', 'PRINT_VALUE', 'COMPUTE', 'NONE', 'MATCH_START'].includes(ev?.type || '') && (
+                        <div className="text-slate-500 font-mono text-sm border border-slate-700 p-2 rounded">
+                          [Step {step.step} Executed]
+                        </div>
+                      )}
                     </motion.div>
                   );
                 })}
                 </div>
 
-                {/* Right Column: Inline Side Panel for Sorting Algorithms */}
+                {/* Right Column: Clean Sorting Progress Tracker Panel */}
                 {visibleSteps.length > 0 && (() => {
                   const latestStep = visibleSteps[visibleSteps.length - 1];
                   const mem = latestStep.memorySnapshot;
@@ -1511,7 +1447,7 @@ export const CustomFlowchartStage: React.FC = () => {
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="w-[420px] border border-emerald-500/40 bg-slate-950/95 backdrop-blur-xl rounded-2xl p-5 flex flex-col gap-4 shadow-[0_0_35px_rgba(16,185,129,0.25)] sticky top-8 shrink-0"
+                      className="w-96 border border-emerald-500/40 bg-slate-950/95 backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_30px_rgba(16,185,129,0.2)] sticky top-8 shrink-0"
                     >
                       {/* Header & Progress Bar */}
                       <div className="flex flex-col gap-2 border-b border-emerald-500/20 pb-3">
@@ -1520,7 +1456,7 @@ export const CustomFlowchartStage: React.FC = () => {
                             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                             SORTING PROGRESS TRACKER
                           </span>
-                          <span className="text-xs font-mono font-extrabold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-md">
+                          <span className="text-xs font-mono font-extrabold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 rounded-md">
                             {percent}% SORTED
                           </span>
                         </div>
@@ -1553,43 +1489,34 @@ export const CustomFlowchartStage: React.FC = () => {
                         </div>
                       ) : null}
 
-                      {/* Pass History Snapshots Log */}
+                      {/* Pass Snapshots Log (Clean Pill Rows) */}
                       {mem.passSnapshots && Array.isArray(mem.passSnapshots) && mem.passSnapshots.length > 0 && (
-                        <div className="flex flex-col gap-2 max-h-56 overflow-y-auto custom-scrollbar pr-1">
+                        <div className="flex flex-col gap-2 max-h-64 overflow-y-auto custom-scrollbar pr-1">
                           <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                            COMPLETED PASS HISTORY:
+                            COMPLETED PASS SNAPSHOTS:
                           </span>
                           {mem.passSnapshots.map((pSnap: any, idx: number) => (
-                            <div key={idx} className="flex flex-col gap-1.5 bg-slate-900/90 border border-emerald-500/30 rounded-xl p-2.5 text-xs font-mono shadow-sm">
-                              <div className="flex items-center justify-between">
-                                <span className="text-emerald-400 font-black">Pass {pSnap.pass}:</span>
-                                <span className="text-[10px] text-amber-300 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md font-extrabold shadow-sm">
-                                  ✨ Locked: {pSnap.lockedValue} at [{pSnap.lockedIndex}]
-                                </span>
-                              </div>
-                              <div className="flex border border-slate-800 rounded-lg overflow-hidden bg-slate-950/90 p-0.5 mt-1">
+                            <div key={idx} className="flex items-center justify-between bg-slate-900/90 border border-emerald-500/25 rounded-xl px-3 py-2 text-xs font-mono shadow-sm">
+                              <span className="text-emerald-400 font-bold">Pass {pSnap.pass}:</span>
+                              <div className="flex gap-1.5 items-center font-bold">
                                 {pSnap.array.map((val: any, cellIdx: number) => {
-                                  const isJustLocked = cellIdx === pSnap.lockedIndex;
                                   const isLocked = cellIdx >= pSnap.array.length - pSnap.pass;
                                   return (
-                                    <div 
+                                    <span 
                                       key={cellIdx} 
-                                      className={`flex-1 flex flex-col items-center justify-center py-1 px-1 border-r last:border-0 border-slate-800 transition-all ${
-                                        isJustLocked
-                                          ? 'bg-amber-500/30 border border-amber-400/60 text-amber-200 font-black shadow-[inset_0_0_8px_rgba(245,158,11,0.5)]'
-                                          : isLocked
-                                          ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-200 font-black'
-                                          : 'text-slate-400'
+                                      className={`px-2 py-0.5 rounded ${
+                                        isLocked ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-400/40 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'text-slate-300'
                                       }`}
                                     >
-                                      <span className="text-[7.5px] font-mono text-slate-500 font-bold mb-0.5">[{cellIdx}]</span>
-                                      <span className={`text-xs font-mono font-extrabold ${isJustLocked ? 'text-amber-200' : isLocked ? 'text-emerald-200' : 'text-slate-300'}`}>
-                                        {val}
-                                      </span>
-                                    </div>
+                                      {val}
+                                    </span>
                                   );
                                 })}
                               </div>
+                              <span className="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded font-extrabold flex items-center gap-1">
+                                <span>🔒</span>
+                                <span>Locked: {pSnap.lockedValue}</span>
+                              </span>
                             </div>
                           ))}
                         </div>
