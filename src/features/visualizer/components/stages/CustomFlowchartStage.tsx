@@ -1447,7 +1447,7 @@ export const CustomFlowchartStage: React.FC = () => {
                               {/* Animated Progress Bar */}
                               <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800 p-0.5">
                                 <motion.div 
-                                  className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.7)]"
+                                  className="h-full bg-linear-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.7)]"
                                   initial={{ width: 0 }}
                                   animate={{ width: `${percent}%` }}
                                   transition={{ duration: 0.5 }}
