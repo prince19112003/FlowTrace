@@ -1190,8 +1190,39 @@ export const CustomFlowchartStage: React.FC = () => {
                         )
                       )}
 
-                      {ev?.type === 'PRINT_VALUE' && (
-                        isDataStructure(ev.outputValue) ? (() => {
+                      {ev?.type === 'PRINT_VALUE' && (() => {
+                        const match = ev.variableName?.match(/^([a-zA-Z_]\w*)\[(-?\d+)\]$/);
+                        if (match) {
+                          const varName = match[1];
+                          const rawIdx = parseInt(match[2], 10);
+                          const rawDS = step.memorySnapshot[varName];
+                          if (rawDS && isDataStructure(rawDS)) {
+                            const { variant, items } = parseDataStructure(rawDS);
+                            const itemsArr = Array.isArray(items) ? items : [];
+                            const actualIdx = rawIdx < 0 ? itemsArr.length + rawIdx : rawIdx;
+                            return (
+                              <div className="flex flex-col items-center gap-2">
+                                <DataStructureBox
+                                  name={varName}
+                                  variant={variant}
+                                  items={items}
+                                  isActive={isLatest}
+                                  highlightedIndex={actualIdx}
+                                />
+                                <div className="flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-xl shadow-md font-mono text-xs text-amber-300 font-bold">
+                                  <span>Index [{rawIdx}]{rawIdx < 0 ? ` (pos ${actualIdx})` : ''}</span>
+                                  <span>➡</span>
+                                  <span className="text-white font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-700">{ev.outputValue}</span>
+                                </div>
+                                <span className="text-[10px] font-black tracking-widest font-mono text-green-400 uppercase">
+                                  PRINT OUTPUT
+                                </span>
+                              </div>
+                            );
+                          }
+                        }
+                        
+                        return isDataStructure(ev.outputValue) ? (() => {
                           const { variant, items } = parseDataStructure(ev.outputValue);
                           return (
                             <div className="flex flex-col items-center gap-1.5">
@@ -1203,8 +1234,8 @@ export const CustomFlowchartStage: React.FC = () => {
                           );
                         })() : (
                           <PrintBox variableName={ev.variableName} value={ev.outputValue} isActive={isLatest} />
-                        )
-                      )}
+                        );
+                      })()}
 
                       {ev?.type === 'HIGHLIGHT_ARRAY_INDEX' && (
                         (() => {

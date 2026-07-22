@@ -158,10 +158,36 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
     }
   }, [calcState, isStringCalc, itemsList.length]);
 
+  const sliceMatch = operator ? operator.match(/^\[(-?\d*):(-?\d*)\]$/) : null;
+
   useEffect(() => {
+    if (sliceMatch) {
+      const len = itemsList.length;
+      const startRaw = sliceMatch[1] !== '' ? parseInt(sliceMatch[1], 10) : 0;
+      const endRaw = sliceMatch[2] !== '' ? parseInt(sliceMatch[2], 10) : len;
+      const start = startRaw < 0 ? Math.max(0, len + startRaw) : Math.min(len, startRaw);
+      const end = endRaw < 0 ? Math.max(0, len + endRaw) : Math.min(len, endRaw);
+      
+      const sliceIndices: number[] = [];
+      for (let i = start; i < end; i++) {
+        sliceIndices.push(i);
+      }
+      setHighlightedIndices(sliceIndices);
+      return;
+    }
+
     if (calcState !== 'calculating') {
       setHighlightedIndices([]);
       return;
+    }
+
+    if (operator === 'index()' && inputs.length >= 2) {
+      const targetVal = String(inputs[1]).replace(/['"]/g, '').trim();
+      const foundIdx = itemsList.findIndex(x => String(x).replace(/['"]/g, '').trim() === targetVal);
+      if (foundIdx !== -1) {
+        setHighlightedIndices([foundIdx]);
+        return;
+      }
     }
 
     if (operator === 'sort()') {
@@ -195,7 +221,7 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
 
       return () => clearInterval(timer);
     }
-  }, [calcState, operator, itemsList.length]);
+  }, [calcState, operator, inputs, itemsList.length]);
 
   return (
     <div className="flex items-center gap-3 relative">
