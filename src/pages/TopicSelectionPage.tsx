@@ -140,16 +140,16 @@ const javaTopics = [
 ];
 
 const dsaTopics = [
-  { id: 'array_operations', number: '01', name: 'Arrays & Memory', subtitle: 'Indexed Memory & Traversal', programsCount: 3, difficulty: 'Beginner' as const, category: 'data', accentColor: '#f59e0b' },
-  { id: 'searching', number: '02', name: 'Searching', subtitle: 'Linear & Binary Search', programsCount: 2, difficulty: 'Beginner' as const, category: 'algo', accentColor: '#10b981' },
-  { id: 'sorting', number: '03', name: 'Sorting', subtitle: 'Bubble, Selection & Insertion Sort', programsCount: 3, difficulty: 'Intermediate' as const, category: 'algo', accentColor: '#a855f7' },
-  { id: 'stack', number: '04', name: 'Stack (LIFO)', subtitle: 'Push, Pop & Top Pointer', programsCount: 2, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#ec4899' },
-  { id: 'queue', number: '05', name: 'Queue (FIFO)', subtitle: 'Enqueue, Dequeue & Front/Rear', programsCount: 2, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#06b6d4' },
-  { id: 'singly_linked_list', number: '06', name: 'Singly Linked List', subtitle: 'Node Data & Next Pointer', programsCount: 2, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#8b5cf6' },
-  { id: 'doubly_linked_list', number: '07', name: 'Doubly Linked List', subtitle: 'Prev & Next Memory Pointers', programsCount: 2, difficulty: 'Advanced' as const, category: 'data', accentColor: '#6366f1' },
-  { id: 'recursion_dsa', number: '08', name: 'Recursion Call Stack', subtitle: 'Base Cases & Stack Frames', programsCount: 2, difficulty: 'Intermediate' as const, category: 'algo', accentColor: '#f97316' },
-  { id: 'binary_tree', number: '09', name: 'Binary Tree', subtitle: 'Root, Left/Right & Inorder Traversal', programsCount: 2, difficulty: 'Advanced' as const, category: 'data', accentColor: '#14b8a6' },
-  { id: 'graph_basics', number: '10', name: 'Graph Fundamentals', subtitle: 'Nodes, Edges & Adjacency Matrix', programsCount: 2, difficulty: 'Advanced' as const, category: 'data', accentColor: '#eab308' },
+  { id: 'array_operations', number: '01', name: 'Arrays & Memory', subtitle: 'Indexed Contiguous Memory & Traversal', programsCount: 3, difficulty: 'Beginner' as const, category: 'data', accentColor: '#f59e0b' },
+  { id: 'searching', number: '02', name: 'Searching Algorithms', subtitle: 'Linear Search & Binary Search O(log N)', programsCount: 2, difficulty: 'Beginner' as const, category: 'algo', accentColor: '#10b981' },
+  { id: 'sorting', number: '03', name: 'Sorting Algorithms', subtitle: 'Bubble, Selection & Insertion Sort', programsCount: 3, difficulty: 'Intermediate' as const, category: 'algo', accentColor: '#a855f7' },
+  { id: 'recursion_dsa', number: '04', name: 'Recursion & Call Stack', subtitle: 'Base Cases & Call Stack Frames', programsCount: 2, difficulty: 'Intermediate' as const, category: 'algo', accentColor: '#f97316' },
+  { id: 'stack', number: '05', name: 'Stack (LIFO)', subtitle: 'Push, Pop & Top Pointer Index', programsCount: 2, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#ec4899' },
+  { id: 'queue', number: '06', name: 'Queue (FIFO)', subtitle: 'Enqueue, Dequeue & Front/Rear Pointers', programsCount: 2, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#06b6d4' },
+  { id: 'singly_linked_list', number: '07', name: 'Singly Linked List', subtitle: 'Node Memory Data & Next Pointer', programsCount: 2, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#8b5cf6' },
+  { id: 'doubly_linked_list', number: '08', name: 'Doubly Linked List', subtitle: 'Prev & Next Memory Node Links', programsCount: 2, difficulty: 'Advanced' as const, category: 'data', accentColor: '#6366f1' },
+  { id: 'binary_tree', number: '09', name: 'Binary Tree', subtitle: 'Root, Left/Right Child & Traversal', programsCount: 2, difficulty: 'Advanced' as const, category: 'data', accentColor: '#14b8a6' },
+  { id: 'graph_basics', number: '10', name: 'Graph Fundamentals', subtitle: 'Vertices, Edges & Adjacency Matrix', programsCount: 2, difficulty: 'Advanced' as const, category: 'data', accentColor: '#eab308' },
 ];
 
 const difficultyConfig = {
