@@ -75,26 +75,23 @@ export const linear_search: LessonProgram = {
 
     for (let i = 0; i < items.length; i++) {
       const currentVal = items[i];
-      const prevI = mem.i;
       mem.i = i;
 
-      // Step 4: Loop index i
+      // Step 4: Loop index i with HIGHLIGHT_ARRAY_INDEX
       steps.push({
         step: stepNum++, lineNum: 4,
-        explanationEnglish: `Loop index i = ${i}: Checking element at index ${i} (${currentVal}).`,
-        explanationHinglish: `Index ${i} pe check kar rahe hain (element: ${currentVal}).`,
+        explanationEnglish: `Iteration i = ${i}: Inspecting element at index ${i} (${currentVal}).`,
+        explanationHinglish: `Iteration i = ${i}: Index ${i} par element (${currentVal}) ko inspect kar rahe hain.`,
         memorySnapshot: { ...mem },
-        animationEvent: prevI !== undefined 
-          ? { type: 'UPDATE_VARIABLE', name: 'i', oldValue: prevI, newValue: i }
-          : { type: 'CREATE_VARIABLE', name: 'i', value: i },
+        animationEvent: { type: 'HIGHLIGHT_ARRAY_INDEX', arrayName: 'arr', index: i },
       });
 
       // Step 5: Check arr[i] == target
       const isMatch = String(currentVal) === String(targetVal);
       steps.push({
         step: stepNum++, lineNum: 5,
-        explanationEnglish: `Check if arr[${i}] (${currentVal}) == target (${targetVal}). Result: ${isMatch ? 'True' : 'False'}.`,
-        explanationHinglish: `Check kiya kya arr[${i}] (${currentVal}) == target (${targetVal}) hai. Result: ${isMatch ? 'True' : 'False'}.`,
+        explanationEnglish: `Check if arr[${i}] (${currentVal}) == target (${targetVal}). Result: ${isMatch ? 'TRUE' : 'FALSE'}.`,
+        explanationHinglish: `Check kiya kya arr[${i}] (${currentVal}) == target (${targetVal}) hai. Result: ${isMatch ? 'SAHI' : 'GALAT'}.`,
         memorySnapshot: { ...mem },
         animationEvent: { type: 'COMPUTE', inputs: [`arr[${i}]`, 'target'], operator: '==', result: isMatch ? 'True' : 'False', storeIn: 'Condition' },
       });
@@ -105,8 +102,8 @@ export const linear_search: LessonProgram = {
         mem.found = 'True';
         steps.push({
           step: stepNum++, lineNum: 6,
-          explanationEnglish: `Match found! Set found = True.`,
-          explanationHinglish: `Match mil gaya! found को True kiya.`,
+          explanationEnglish: `Target ${targetVal} matched at index ${i}! Set found = True.`,
+          explanationHinglish: `Target ${targetVal} index ${i} par mil gaya! found ko True kiya.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'UPDATE_VARIABLE', name: 'found', oldValue: '"False"', newValue: '"True"' },
         });
@@ -115,8 +112,8 @@ export const linear_search: LessonProgram = {
         const msg = `Found at index ${i}`;
         steps.push({
           step: stepNum++, lineNum: 7,
-          explanationEnglish: `Print success message: "${msg}".`,
-          explanationHinglish: `Success message print kiya: "${msg}".`,
+          explanationEnglish: `Print output message: "${msg}".`,
+          explanationHinglish: `Output message print kiya: "${msg}".`,
           memorySnapshot: { ...mem },
           consoleOutput: msg,
           animationEvent: { type: 'PRINT_VALUE', variableName: 'output', outputValue: `"${msg}"` },
@@ -125,8 +122,8 @@ export const linear_search: LessonProgram = {
         // Step 8: Break
         steps.push({
           step: stepNum++, lineNum: 8,
-          explanationEnglish: `Break the loop early since target was found.`,
-          explanationHinglish: `Target milne par loop break kar diya.`,
+          explanationEnglish: `Target found. Break out of loop.`,
+          explanationHinglish: `Target milne par loop break kiya.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'NONE' },
         });
@@ -139,8 +136,8 @@ export const linear_search: LessonProgram = {
       // Step 9: if not found
       steps.push({
         step: stepNum++, lineNum: 9,
-        explanationEnglish: `Loop completed without match (found is False).`,
-        explanationHinglish: `Koyi match nahi mila (found False hai).`,
+        explanationEnglish: `Loop completed without finding target ${targetVal}.`,
+        explanationHinglish: `Loop poora hua par target ${targetVal} nahi mila.`,
         memorySnapshot: { ...mem },
         animationEvent: { type: 'NONE' },
       });

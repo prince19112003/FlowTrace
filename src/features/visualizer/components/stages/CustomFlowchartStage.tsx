@@ -1269,6 +1269,8 @@ export const CustomFlowchartStage: React.FC = () => {
                       {ev?.type === 'HIGHLIGHT_ARRAY_INDEX' && (
                         (() => {
                           const { variant, items } = parseDataStructure(step.memorySnapshot[ev.arrayName]);
+                          const itemsArr = Array.isArray(items) ? items : [];
+                          const itemVal = itemsArr[ev.index];
                           return (
                             <div className="flex flex-col items-center gap-3">
                               <DataStructureBox 
@@ -1282,9 +1284,11 @@ export const CustomFlowchartStage: React.FC = () => {
                                 <motion.div 
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
-                                  className="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-xl shadow-md"
+                                  className="text-xs font-mono font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-3 py-1 rounded-xl shadow-md flex items-center gap-2"
                                 >
-                                  Target index: {ev.index}
+                                  <span>Inspecting Index [{ev.index}]</span>
+                                  <span>➡</span>
+                                  <span className="text-white font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-700">{itemVal !== undefined ? (typeof itemVal === 'string' ? `"${itemVal}"` : itemVal) : ev.index}</span>
                                 </motion.div>
                               )}
                             </div>
