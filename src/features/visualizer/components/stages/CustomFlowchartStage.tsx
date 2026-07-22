@@ -1205,7 +1205,23 @@ export const CustomFlowchartStage: React.FC = () => {
                           const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
                           return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} pointers={pointers} searchRange={searchRange} />;
                         })() : (
-                          <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} />
+                          <div className="flex flex-col items-center gap-3">
+                            <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} />
+                            {step.memorySnapshot?.arr && typeof step.memorySnapshot?.low === 'number' && typeof step.memorySnapshot?.high === 'number' && ev.name !== 'arr' && (() => {
+                              const { variant, items } = parseDataStructure(step.memorySnapshot.arr);
+                              const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
+                              return (
+                                <DataStructureBox 
+                                  name="arr" 
+                                  variant={variant} 
+                                  items={items} 
+                                  isActive={isLatest} 
+                                  pointers={pointers} 
+                                  searchRange={searchRange} 
+                                />
+                              );
+                            })()}
+                          </div>
                         )
                       )}
 
@@ -1317,16 +1333,32 @@ export const CustomFlowchartStage: React.FC = () => {
 
                       {ev?.type === 'COMPUTE' && (
                         ev.storeIn === 'Condition' ? (
-                          <ConditionBox
-                            condition={ev.inputs.length === 2
-                              ? `${ev.inputs[0]} ${ev.operator} ${ev.inputs[1]}`
-                              : `${ev.inputs[0] || ''} ${ev.operator || ''}`
-                            }
-                            inputs={ev.inputs}
-                            memorySnapshot={step.memorySnapshot}
-                            isTrue={ev.result === 'True' || String(ev.result) === 'true'}
-                            isActive={isLatest}
-                          />
+                          <div className="flex flex-col items-center gap-3">
+                            <ConditionBox
+                              condition={ev.inputs.length === 2
+                                ? `${ev.inputs[0]} ${ev.operator} ${ev.inputs[1]}`
+                                : `${ev.inputs[0] || ''} ${ev.operator || ''}`
+                              }
+                              inputs={ev.inputs}
+                              memorySnapshot={step.memorySnapshot}
+                              isTrue={ev.result === 'True' || String(ev.result) === 'true'}
+                              isActive={isLatest}
+                            />
+                            {step.memorySnapshot?.arr && typeof step.memorySnapshot?.low === 'number' && typeof step.memorySnapshot?.high === 'number' && (() => {
+                              const { variant, items } = parseDataStructure(step.memorySnapshot.arr);
+                              const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
+                              return (
+                                <DataStructureBox 
+                                  name="arr" 
+                                  variant={variant} 
+                                  items={items} 
+                                  isActive={isLatest} 
+                                  pointers={pointers} 
+                                  searchRange={searchRange} 
+                                />
+                              );
+                            })()}
+                          </div>
                         ) : (() => {
                           const prevStep = index > 0 ? visibleSteps[index - 1] : undefined;
                           const prevMemorySnapshot = prevStep ? prevStep.memorySnapshot : {};
