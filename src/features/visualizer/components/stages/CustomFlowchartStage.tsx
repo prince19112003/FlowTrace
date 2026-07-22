@@ -707,100 +707,6 @@ export const CustomFlowchartStage: React.FC = () => {
         {isFullScreen ? <Shrink size={16} /> : <Expand size={16} />}
       </button>
 
-      {/* FLOATING PERMANENT SIDE PANEL (TOP-RIGHT FIXED SIDE SECTION) */}
-      {visibleSteps.length > 0 && (() => {
-        const latestStep = visibleSteps[visibleSteps.length - 1];
-        const mem = latestStep.memorySnapshot;
-        if (!mem?.sortedIndices || !Array.isArray(mem.sortedIndices)) return null;
-
-        const arrItems = parseDataStructure(mem.arr || '[]').items;
-        const totalCount = Array.isArray(arrItems) ? arrItems.length : 1;
-        const lockedCount = mem.sortedIndices.length;
-        const percent = Math.min(100, Math.round((lockedCount / totalCount) * 100));
-
-        return (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="absolute top-6 right-6 z-40 w-80 border border-emerald-500/40 bg-slate-950/95 backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_30px_rgba(16,185,129,0.25)]"
-          >
-            {/* Header & Progress Bar */}
-            <div className="flex flex-col gap-2 border-b border-emerald-500/20 pb-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-black font-mono tracking-widest text-emerald-400 uppercase flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  SORTING PROGRESS TRACKER
-                </span>
-                <span className="text-xs font-mono font-extrabold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-md">
-                  {percent}% SORTED
-                </span>
-              </div>
-              
-              {/* Animated Progress Bar */}
-              <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800 p-0.5">
-                <motion.div 
-                  className="h-full bg-linear-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.7)]"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${percent}%` }}
-                  transition={{ duration: 0.5 }}
-                />
-              </div>
-            </div>
-
-            {/* Current Action Indicator */}
-            {mem.swappingIndices ? (
-              <div className="flex items-center gap-2 bg-amber-500/15 border border-amber-500/40 px-3 py-1.5 rounded-xl text-xs font-mono text-amber-200 font-bold animate-pulse">
-                <span>⇄ Swapping:</span>
-                <span className="text-white font-black bg-amber-950 px-1.5 py-0.5 rounded border border-amber-400">
-                  {Array.isArray(arrItems) ? arrItems[mem.swappingIndices[0]] : ''} ⇄ {Array.isArray(arrItems) ? arrItems[mem.swappingIndices[1]] : ''}
-                </span>
-              </div>
-            ) : mem.comparingIndices ? (
-              <div className="flex items-center gap-2 bg-cyan-500/15 border border-cyan-500/40 px-3 py-1.5 rounded-xl text-xs font-mono text-cyan-200 font-bold">
-                <span>🔍 Comparing:</span>
-                <span className="text-white font-black bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-400">
-                  arr[{mem.comparingIndices[0]}] & arr[{mem.comparingIndices[1]}]
-                </span>
-              </div>
-            ) : null}
-
-            {/* Pass History Snapshots Log */}
-            {mem.passSnapshots && Array.isArray(mem.passSnapshots) && mem.passSnapshots.length > 0 && (
-              <div className="flex flex-col gap-2 max-h-56 overflow-y-auto custom-scrollbar pr-1">
-                <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                  COMPLETED PASS HISTORY:
-                </span>
-                {mem.passSnapshots.map((pSnap: any, idx: number) => (
-                  <div key={idx} className="flex flex-col gap-1 bg-slate-900/90 border border-emerald-500/25 rounded-xl p-2 text-xs font-mono">
-                    <div className="flex items-center justify-between">
-                      <span className="text-emerald-400 font-black">Pass {pSnap.pass}:</span>
-                      <span className="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded font-extrabold">
-                        🔒 Locked: {pSnap.lockedValue}
-                      </span>
-                    </div>
-                    <div className="flex gap-1 items-center font-bold overflow-x-auto custom-scrollbar py-0.5">
-                      {pSnap.array.map((val: any, cellIdx: number) => {
-                        const isLocked = cellIdx >= pSnap.array.length - pSnap.pass;
-                        return (
-                          <span 
-                            key={cellIdx} 
-                            className={`px-1.5 py-0.5 rounded text-[11px] ${
-                              isLocked ? 'bg-emerald-500/25 text-emerald-200 border border-emerald-400/50 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'text-slate-300'
-                            }`}
-                          >
-                            {val}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </motion.div>
-        );
-      })()}
-
       {/* Scrollable Container */}
       <div id="flowchart-container" className="w-full h-full overflow-auto custom-scrollbar">
         {/* Zoomable Canvas Area */}
@@ -1256,8 +1162,10 @@ export const CustomFlowchartStage: React.FC = () => {
                 key="steps-canvas"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="flex flex-col items-center gap-12 shrink-0"
+                className="flex flex-row items-start justify-center gap-12 shrink-0 min-w-max"
               >
+                {/* Left Column: Flowchart Nodes Chain */}
+                <div className="flex flex-col items-center gap-12 shrink-0">
                 {visibleSteps.map((step, index) => {
                   const isLatest = index === visibleSteps.length - 1;
                   const ev = step.animationEvent;
@@ -1586,6 +1494,101 @@ export const CustomFlowchartStage: React.FC = () => {
                     </motion.div>
                   );
                 })}
+                </div>
+
+                {/* Right Column: Inline Side Panel for Sorting Algorithms */}
+                {visibleSteps.length > 0 && (() => {
+                  const latestStep = visibleSteps[visibleSteps.length - 1];
+                  const mem = latestStep.memorySnapshot;
+                  if (!mem?.sortedIndices || !Array.isArray(mem.sortedIndices)) return null;
+
+                  const arrItems = parseDataStructure(mem.arr || '[]').items;
+                  const totalCount = Array.isArray(arrItems) ? arrItems.length : 1;
+                  const lockedCount = mem.sortedIndices.length;
+                  const percent = Math.min(100, Math.round((lockedCount / totalCount) * 100));
+
+                  return (
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="w-80 border border-emerald-500/40 bg-slate-950/95 backdrop-blur-xl rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_30px_rgba(16,185,129,0.2)] sticky top-6 shrink-0"
+                    >
+                      {/* Header & Progress Bar */}
+                      <div className="flex flex-col gap-2 border-b border-emerald-500/20 pb-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-black font-mono tracking-widest text-emerald-400 uppercase flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                            SORTING PROGRESS TRACKER
+                          </span>
+                          <span className="text-xs font-mono font-extrabold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-md">
+                            {percent}% SORTED
+                          </span>
+                        </div>
+                        
+                        {/* Animated Progress Bar */}
+                        <div className="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800 p-0.5">
+                          <motion.div 
+                            className="h-full bg-linear-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.7)]"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${percent}%` }}
+                            transition={{ duration: 0.5 }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Current Action Indicator */}
+                      {mem.swappingIndices ? (
+                        <div className="flex items-center gap-2 bg-amber-500/15 border border-amber-500/40 px-3 py-1.5 rounded-xl text-xs font-mono text-amber-200 font-bold animate-pulse">
+                          <span>⇄ Swapping:</span>
+                          <span className="text-white font-black bg-amber-950 px-1.5 py-0.5 rounded border border-amber-400">
+                            {Array.isArray(arrItems) ? arrItems[mem.swappingIndices[0]] : ''} ⇄ {Array.isArray(arrItems) ? arrItems[mem.swappingIndices[1]] : ''}
+                          </span>
+                        </div>
+                      ) : mem.comparingIndices ? (
+                        <div className="flex items-center gap-2 bg-cyan-500/15 border border-cyan-500/40 px-3 py-1.5 rounded-xl text-xs font-mono text-cyan-200 font-bold">
+                          <span>🔍 Comparing:</span>
+                          <span className="text-white font-black bg-cyan-950 px-1.5 py-0.5 rounded border border-cyan-400">
+                            arr[{mem.comparingIndices[0]}] & arr[{mem.comparingIndices[1]}]
+                          </span>
+                        </div>
+                      ) : null}
+
+                      {/* Pass History Snapshots Log */}
+                      {mem.passSnapshots && Array.isArray(mem.passSnapshots) && mem.passSnapshots.length > 0 && (
+                        <div className="flex flex-col gap-2 max-h-56 overflow-y-auto custom-scrollbar pr-1">
+                          <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
+                            COMPLETED PASS HISTORY:
+                          </span>
+                          {mem.passSnapshots.map((pSnap: any, idx: number) => (
+                            <div key={idx} className="flex flex-col gap-1 bg-slate-900/90 border border-emerald-500/25 rounded-xl p-2 text-xs font-mono">
+                              <div className="flex items-center justify-between">
+                                <span className="text-emerald-400 font-black">Pass {pSnap.pass}:</span>
+                                <span className="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded font-extrabold">
+                                  🔒 Locked: {pSnap.lockedValue}
+                                </span>
+                              </div>
+                              <div className="flex gap-1 items-center font-bold overflow-x-auto custom-scrollbar py-0.5">
+                                {pSnap.array.map((val: any, cellIdx: number) => {
+                                  const isLocked = cellIdx >= pSnap.array.length - pSnap.pass;
+                                  return (
+                                    <span 
+                                      key={cellIdx} 
+                                      className={`px-1.5 py-0.5 rounded text-[11px] ${
+                                        isLocked ? 'bg-emerald-500/25 text-emerald-200 border border-emerald-400/50 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'text-slate-300'
+                                      }`}
+                                    >
+                                      {val}
+                                    </span>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  );
+                })()}
               </motion.div>
             )}
           </AnimatePresence>
