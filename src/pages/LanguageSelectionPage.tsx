@@ -100,7 +100,7 @@ const languages = [
     year: 'Polyglot',
     tagline: 'Master Algorithms in Python, C++, Java & C.',
     topics: 10,
-    programs: 24,
+    programs: 34,
     accentColor: '#a855f7',
     accentGlow: 'rgba(168,85,247,0.22)',
     accentBorder: 'rgba(168,85,247,0.35)',

@@ -19,6 +19,7 @@ import { searchingSortingLessons } from './python/searching_sorting/index';
 import { cLessons } from './c/index';
 import { cppLessons } from './cpp/index';
 import { javaLessons } from './java/index';
+import { dsaLessons } from './dsa/index';
 
 // In the future, this registry will grow to include other topics and languages.
 export const lessonRegistry: Record<string, Record<string, Record<string, LessonProgram>>> = {
@@ -42,16 +43,45 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     searching_sorting: searchingSortingLessons,
   },
   dsa: {
-    array_operations: searchingSortingLessons,
-    searching: searchingSortingLessons,
-    sorting: searchingSortingLessons,
-    stack: searchingSortingLessons,
-    queue: searchingSortingLessons,
-    singly_linked_list: searchingSortingLessons,
-    doubly_linked_list: searchingSortingLessons,
-    recursion_dsa: searchingSortingLessons,
-    binary_tree: searchingSortingLessons,
-    graph_basics: searchingSortingLessons,
+    array_operations: {
+      dsa_array_declare: dsaLessons.dsa_array_declare,
+      dsa_array_sum: dsaLessons.dsa_array_sum,
+      dsa_array_max_min: dsaLessons.dsa_array_max_min,
+      dsa_array_reverse: dsaLessons.dsa_array_reverse,
+      dsa_array_count: dsaLessons.dsa_array_count,
+    },
+    searching: {
+      dsa_linear_search: dsaLessons.dsa_linear_search,
+      dsa_binary_search: dsaLessons.dsa_binary_search,
+    },
+    sorting: {
+      dsa_bubble_sort: dsaLessons.dsa_bubble_sort,
+      dsa_selection_sort: dsaLessons.dsa_selection_sort,
+      dsa_insertion_sort: dsaLessons.dsa_insertion_sort,
+    },
+    recursion_dsa: {
+      dsa_recursion_factorial: dsaLessons.dsa_recursion_factorial,
+      dsa_recursion_sum: dsaLessons.dsa_recursion_sum,
+    },
+    stack: {
+      dsa_stack_push_pop: dsaLessons.dsa_stack_push_pop,
+    },
+    queue: {
+      dsa_queue_enq_deq: dsaLessons.dsa_queue_enq_deq,
+    },
+    singly_linked_list: {
+      dsa_sll_traverse: dsaLessons.dsa_sll_traverse,
+      dsa_sll_reverse: dsaLessons.dsa_sll_reverse,
+    },
+    doubly_linked_list: {
+      dsa_sll_traverse: dsaLessons.dsa_sll_traverse,
+    },
+    binary_tree: {
+      dsa_sll_traverse: dsaLessons.dsa_sll_traverse,
+    },
+    graph_basics: {
+      dsa_array_max_min: dsaLessons.dsa_array_max_min,
+    },
   },
   c: {
     variables: {
