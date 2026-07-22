@@ -16,7 +16,7 @@ const languages = [
     year: '1991',
     tagline: 'Simple. Powerful. Visual.',
     topics: 16,
-    programs: 96,
+    programs: 100,
     accentColor: '#3b82f6',
     accentGlow: 'rgba(59,130,246,0.18)',
     accentBorder: 'rgba(59,130,246,0.30)',

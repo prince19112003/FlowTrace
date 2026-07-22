@@ -245,7 +245,7 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ open, onClose }) => {
           {query.trim() === '' ? (
             <div className="py-12 text-center" style={{ color: '#525870' }}>
               <Search className="w-8 h-8 mx-auto mb-3 opacity-40" />
-              <p className="text-sm">Type to search across all 96 programs</p>
+              <p className="text-sm">Type to search across all 100 programs</p>
             </div>
           ) : results.length === 0 ? (
             <div className="py-12 text-center" style={{ color: '#525870' }}>
