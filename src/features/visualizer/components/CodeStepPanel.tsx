@@ -272,7 +272,9 @@ export const CodeStepPanel: React.FC = () => {
       {/* Minimal header */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/5 shrink-0 bg-white/2">
         <div className="flex items-center gap-3">
-          <span className="text-xs text-slate-500 font-mono font-bold tracking-widest uppercase">main.py</span>
+          <span className="text-xs text-slate-500 font-mono font-bold tracking-widest uppercase">
+            {lesson?.language === 'java' ? 'Main.java' : lesson?.language === 'cpp' ? 'main.cpp' : lesson?.language === 'c' ? 'main.c' : 'main.py'}
+          </span>
           {Object.keys(editableVariables).length > 0 && (
             <span className="text-[10px] text-orange-400 bg-orange-500/10 border border-orange-500/30 rounded px-1.5 py-0.5 font-bold tracking-wider uppercase shadow-[inset_0_1px_2px_rgba(255,255,255,0.05)]">
               ✏ editable
