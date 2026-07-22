@@ -101,6 +101,9 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     if_elif_else: {
       java_grade: javaLessons.java_grade,
       java_tax_calc: javaLessons.java_tax_calc,
+      java_pos_neg_zero: javaLessons.java_pos_neg_zero,
+      java_bmi_calc: javaLessons.java_bmi_calc,
+      java_electricity_bill: javaLessons.java_electricity_bill,
     },
     switch_case: {
       java_switch_day: javaLessons.java_switch_day,
@@ -112,18 +115,24 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     for_loop: {
       java_for_sum: javaLessons.java_for_sum,
       java_multiplication_table: javaLessons.java_multiplication_table,
+      java_fibonacci_for: javaLessons.java_fibonacci_for,
+      java_even_numbers: javaLessons.java_even_numbers,
+      java_power_calc: javaLessons.java_power_calc,
     },
     while_loop: {
       java_while_digits: javaLessons.java_while_digits,
       java_factorial: javaLessons.java_factorial,
       java_reverse_num: javaLessons.java_reverse_num,
       java_prime_check: javaLessons.java_prime_check,
+      java_palindrome_num: javaLessons.java_palindrome_num,
     },
     do_while_loop: {
       java_do_while: javaLessons.java_do_while,
+      java_do_while_sum: javaLessons.java_do_while_sum,
     },
     strings: {
       java_ascii: javaLessons.java_ascii,
+      java_string_concat: javaLessons.java_string_concat,
     },
     arrays_1d: {
       java_array_sum_1d: javaLessons.java_array_sum_1d,

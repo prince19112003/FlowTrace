@@ -204,6 +204,9 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
     if_elif_else: [
       { id: 'java_grade', number: '01', friendlyName: 'Student Grade Calculator (If-Else Ladder)', description: 'Learn multi-branch conditional execution using if-else if in Java.' },
       { id: 'java_tax_calc', number: '02', friendlyName: 'Income Tax Slab Calculator', description: 'Calculate variable tax percentage slabs using Java conditionals.' },
+      { id: 'java_pos_neg_zero', number: '03', friendlyName: 'Positive, Negative or Zero Checker', description: 'Classify any integer into Positive, Negative, or Zero using an if-else if ladder.' },
+      { id: 'java_bmi_calc', number: '04', friendlyName: 'BMI Category Calculator', description: 'Calculate Body Mass Index (weight / height^2) and categorize health status.' },
+      { id: 'java_electricity_bill', number: '05', friendlyName: 'Electricity Bill Slab Calculator', description: 'Calculate tiered utility electricity bills by unit consumption slabs.' },
     ],
     switch_case: [
       { id: 'java_switch_day', number: '01', friendlyName: 'Day of Week Switch Case', description: 'Understand Java switch-case jumping and break statements.' },
@@ -215,18 +218,24 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
     for_loop: [
       { id: 'java_for_sum', number: '01', friendlyName: 'Sum of First N Natural Numbers', description: 'Learn accumulator variable accumulation in Java for loop.' },
       { id: 'java_multiplication_table', number: '02', friendlyName: 'Multiplication Table Generator', description: 'Learn dynamic loop multiplier output formatting.' },
+      { id: 'java_fibonacci_for', number: '03', friendlyName: 'Fibonacci Series Generator (For Loop)', description: 'Generate N Fibonacci terms (0, 1, 1, 2, 3, 5...) using variable swapping in a for loop.' },
+      { id: 'java_even_numbers', number: '04', friendlyName: 'Print Even Numbers up to N', description: 'Loop with step increment (i += 2) to filter even numbers.' },
+      { id: 'java_power_calc', number: '05', friendlyName: 'Power of a Number (base^exp)', description: 'Compute exponential power by repeated multiplication inside a for loop.' },
     ],
     while_loop: [
       { id: 'java_while_digits', number: '01', friendlyName: 'Sum of Digits (While Loop)', description: 'Learn digit extraction using % 10 and / 10 inside a while loop.' },
       { id: 'java_factorial', number: '02', friendlyName: 'Factorial Calculation', description: 'Learn multiplicative accumulation in loops.' },
       { id: 'java_reverse_num', number: '03', friendlyName: 'Reverse an Integer Number', description: 'Learn math digit shifting (rev = rev * 10 + digit) in loops.' },
       { id: 'java_prime_check', number: '04', friendlyName: 'Prime Number Checker', description: 'Learn divisor testing using boolean flags in loops.' },
+      { id: 'java_palindrome_num', number: '05', friendlyName: 'Palindrome Number Checker', description: 'Check if integer reading forward and backward is identical (e.g., 121 -> 121).' },
     ],
     do_while_loop: [
       { id: 'java_do_while', number: '01', friendlyName: 'Do-While Guaranteed Execution', description: 'Learn exit-controlled do-while loops in Java.' },
+      { id: 'java_do_while_sum', number: '02', friendlyName: 'Accumulator Loop (Do-While Loop)', description: 'Accumulate numbers inside a do-while loop guaranteed to run at least once.' },
     ],
     strings: [
       { id: 'java_ascii', number: '01', friendlyName: 'Char to ASCII Integer Conversion', description: 'Understand character encoding and numeric ASCII representation in Java.' },
+      { id: 'java_string_concat', number: '02', friendlyName: 'String Concatenation & Length', description: 'Join String objects using + operator and inspect string .length().' },
     ],
     arrays_1d: [
       { id: 'java_array_sum_1d', number: '01', friendlyName: '1D Array Sum & Average', description: 'Learn Java 1D array allocation, element indexing, and average computation.' },
