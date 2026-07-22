@@ -417,12 +417,46 @@ export const GlobalAppShell: React.FC = () => {
             </kbd>
           </button>
 
+          <style>{`
+            @keyframes githubGlassShine {
+              0% {
+                left: -150%;
+              }
+              30% {
+                left: 150%;
+              }
+              100% {
+                left: 150%;
+              }
+            }
+            .github-shine-btn {
+              position: relative;
+              overflow: hidden;
+            }
+            .github-shine-btn::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              width: 40px;
+              height: 100%;
+              background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+              );
+              transform: skewX(-25deg);
+              animation: githubGlassShine 3.5s infinite ease-in-out;
+              pointer-events: none;
+            }
+          `}</style>
+
           <a
             href="https://github.com/prince19112003"
             target="_blank"
             rel="noopener noreferrer"
             title="GitHub Profile"
-            className="w-9 h-9 flex items-center justify-center rounded-xl transition-all"
+            className="w-9 h-9 flex items-center justify-center rounded-xl transition-all github-shine-btn"
             style={{
               color: '#8b92a8',
               background: 'rgba(255,255,255,0.04)',
