@@ -1198,6 +1198,9 @@ export const CustomFlowchartStage: React.FC = () => {
                           const sortedIndices = Array.isArray(step.memorySnapshot?.sortedIndices) ? (step.memorySnapshot.sortedIndices as number[]) : undefined;
                           const comparingIndices = Array.isArray(step.memorySnapshot?.comparingIndices) ? (step.memorySnapshot.comparingIndices as [number, number]) : undefined;
                           const swappingIndices = Array.isArray(step.memorySnapshot?.swappingIndices) ? (step.memorySnapshot.swappingIndices as [number, number]) : undefined;
+                          const minIdx = typeof step.memorySnapshot?.min_idx === 'number' ? step.memorySnapshot.min_idx : undefined;
+                          const keyIndex = step.memorySnapshot?.key !== undefined && typeof step.memorySnapshot?.i === 'number' ? step.memorySnapshot.i : undefined;
+
                           return (
                             <DataStructureBox 
                               name={ev.name} 
@@ -1209,6 +1212,8 @@ export const CustomFlowchartStage: React.FC = () => {
                               sortedIndices={sortedIndices}
                               comparingIndices={comparingIndices}
                               swappingIndices={swappingIndices}
+                              minIdx={minIdx}
+                              keyIndex={keyIndex}
                             />
                           );
                         })() : (
@@ -1223,6 +1228,9 @@ export const CustomFlowchartStage: React.FC = () => {
                           const sortedIndices = Array.isArray(step.memorySnapshot?.sortedIndices) ? (step.memorySnapshot.sortedIndices as number[]) : undefined;
                           const comparingIndices = Array.isArray(step.memorySnapshot?.comparingIndices) ? (step.memorySnapshot.comparingIndices as [number, number]) : undefined;
                           const swappingIndices = Array.isArray(step.memorySnapshot?.swappingIndices) ? (step.memorySnapshot.swappingIndices as [number, number]) : undefined;
+                          const minIdx = typeof step.memorySnapshot?.min_idx === 'number' ? step.memorySnapshot.min_idx : undefined;
+                          const keyIndex = step.memorySnapshot?.key !== undefined && typeof step.memorySnapshot?.i === 'number' ? step.memorySnapshot.i : undefined;
+
                           return (
                             <DataStructureBox 
                               name={ev.name} 
@@ -1234,6 +1242,8 @@ export const CustomFlowchartStage: React.FC = () => {
                               sortedIndices={sortedIndices}
                               comparingIndices={comparingIndices}
                               swappingIndices={swappingIndices}
+                              minIdx={minIdx}
+                              keyIndex={keyIndex}
                             />
                           );
                         })() : (

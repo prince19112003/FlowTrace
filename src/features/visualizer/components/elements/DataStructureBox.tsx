@@ -14,6 +14,8 @@ interface DataStructureBoxProps {
   sortedIndices?: number[];
   comparingIndices?: [number, number];
   swappingIndices?: [number, number];
+  minIdx?: number;
+  keyIndex?: number;
 }
 
 export const DataStructureBox: React.FC<DataStructureBoxProps> = ({ 
@@ -28,7 +30,9 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
   searchRange,
   sortedIndices,
   comparingIndices,
-  swappingIndices
+  swappingIndices,
+  minIdx,
+  keyIndex
 }) => {
   const isTuple = variant === 'tuple';
   const isTable = variant === 'table';
@@ -96,6 +100,9 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
               const isComparing = comparingIndices?.includes(idx);
               const isSwapping = swappingIndices?.includes(idx);
 
+              const isMin = minIdx === idx;
+              const isKey = keyIndex === idx;
+
               return (
                 <div 
                   key={idx} 
@@ -106,6 +113,10 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
                       ? 'bg-amber-500/35 border-2 border-amber-400 ring-2 ring-amber-400/50 shadow-[0_0_20px_rgba(245,158,11,0.6)] scale-110 z-30'
                       : isComparing
                       ? 'bg-cyan-500/25 border-2 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)] scale-105 z-20'
+                      : isMin
+                      ? 'bg-fuchsia-500/30 border-2 border-fuchsia-400 ring-2 ring-fuchsia-400/50 shadow-[0_0_20px_rgba(217,70,239,0.5)] scale-105 z-25 animate-pulse'
+                      : isKey
+                      ? 'bg-amber-500/30 border-2 border-amber-400 ring-2 ring-amber-400/50 shadow-[0_0_20px_rgba(245,158,11,0.5)] scale-105 z-25 animate-pulse'
                       : isSorted
                       ? 'bg-emerald-500/20 border-2 border-emerald-400 text-emerald-200 shadow-[0_0_15px_rgba(16,185,129,0.3)] z-10'
                       : isOutOfRange
@@ -122,8 +133,18 @@ export const DataStructureBox: React.FC<DataStructureBoxProps> = ({
                   }`}
                 >
                   {/* Top Badges */}
-                  {(isLow || isMid || isHigh || isSorted || isComparing || isSwapping) && (
+                  {(isLow || isMid || isHigh || isSorted || isComparing || isSwapping || isMin || isKey) && (
                     <div className="flex gap-0.5 justify-center mb-1">
+                      {isMin && (
+                        <span className="text-[7px] font-black tracking-tighter text-fuchsia-200 bg-fuchsia-950 border border-fuchsia-400 px-1 rounded uppercase shadow-[0_0_8px_rgba(217,70,239,0.6)] animate-pulse">
+                          🎯 MIN
+                        </span>
+                      )}
+                      {isKey && (
+                        <span className="text-[7px] font-black tracking-tighter text-amber-200 bg-amber-950 border border-amber-400 px-1 rounded uppercase shadow-[0_0_8px_rgba(245,158,11,0.6)] animate-pulse">
+                          🔑 KEY
+                        </span>
+                      )}
                       {isSwapping && (
                         <span className="text-[7px] font-black tracking-tighter text-amber-200 bg-amber-950 border border-amber-400 px-1 rounded uppercase shadow-[0_0_8px_rgba(245,158,11,0.6)] animate-pulse">
                           ⇄ SWAP

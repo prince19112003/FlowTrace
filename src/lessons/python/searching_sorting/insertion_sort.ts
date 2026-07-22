@@ -1,11 +1,11 @@
-import type { LessonProgram } from '../../types';
+import type { LessonProgram, ExecutionStep } from '../../types';
 
 export const insertion_sort: LessonProgram = {
   id: 'insertion_sort', language: 'python', topic: 'searching_sorting', lessonNumber: 5,
   friendlyName: 'Insertion Sort',
-  learningObjective: 'Learn how insertion sort builds the sorted array one element at a time.',
+  learningObjective: 'Learn how insertion sort builds the sorted array one element at a time by inserting each key into its correct position.',
   lines: [
-    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '12' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '11' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '13' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '5' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'number', value: '6' }, { type: 'punctuation', value: ']' }] },
+    { lineNum: 1, tokens: [{ type: 'variable', value: 'arr' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '[' }, { type: 'number', value: '12, 11, 13, 5, 6' }, { type: 'punctuation', value: ']' }] },
     { lineNum: 2, tokens: [{ type: 'variable', value: 'n' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'function', value: 'len' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: ')' }] },
     { lineNum: 3, tokens: [{ type: 'keyword', value: 'for' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'i' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'in' }, { type: 'text', value: ' ' }, { type: 'function', value: 'range' }, { type: 'punctuation', value: '(' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ',' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'n' }, { type: 'punctuation', value: ')' }, { type: 'punctuation', value: ':' }] },
     { lineNum: 4, tokens: [{ type: 'text', value: '    ' }, { type: 'variable', value: 'key' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'i' }, { type: 'punctuation', value: ']' }] },
@@ -13,53 +13,178 @@ export const insertion_sort: LessonProgram = {
     { lineNum: 6, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'while' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'j' }, { type: 'text', value: ' ' }, { type: 'operator', value: '>=' }, { type: 'text', value: ' ' }, { type: 'number', value: '0' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'and' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'key' }, { type: 'text', value: ' ' }, { type: 'operator', value: '<' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'punctuation', value: ']' }, { type: 'punctuation', value: ':' }] },
     { lineNum: 7, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ']' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'punctuation', value: ']' }] },
     { lineNum: 8, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'j' }, { type: 'text', value: ' ' }, { type: 'operator', value: '-=' }, { type: 'text', value: ' ' }, { type: 'number', value: '1' }] },
-    { lineNum: 9, tokens: [{ type: 'text', value: '    ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'number', value: '1' }, { type: 'punctuation', value: ']' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'key' }] },
+    { lineNum: 9, tokens: [{ type: 'text', value: '    ' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: '[' }, { type: 'variable', value: 'j' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'number', value: '1' }, { type: 'punctuation', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'key' }] },
     { lineNum: 10, tokens: [{ type: 'function', value: 'print' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'arr' }, { type: 'punctuation', value: ')' }] },
   ],
-  executionSteps: [
-    { step: 1, lineNum: 1, explanationEnglish: 'Initialize unsorted array.', explanationHinglish: 'Unsorted array banaya.', memorySnapshot: { arr: '"[12, 11, 13, 5, 6]"' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: '"[12, 11, 13, 5, 6]"' } },
-    { step: 2, lineNum: 2, explanationEnglish: 'Get array length n.', explanationHinglish: 'Array ki length n nikali.', memorySnapshot: { arr: '"[12, 11, 13, 5, 6]"', n: 5 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'n', value: 5 } },
-    { step: 3, lineNum: 3, explanationEnglish: 'Start loop from index 1. i is 1.', explanationHinglish: 'Index 1 se loop shuru kiya. i 1 hai.', memorySnapshot: { arr: '"[12,11,13,5,6]"', n: 5, i: 1 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 1 } },
-    { step: 4, lineNum: 4, explanationEnglish: 'Store 11 in key.', explanationHinglish: '11 ko key mein store kiya.', memorySnapshot: { arr: '"[12,11,13,5,6]"', n: 5, i: 1, key: 11 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'key', value: 11 } },
-    { step: 5, lineNum: 5, explanationEnglish: 'Set j to i-1.', explanationHinglish: 'j ko i-1 set kiya.', memorySnapshot: { arr: '"[12,11,13,5,6]"', n: 5, i: 1, key: 11, j: 0 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 0 } },
-      { step: 6, lineNum: 6, explanationEnglish: 'Check while condition.', explanationHinglish: 'While condition check kiya.', memorySnapshot: { arr: '"[12,11,13,5,6]"', n: 5, i: 1, key: 11, j: 0 }, animationEvent: { type: 'NONE' } },
-      { step: 7, lineNum: 7, explanationEnglish: 'Shift 12 right.', explanationHinglish: '12 ko right shift kiya.', memorySnapshot: { arr: '"[12,12,13,5,6]"', n: 5, i: 1, key: 11, j: 0 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[12,11,13,5,6]"', newValue: '"[12,12,13,5,6]"' } },
-      { step: 8, lineNum: 8, explanationEnglish: 'Decrement j.', explanationHinglish: 'j ko kam kiya.', memorySnapshot: { arr: '"[12,12,13,5,6]"', n: 5, i: 1, key: 11, j: -1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: 0, newValue: -1 } },
-      { step: 9, lineNum: 6, explanationEnglish: 'While condition fails.', explanationHinglish: 'While loop khatam.', memorySnapshot: { arr: '"[12,12,13,5,6]"', n: 5, i: 1, key: 11, j: -1 }, animationEvent: { type: 'NONE' } },
-    { step: 10, lineNum: 9, explanationEnglish: 'Insert key at correct pos.', explanationHinglish: 'Key ko sahi jagah dala.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 1, key: 11, j: -1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[12,12,13,5,6]"', newValue: '"[11,12,13,5,6]"' } },
-    { step: 11, lineNum: 3, explanationEnglish: 'Start loop from index 1. i is 2.', explanationHinglish: 'Index 1 se loop shuru kiya. i 2 hai.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 2 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 2 } },
-    { step: 12, lineNum: 4, explanationEnglish: 'Store 13 in key.', explanationHinglish: '13 ko key mein store kiya.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 2, key: 13 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'key', value: 13 } },
-    { step: 13, lineNum: 5, explanationEnglish: 'Set j to i-1.', explanationHinglish: 'j ko i-1 set kiya.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 2, key: 13, j: 1 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 1 } },
-      { step: 14, lineNum: 6, explanationEnglish: 'While condition fails.', explanationHinglish: 'While loop khatam.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 2, key: 13, j: 1 }, animationEvent: { type: 'NONE' } },
-    { step: 15, lineNum: 9, explanationEnglish: 'Insert key at correct pos.', explanationHinglish: 'Key ko sahi jagah dala.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 2, key: 13, j: 1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[11,12,13,5,6]"', newValue: '"[11,12,13,5,6]"' } },
-    { step: 16, lineNum: 3, explanationEnglish: 'Start loop from index 1. i is 3.', explanationHinglish: 'Index 1 se loop shuru kiya. i 3 hai.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 3 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 3 } },
-    { step: 17, lineNum: 4, explanationEnglish: 'Store 5 in key.', explanationHinglish: '5 ko key mein store kiya.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 3, key: 5 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'key', value: 5 } },
-    { step: 18, lineNum: 5, explanationEnglish: 'Set j to i-1.', explanationHinglish: 'j ko i-1 set kiya.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 3, key: 5, j: 2 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 2 } },
-      { step: 19, lineNum: 6, explanationEnglish: 'Check while condition.', explanationHinglish: 'While condition check kiya.', memorySnapshot: { arr: '"[11,12,13,5,6]"', n: 5, i: 3, key: 5, j: 2 }, animationEvent: { type: 'NONE' } },
-      { step: 20, lineNum: 7, explanationEnglish: 'Shift 13 right.', explanationHinglish: '13 ko right shift kiya.', memorySnapshot: { arr: '"[11,12,13,13,6]"', n: 5, i: 3, key: 5, j: 2 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[11,12,13,5,6]"', newValue: '"[11,12,13,13,6]"' } },
-      { step: 21, lineNum: 8, explanationEnglish: 'Decrement j.', explanationHinglish: 'j ko kam kiya.', memorySnapshot: { arr: '"[11,12,13,13,6]"', n: 5, i: 3, key: 5, j: 1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: 2, newValue: 1 } },
-      { step: 22, lineNum: 6, explanationEnglish: 'Check while condition.', explanationHinglish: 'While condition check kiya.', memorySnapshot: { arr: '"[11,12,13,13,6]"', n: 5, i: 3, key: 5, j: 1 }, animationEvent: { type: 'NONE' } },
-      { step: 23, lineNum: 7, explanationEnglish: 'Shift 12 right.', explanationHinglish: '12 ko right shift kiya.', memorySnapshot: { arr: '"[11,12,12,13,6]"', n: 5, i: 3, key: 5, j: 1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[11,12,13,13,6]"', newValue: '"[11,12,12,13,6]"' } },
-      { step: 24, lineNum: 8, explanationEnglish: 'Decrement j.', explanationHinglish: 'j ko kam kiya.', memorySnapshot: { arr: '"[11,12,12,13,6]"', n: 5, i: 3, key: 5, j: 0 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: 1, newValue: 0 } },
-      { step: 25, lineNum: 6, explanationEnglish: 'Check while condition.', explanationHinglish: 'While condition check kiya.', memorySnapshot: { arr: '"[11,12,12,13,6]"', n: 5, i: 3, key: 5, j: 0 }, animationEvent: { type: 'NONE' } },
-      { step: 26, lineNum: 7, explanationEnglish: 'Shift 11 right.', explanationHinglish: '11 ko right shift kiya.', memorySnapshot: { arr: '"[11,11,12,13,6]"', n: 5, i: 3, key: 5, j: 0 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[11,12,12,13,6]"', newValue: '"[11,11,12,13,6]"' } },
-      { step: 27, lineNum: 8, explanationEnglish: 'Decrement j.', explanationHinglish: 'j ko kam kiya.', memorySnapshot: { arr: '"[11,11,12,13,6]"', n: 5, i: 3, key: 5, j: -1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: 0, newValue: -1 } },
-      { step: 28, lineNum: 6, explanationEnglish: 'While condition fails.', explanationHinglish: 'While loop khatam.', memorySnapshot: { arr: '"[11,11,12,13,6]"', n: 5, i: 3, key: 5, j: -1 }, animationEvent: { type: 'NONE' } },
-    { step: 29, lineNum: 9, explanationEnglish: 'Insert key at correct pos.', explanationHinglish: 'Key ko sahi jagah dala.', memorySnapshot: { arr: '"[5,11,12,13,6]"', n: 5, i: 3, key: 5, j: -1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[11,11,12,13,6]"', newValue: '"[5,11,12,13,6]"' } },
-    { step: 30, lineNum: 3, explanationEnglish: 'Start loop from index 1. i is 4.', explanationHinglish: 'Index 1 se loop shuru kiya. i 4 hai.', memorySnapshot: { arr: '"[5,11,12,13,6]"', n: 5, i: 4 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: 4 } },
-    { step: 31, lineNum: 4, explanationEnglish: 'Store 6 in key.', explanationHinglish: '6 ko key mein store kiya.', memorySnapshot: { arr: '"[5,11,12,13,6]"', n: 5, i: 4, key: 6 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'key', value: 6 } },
-    { step: 32, lineNum: 5, explanationEnglish: 'Set j to i-1.', explanationHinglish: 'j ko i-1 set kiya.', memorySnapshot: { arr: '"[5,11,12,13,6]"', n: 5, i: 4, key: 6, j: 3 }, animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: 3 } },
-      { step: 33, lineNum: 6, explanationEnglish: 'Check while condition.', explanationHinglish: 'While condition check kiya.', memorySnapshot: { arr: '"[5,11,12,13,6]"', n: 5, i: 4, key: 6, j: 3 }, animationEvent: { type: 'NONE' } },
-      { step: 34, lineNum: 7, explanationEnglish: 'Shift 13 right.', explanationHinglish: '13 ko right shift kiya.', memorySnapshot: { arr: '"[5,11,12,13,13]"', n: 5, i: 4, key: 6, j: 3 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[5,11,12,13,6]"', newValue: '"[5,11,12,13,13]"' } },
-      { step: 35, lineNum: 8, explanationEnglish: 'Decrement j.', explanationHinglish: 'j ko kam kiya.', memorySnapshot: { arr: '"[5,11,12,13,13]"', n: 5, i: 4, key: 6, j: 2 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: 3, newValue: 2 } },
-      { step: 36, lineNum: 6, explanationEnglish: 'Check while condition.', explanationHinglish: 'While condition check kiya.', memorySnapshot: { arr: '"[5,11,12,13,13]"', n: 5, i: 4, key: 6, j: 2 }, animationEvent: { type: 'NONE' } },
-      { step: 37, lineNum: 7, explanationEnglish: 'Shift 12 right.', explanationHinglish: '12 ko right shift kiya.', memorySnapshot: { arr: '"[5,11,12,12,13]"', n: 5, i: 4, key: 6, j: 2 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[5,11,12,13,13]"', newValue: '"[5,11,12,12,13]"' } },
-      { step: 38, lineNum: 8, explanationEnglish: 'Decrement j.', explanationHinglish: 'j ko kam kiya.', memorySnapshot: { arr: '"[5,11,12,12,13]"', n: 5, i: 4, key: 6, j: 1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: 2, newValue: 1 } },
-      { step: 39, lineNum: 6, explanationEnglish: 'Check while condition.', explanationHinglish: 'While condition check kiya.', memorySnapshot: { arr: '"[5,11,12,12,13]"', n: 5, i: 4, key: 6, j: 1 }, animationEvent: { type: 'NONE' } },
-      { step: 40, lineNum: 7, explanationEnglish: 'Shift 11 right.', explanationHinglish: '11 ko right shift kiya.', memorySnapshot: { arr: '"[5,11,11,12,13]"', n: 5, i: 4, key: 6, j: 1 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[5,11,12,12,13]"', newValue: '"[5,11,11,12,13]"' } },
-      { step: 41, lineNum: 8, explanationEnglish: 'Decrement j.', explanationHinglish: 'j ko kam kiya.', memorySnapshot: { arr: '"[5,11,11,12,13]"', n: 5, i: 4, key: 6, j: 0 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: 1, newValue: 0 } },
-      { step: 42, lineNum: 6, explanationEnglish: 'While condition fails.', explanationHinglish: 'While loop khatam.', memorySnapshot: { arr: '"[5,11,11,12,13]"', n: 5, i: 4, key: 6, j: 0 }, animationEvent: { type: 'NONE' } },
-    { step: 43, lineNum: 9, explanationEnglish: 'Insert key at correct pos.', explanationHinglish: 'Key ko sahi jagah dala.', memorySnapshot: { arr: '"[5,6,11,12,13]"', n: 5, i: 4, key: 6, j: 0 }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: '"[5,11,11,12,13]"', newValue: '"[5,6,11,12,13]"' } },
-    { step: 44, lineNum: 10, explanationEnglish: 'Print sorted array.', explanationHinglish: 'Sorted array print kiya.', memorySnapshot: { arr: '"[5, 6, 11, 12, 13]"', n: 5, i: 4, key: 6, j: 0 }, consoleOutput: '[5, 6, 11, 12, 13]', animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: '"[5, 6, 11, 12, 13]"' } }
-  ],
+  editableVariables: {
+    arr: { default: '12, 11, 13, 5, 6', type: 'text', label: 'Array to Sort', noQuotes: true },
+  },
+  generateSteps: ({ arr }): ExecutionStep[] => {
+    let items: Array<number> = [12, 11, 13, 5, 6];
+    const rawVal = String(arr).trim();
+    const cleaned = rawVal.replace(/[\[\]]/g, '').trim();
+    if (cleaned) {
+      items = cleaned.split(',').map(s => {
+        const n = Number(s.trim());
+        return isNaN(n) ? 0 : n;
+      });
+    }
+
+    const formatListStr = (a: Array<number>) => "[" + a.join(', ') + "]";
+    let arrStr = formatListStr(items);
+    const n = items.length;
+
+    let stepNum = 1;
+    const steps: ExecutionStep[] = [];
+    const sortedIndices: number[] = [0]; // Index 0 is initially sorted
+    const passSnapshots: Array<{ pass: number; lockedIndex: number; lockedValue: number; array: number[] }> = [];
+
+    let mem: Record<string, any> = {
+      arr: arrStr,
+      n,
+      sortedIndices: [...sortedIndices],
+      passSnapshots: [...passSnapshots],
+    };
+
+    // Step 1: Create arr
+    steps.push({
+      step: stepNum++, lineNum: 1,
+      explanationEnglish: `Initialize unsorted array: ${arrStr}. First element ${items[0]} is trivially sorted.`,
+      explanationHinglish: `Unsorted array banaya: ${arrStr}. Pehla element ${items[0]} already sorted maana gaya.`,
+      memorySnapshot: { ...mem },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: arrStr },
+    });
+
+    // Step 2: Create n
+    mem.n = n;
+    steps.push({
+      step: stepNum++, lineNum: 2,
+      explanationEnglish: `Calculate array length n = ${n}.`,
+      explanationHinglish: `Array ki length n = ${n} nikali.`,
+      memorySnapshot: { ...mem },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'n', value: n },
+    });
+
+    for (let i = 1; i < n; i++) {
+      mem.i = i;
+      const keyVal = items[i];
+      mem.key = keyVal;
+
+      // Step 3: Loop pass i
+      steps.push({
+        step: stepNum++, lineNum: 3,
+        explanationEnglish: `Pass ${i}: Picking element at index ${i} to insert into sorted left portion [0..${i - 1}].`,
+        explanationHinglish: `Pass ${i}: Index ${i} wale element ko sorted left portion [0..${i - 1}] mein sahi jagah insert karenge.`,
+        memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'i', value: i },
+      });
+
+      // Step 4: Extract key
+      steps.push({
+        step: stepNum++, lineNum: 4,
+        explanationEnglish: `Extracted key = ${keyVal} (from arr[${i}]).`,
+        explanationHinglish: `key = ${keyVal} (arr[${i}] se) ko pick kiya.`,
+        memorySnapshot: { ...mem, key: keyVal, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'key', value: keyVal },
+      });
+
+      let j = i - 1;
+      mem.j = j;
+
+      // Step 5: Set j = i - 1
+      steps.push({
+        step: stepNum++, lineNum: 5,
+        explanationEnglish: `Start scanning sorted portion from right: j = ${j} (arr[${j}] = ${items[j]}).`,
+        explanationHinglish: `Sorted portion mein right se scanning shuru ki: j = ${j} (arr[${j}] = ${items[j]}).`,
+        memorySnapshot: { ...mem, j, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'j', value: j },
+      });
+
+      while (j >= 0 && items[j] > keyVal) {
+        // Step 6: While check
+        steps.push({
+          step: stepNum++, lineNum: 6,
+          explanationEnglish: `Check if arr[${j}] (${items[j]}) > key (${keyVal}): TRUE (Shift ${items[j]} right).`,
+          explanationHinglish: `Check kiya kya arr[${j}] (${items[j]}) > key (${keyVal}): SAHI (${items[j]} ko right shift karenge).`,
+          memorySnapshot: {
+            ...mem,
+            comparingIndices: [j, i],
+            sortedIndices: [...sortedIndices],
+            passSnapshots: [...passSnapshots],
+          },
+          animationEvent: { type: 'COMPUTE', inputs: [`arr[${j}]`, `key`], operator: '>', result: 'True', storeIn: 'Condition' },
+        });
+
+        // Shift item right
+        const shiftedVal = items[j];
+        items[j + 1] = shiftedVal;
+        const prevArrStr = arrStr;
+        arrStr = formatListStr(items);
+        mem.arr = arrStr;
+
+        // Step 7: Shift element right
+        steps.push({
+          step: stepNum++, lineNum: 7,
+          explanationEnglish: `Shifted element ${shiftedVal} from index ${j} to index ${j + 1}.`,
+          explanationHinglish: `Element ${shiftedVal} ko index ${j} se index ${j + 1} par shift kiya.`,
+          memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+          animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: prevArrStr, newValue: arrStr },
+        });
+
+        j--;
+        mem.j = j;
+
+        // Step 8: Decrement j
+        steps.push({
+          step: stepNum++, lineNum: 8,
+          explanationEnglish: `Moved pointer left: j = ${j}.`,
+          explanationHinglish: `Pointer ko aage (left) badhaya: j = ${j}.`,
+          memorySnapshot: { ...mem, j, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+          animationEvent: { type: 'UPDATE_VARIABLE', name: 'j', oldValue: j + 1, newValue: j },
+        });
+      }
+
+      // Insert key at j + 1
+      const insertPos = j + 1;
+      items[insertPos] = keyVal;
+      const prevArrStr = arrStr;
+      arrStr = formatListStr(items);
+      mem.arr = arrStr;
+
+      // Step 9: Insert key at correct spot
+      steps.push({
+        step: stepNum++, lineNum: 9,
+        explanationEnglish: `Inserted key = ${keyVal} into its correct sorted spot at index ${insertPos}.`,
+        explanationHinglish: `key = ${keyVal} ko sorted position index ${insertPos} par insert kiya.`,
+        memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: prevArrStr, newValue: arrStr },
+      });
+
+      if (!sortedIndices.includes(i)) {
+        sortedIndices.push(i);
+      }
+      passSnapshots.push({
+        pass: i,
+        lockedIndex: insertPos,
+        lockedValue: keyVal,
+        array: [...items],
+      });
+
+      mem.sortedIndices = [...sortedIndices];
+      mem.passSnapshots = [...passSnapshots];
+    }
+
+    // Step 10: Print sorted array
+    steps.push({
+      step: stepNum++, lineNum: 10,
+      explanationEnglish: `🎉 Insertion sort complete! Array is 100% sorted: ${arrStr}.`,
+      explanationHinglish: `🎉 Insertion sort poora hua! Array 100% sort ho gaya: ${arrStr}.`,
+      memorySnapshot: { ...mem, sortedIndices: [...sortedIndices], passSnapshots: [...passSnapshots] },
+      consoleOutput: arrStr,
+      animationEvent: { type: 'PRINT_VALUE', variableName: 'arr', outputValue: arrStr },
+    });
+
+    return steps;
+  },
+  executionSteps: [],
 };
