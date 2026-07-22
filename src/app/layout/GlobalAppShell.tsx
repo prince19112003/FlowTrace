@@ -471,7 +471,7 @@ export const GlobalAppShell: React.FC = () => {
               (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)';
             }}
           >
-            <GithubIcon className="w-4 h-4" />
+            <GithubIcon className="w-6 h-6" />
           </a>
 
           <button
