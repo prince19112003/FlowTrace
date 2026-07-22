@@ -29,7 +29,7 @@ const parseDataStructure = (val: any) => {
       const jsonStr = isTuple ? `[${cleaned.slice(1, -1)}]` : cleaned;
       const formattedJson = jsonStr.replace(/'/g, '"');
       return {
-        variant: 'array' as const,
+        variant: isTuple ? ('tuple' as const) : ('array' as const),
         items: JSON.parse(formattedJson) as Array<string | number>
       };
     } catch {
@@ -37,7 +37,7 @@ const parseDataStructure = (val: any) => {
         const v = s.trim();
         return isNaN(Number(v)) ? v.replace(/['"]/g, '') : Number(v);
       });
-      return { variant: 'array' as const, items };
+      return { variant: isTuple ? ('tuple' as const) : ('array' as const), items };
     }
   } else {
     try {
