@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLesson } from '../../../lessons/LessonContext';
 import type { AnimationEvent } from '../../../lessons/types';
+import { usePinchZoom } from '../../../shared/hooks/usePinchZoom';
 
 // ─── Premium Color System ──────────────────────────────────────────────────────
 
@@ -482,7 +483,8 @@ const ActionScene: React.FC<{ ev: AnimationEvent; memory: Record<string, string 
 // ─── Main ──────────────────────────────────────────────────────────────────────
 
 export const MemoryStage: React.FC = () => {
-  const { lesson, currentStep, currentStepIndex } = useLesson();
+  const { lesson, currentStep, currentStepIndex, zoom, setZoom } = useLesson();
+  const containerRef = usePinchZoom(setZoom, 0.2, 2.5);
   const [memory, setMemory] = useState<Record<string, string | number>>({});
   const [activeKey, setActiveKey] = useState<string | undefined>();
   const [newKey, setNewKey] = useState<string | undefined>();
@@ -584,10 +586,10 @@ export const MemoryStage: React.FC = () => {
       />
 
       {/* ── Action Scene ── */}
-      <div className="flex-1 overflow-y-auto relative z-10">
+      <div ref={containerRef} className="flex-1 overflow-y-auto relative z-10">
         <div
-          className="relative min-h-full flex items-center justify-center p-6"
-          style={{ transform: 'scale(0.9)', transformOrigin: 'top center' }}
+          className="relative min-h-full flex items-center justify-center p-6 transition-transform duration-300 origin-top"
+          style={{ transform: `scale(${0.9 * zoom})`, transformOrigin: 'top center' }}
         >
           {/* Pen Layer Target */}
           <div id="canvas-pen-layer" className="absolute inset-0 z-50 pointer-events-none" />

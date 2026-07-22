@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLesson } from '../../../lessons/LessonContext';
 import type { CodeLine } from '../../../lessons/types';
+import { usePinchZoom } from '../../../shared/hooks/usePinchZoom';
 
 const TOKEN_COLORS: Record<string, string> = {
   keyword: 'text-purple-400 font-bold',
@@ -206,6 +207,7 @@ const CodeLineRow: React.FC<{
 export const CodeStepPanel: React.FC = () => {
   const { lesson, currentStep, editableValues, setEditableValue } = useLesson();
   const [zoomLevel, setZoomLevel] = useState(0.8);
+  const containerRef = usePinchZoom(setZoomLevel, 0.4, 2.5);
 
   if (!lesson) return null;
 
@@ -266,7 +268,7 @@ export const CodeStepPanel: React.FC = () => {
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#0b0c14] border border-white/5 rounded-2xl overflow-hidden relative">
+    <div ref={containerRef} className="h-full flex flex-col bg-[#0b0c14] border border-white/5 rounded-2xl overflow-hidden relative">
       {/* Minimal header */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-white/5 shrink-0 bg-white/2">
         <div className="flex items-center gap-3">

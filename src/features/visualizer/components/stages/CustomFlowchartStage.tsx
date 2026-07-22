@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Expand, Shrink } from 'lucide-react';
 import { useLesson } from '../../../../lessons/LessonContext';
+import { usePinchZoom } from '../../../../shared/hooks/usePinchZoom';
 
 import { VariableBox } from '../elements/VariableBox';
 import { PrintBox } from '../elements/PrintBox';
@@ -118,8 +119,9 @@ const getPointersAndRange = (memSnapshot: Record<string, any>) => {
 };
 
 export const CustomFlowchartStage: React.FC = () => {
-  const { lesson, currentStepIndex, zoom, isFullScreen, toggleFullScreen, editableValues } = useLesson();
+  const { lesson, currentStepIndex, zoom, setZoom, isFullScreen, toggleFullScreen, editableValues } = useLesson();
   const bottomRef = useRef<HTMLDivElement>(null);
+  const containerRef = usePinchZoom(setZoom, 0.2, 2.5);
 
   if (!lesson) return null;
 
@@ -708,7 +710,7 @@ export const CustomFlowchartStage: React.FC = () => {
       </button>
 
       {/* Scrollable Container */}
-      <div id="flowchart-container" className="w-full h-full overflow-auto custom-scrollbar">
+      <div ref={containerRef} id="flowchart-container" className="w-full h-full overflow-auto custom-scrollbar">
         {/* Zoomable Canvas Area */}
         <div
           id="flowchart-content"
