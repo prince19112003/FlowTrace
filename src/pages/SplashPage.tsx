@@ -27,11 +27,11 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
     // Phase transitions
     const assembleTimer = setTimeout(() => {
       setPhase('assemble');
-    }, 1500);
+    }, 1200);
 
     const resolvedTimer = setTimeout(() => {
       setPhase('resolved');
-    }, 2500);
+    }, 2200);
 
     const completeTimer = setTimeout(() => {
       if (onComplete) {
@@ -39,7 +39,7 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
       } else {
         navigate('/languages', { replace: true });
       }
-    }, 3600);
+    }, 3500);
 
     return () => {
       clearTimeout(assembleTimer);
@@ -73,7 +73,7 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
 
     // Create target coordinates forming a glowing halo ring around the central name
     const targets: { x: number; y: number }[] = [];
-    const haloRadius = 140;
+    const haloRadius = 150;
     for (let k = 0; k < particleCount; k++) {
       const angle = (k / particleCount) * Math.PI * 2;
       const r = haloRadius + (Math.sin(k * 3) * 15);
@@ -191,7 +191,11 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
 
   return (
     <PageTransition className="items-center justify-center bg-[#020306] text-slate-100 overflow-hidden relative font-sans">
-      
+      {/* Import Google Cursive Font */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap');
+      `}</style>
+
       {/* 1. Canvas Layer */}
       <canvas 
         ref={canvasRef} 
@@ -211,58 +215,20 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
       {/* 3. Glow Ambient Orbs */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none" />
 
-      {/* 4. Centered Text Reveal Container */}
+      {/* 4. Centered Cursive Brand Title Reveal */}
       <div className="flex flex-col items-center justify-center z-10 select-none">
         <AnimatePresence mode="wait">
-          {phase === 'constellation' && (
-            <motion.div
-              key="constellationText"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 0.6, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="text-[10px] font-mono tracking-[0.3em] text-indigo-400 uppercase"
-            >
-              Aligning neural particle net...
-            </motion.div>
-          )}
-
-          {phase === 'assemble' && (
-            <motion.div
-              key="assembleText"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              className="text-center flex flex-col gap-1.5"
-            >
-              <span className="text-[11px] font-mono tracking-[0.35em] text-cyan-400 uppercase font-black">
-                ✨ Converging Particles ✨
-              </span>
-            </motion.div>
-          )}
-
           {phase === 'resolved' && (
-            <motion.div
-              key="resolvedText"
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            <motion.h1
+              key="cursiveTitle"
+              initial={{ opacity: 0, scale: 0.85, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center justify-center text-center"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-6xl md:text-8xl text-transparent bg-clip-text bg-linear-to-r from-cyan-300 via-indigo-300 to-purple-400 drop-shadow-[0_0_30px_rgba(168,85,247,0.55)]"
+              style={{ fontFamily: "'Dancing Script', 'Great Vibes', cursive", letterSpacing: '1px' }}
             >
-              {/* Premium Brand Title */}
-              <div className="relative py-3.5 px-10 flex items-center justify-center bg-[#070914]/90 backdrop-blur-xl rounded-2xl border border-white/5 shadow-[0_0_40px_rgba(99,102,241,0.28)]">
-                <span className="text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.3)] font-mono">
-                  Flow
-                </span>
-                <span className="text-4xl md:text-6xl font-black tracking-tighter bg-linear-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent ml-0.5 font-mono drop-shadow-[0_0_20px_rgba(99,102,241,0.55)]">
-                  Trace
-                </span>
-              </div>
-
-              {/* Subtitle tag */}
-              <p className="mt-5 font-mono text-[10px] md:text-xs tracking-[0.4em] text-indigo-300/50 uppercase">
-                See how your code thinks
-              </p>
-            </motion.div>
+              FlowTrace
+            </motion.h1>
           )}
         </AnimatePresence>
       </div>
