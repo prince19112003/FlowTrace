@@ -80,8 +80,8 @@ export const binary_search: LessonProgram = {
     mem.high = high;
     steps.push({
       step: stepNum++, lineNum: 4,
-      explanationEnglish: `Initialize high pointer to len(arr) - 1 = ${high}.`,
-      explanationHinglish: `High pointer ko len(arr) - 1 = ${high} se set kiya.`,
+      explanationEnglish: `Initialize high pointer to len(arr) - 1 = ${high}. Active search window: [${low}...${high}].`,
+      explanationHinglish: `High pointer ko len(arr) - 1 = ${high} se set kiya. Active search range: [${low}...${high}].`,
       memorySnapshot: { ...mem },
       animationEvent: { type: 'CREATE_VARIABLE', name: 'high', value: high },
     });
@@ -93,8 +93,8 @@ export const binary_search: LessonProgram = {
       // Step 5: Check low <= high
       steps.push({
         step: stepNum++, lineNum: 5,
-        explanationEnglish: `Check while low (${low}) <= high (${high}).`,
-        explanationHinglish: `Check kiya kya low (${low}) <= high (${high}) hai.`,
+        explanationEnglish: `Check while low (${low}) <= high (${high}). Search space size: ${high - low + 1} elements.`,
+        explanationHinglish: `Check kiya kya low (${low}) <= high (${high}) hai. Abhi search window size: ${high - low + 1} elements hai.`,
         memorySnapshot: { ...mem },
         animationEvent: { type: 'COMPUTE', inputs: ['low', 'high'], operator: '<=', result: 'True', storeIn: 'Condition' },
       });
@@ -105,8 +105,8 @@ export const binary_search: LessonProgram = {
       mem.mid = mid;
       steps.push({
         step: stepNum++, lineNum: 6,
-        explanationEnglish: `Calculate mid = (${low} + ${high}) // 2 = ${mid}.`,
-        explanationHinglish: `Mid pointer calculate kiya: mid = (${low} + ${high}) // 2 = ${mid}.`,
+        explanationEnglish: `Divide array in half: mid = (${low} + ${high}) // 2 = ${mid}. Mid element: ${items[mid]}.`,
+        explanationHinglish: `Array ko aadha divide kiya: mid = (${low} + ${high}) // 2 = ${mid}. Mid element: ${items[mid]}.`,
         memorySnapshot: { ...mem },
         animationEvent: prevMid !== undefined 
           ? { type: 'UPDATE_VARIABLE', name: 'mid', oldValue: prevMid, newValue: mid }
@@ -120,7 +120,7 @@ export const binary_search: LessonProgram = {
       steps.push({
         step: stepNum++, lineNum: 7,
         explanationEnglish: `Check if arr[${mid}] (${midVal}) == target (${targetVal}).`,
-        explanationHinglish: `Check kiya kya arr[${mid}] (${midVal}) == target (${targetVal}) hai.`,
+        explanationHinglish: `Check kiya kya arr[${mid}] (${currentValStr(midVal)}) == target (${targetVal}) hai.`,
         memorySnapshot: { ...mem },
         animationEvent: { type: 'COMPUTE', inputs: [`arr[${mid}]`, 'target'], operator: '==', result: isMatch ? 'True' : 'False', storeIn: 'Condition' },
       });
@@ -130,8 +130,8 @@ export const binary_search: LessonProgram = {
         const msg = `Found at index ${mid}`;
         steps.push({
           step: stepNum++, lineNum: 8,
-          explanationEnglish: `Match found! Print "${msg}".`,
-          explanationHinglish: `Match mil gaya! Print kiya: "${msg}".`,
+          explanationEnglish: `Match found at mid index ${mid}! Print "${msg}".`,
+          explanationHinglish: `Target index ${mid} par mil gaya! Print kiya: "${msg}".`,
           memorySnapshot: { ...mem },
           consoleOutput: msg,
           animationEvent: { type: 'PRINT_VALUE', variableName: 'output', outputValue: `"${msg}"` },
@@ -140,7 +140,7 @@ export const binary_search: LessonProgram = {
         // Step 9: Break
         steps.push({
           step: stepNum++, lineNum: 9,
-          explanationEnglish: `Break out of while loop.`,
+          explanationEnglish: `Break out of search loop.`,
           explanationHinglish: `Loop break kar diya.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'NONE' },
@@ -150,8 +150,8 @@ export const binary_search: LessonProgram = {
         // Step 10: check arr[mid] < target
         steps.push({
           step: stepNum++, lineNum: 10,
-          explanationEnglish: `arr[${mid}] (${midVal}) < target (${targetVal}). Search right half.`,
-          explanationHinglish: `arr[${mid}] (${midVal}) target se chhota hai. Right half mein dhoondhenge.`,
+          explanationEnglish: `arr[${mid}] (${midVal}) < target (${targetVal}). Target lies in the right half! Eliminating left range [${low}...${mid}].`,
+          explanationHinglish: `arr[${mid}] (${midVal}) target (${targetVal}) se chhota hai. Target right half mein hoga! Left region [${low}...${mid}] eliminate (divide out) ho gaya.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'NONE' },
         });
@@ -160,10 +160,11 @@ export const binary_search: LessonProgram = {
         const prevLow = low;
         low = mid + 1;
         mem.low = low;
+        delete mem.mid;
         steps.push({
           step: stepNum++, lineNum: 11,
-          explanationEnglish: `Update low = mid + 1 = ${low}.`,
-          explanationHinglish: `Low ko update karke ${low} kar diya.`,
+          explanationEnglish: `Shift low pointer to mid + 1 = ${low}. New search range: [${low}...${high}].`,
+          explanationHinglish: `Low pointer ko mid + 1 = ${low} par shift kiya. Naya active search range: [${low}...${high}].`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'UPDATE_VARIABLE', name: 'low', oldValue: prevLow, newValue: low },
         });
@@ -171,8 +172,8 @@ export const binary_search: LessonProgram = {
         // Step 12: else
         steps.push({
           step: stepNum++, lineNum: 12,
-          explanationEnglish: `arr[${mid}] (${midVal}) > target (${targetVal}). Search left half.`,
-          explanationHinglish: `arr[${mid}] (${midVal}) target se bada hai. Left half mein dhoondhenge.`,
+          explanationEnglish: `arr[${mid}] (${midVal}) > target (${targetVal}). Target lies in the left half! Eliminating right range [${mid}...${high}].`,
+          explanationHinglish: `arr[${mid}] (${midVal}) target (${targetVal}) se bada hai. Target left half mein hoga! Right region [${mid}...${high}] eliminate (divide out) ho gaya.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'NONE' },
         });
@@ -181,10 +182,11 @@ export const binary_search: LessonProgram = {
         const prevHigh = high;
         high = mid - 1;
         mem.high = high;
+        delete mem.mid;
         steps.push({
           step: stepNum++, lineNum: 13,
-          explanationEnglish: `Update high = mid - 1 = ${high}.`,
-          explanationHinglish: `High ko update karke ${high} kar diya.`,
+          explanationEnglish: `Shift high pointer to mid - 1 = ${high}. New search range: [${low}...${high}].`,
+          explanationHinglish: `High pointer ko mid - 1 = ${high} par shift kiya. Naya active search range: [${low}...${high}].`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'UPDATE_VARIABLE', name: 'high', oldValue: prevHigh, newValue: high },
         });
@@ -195,3 +197,7 @@ export const binary_search: LessonProgram = {
   },
   executionSteps: [],
 };
+
+function currentValStr(val: number): string {
+  return String(val);
+}

@@ -100,6 +100,23 @@ const parseDataStructure = (val: any) => {
   }
 };
 
+const getPointersAndRange = (memSnapshot: Record<string, any>) => {
+  if (!memSnapshot) return { pointers: undefined, searchRange: undefined };
+  const low = typeof memSnapshot.low === 'number' ? memSnapshot.low : undefined;
+  const mid = typeof memSnapshot.mid === 'number' ? memSnapshot.mid : undefined;
+  const high = typeof memSnapshot.high === 'number' ? memSnapshot.high : undefined;
+
+  const pointers = (low !== undefined || mid !== undefined || high !== undefined)
+    ? { low, mid, high }
+    : undefined;
+
+  const searchRange = (low !== undefined && high !== undefined && low <= high)
+    ? ([low, high] as [number, number])
+    : undefined;
+
+  return { pointers, searchRange };
+};
+
 export const CustomFlowchartStage: React.FC = () => {
   const { lesson, currentStepIndex, zoom, isFullScreen, toggleFullScreen, editableValues } = useLesson();
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -1175,7 +1192,8 @@ export const CustomFlowchartStage: React.FC = () => {
                       {ev?.type === 'CREATE_VARIABLE' && (
                         isDataStructure(ev.value) ? (() => {
                           const { variant, items } = parseDataStructure(ev.value);
-                          return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
+                          const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
+                          return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} pointers={pointers} searchRange={searchRange} />;
                         })() : (
                           <VariableBox name={ev.name} value={ev.value} isActive={isLatest} />
                         )
@@ -1184,7 +1202,8 @@ export const CustomFlowchartStage: React.FC = () => {
                       {ev?.type === 'UPDATE_VARIABLE' && (
                         isDataStructure(ev.newValue) ? (() => {
                           const { variant, items } = parseDataStructure(ev.newValue);
-                          return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
+                          const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
+                          return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} pointers={pointers} searchRange={searchRange} />;
                         })() : (
                           <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} />
                         )
