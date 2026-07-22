@@ -107,14 +107,18 @@ const cppTopics = [
 ];
 
 const javaTopics = [
-  { id: 'data_types', number: '01', name: 'Variables & Data Types', subtitle: 'Primitives (int, double, char, boolean), Casting & ASCII', programsCount: 6, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#f97316' },
-  { id: 'if_else', number: '02', name: 'If Else Conditionals', subtitle: 'Even/Odd, Largest of 3, Leap Year & Vowel Check', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
-  { id: 'if_elif_else', number: '03', name: 'If Else If Ladder', subtitle: 'Student Grade System & Income Tax Slab Calculator', programsCount: 2, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#4f46e5' },
-  { id: 'switch_case', number: '04', name: 'Switch Case Selection', subtitle: 'Day of Week, Vowel Check, Calculator & Seasons', programsCount: 5, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#ec4899' },
-  { id: 'for_loop', number: '05', name: 'For Loop Iteration', subtitle: 'Natural Numbers Sum & Multiplication Table', programsCount: 2, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
-  { id: 'while_loop', number: '06', name: 'While Loop Iteration', subtitle: 'Sum of Digits, Factorial, Reverse Number & Prime Check', programsCount: 4, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#0891b2' },
-  { id: 'do_while_loop', number: '07', name: 'Do-While Loop', subtitle: 'Guaranteed First Execution Loop', programsCount: 1, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#0284c7' },
-  { id: 'arrays', number: '08', name: '1D & 2D Arrays', subtitle: 'Array Sum/Max/Min, Search, Reverse & 2D Matrix Diagonal', programsCount: 7, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
+  { id: 'variables', number: '01', name: 'Variables & Memory', subtitle: 'Primitives (int, double, char, boolean) & Swapping', programsCount: 3, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#f97316' },
+  { id: 'type_casting', number: '02', name: 'Type Casting & Conversion', subtitle: 'Implicit Widening & Explicit Narrowing Casting', programsCount: 2, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#eab308' },
+  { id: 'operators_expressions', number: '03', name: 'Operators & Expressions', subtitle: 'Temperature, Circle Geometry & Simple Interest Formulas', programsCount: 3, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#10b981' },
+  { id: 'if_else', number: '04', name: 'If Else Conditionals', subtitle: 'Even/Odd, Largest of 3, Leap Year & Vowel Check', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
+  { id: 'if_elif_else', number: '05', name: 'If Else If Ladder', subtitle: 'Marks Grade System & Income Tax Slab Calculator', programsCount: 2, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#4f46e5' },
+  { id: 'switch_case', number: '06', name: 'Switch Case Selection', subtitle: 'Day of Week, Vowel Check, Calculator & Seasons', programsCount: 5, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#ec4899' },
+  { id: 'for_loop', number: '07', name: 'For Loop Iteration', subtitle: 'Natural Numbers Sum & Multiplication Table', programsCount: 2, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
+  { id: 'while_loop', number: '08', name: 'While Loop Iteration', subtitle: 'Sum of Digits, Factorial, Reverse Number & Prime Check', programsCount: 4, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#0891b2' },
+  { id: 'do_while_loop', number: '09', name: 'Do-While Loop', subtitle: 'Guaranteed First Run Execution Loop', programsCount: 1, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#0284c7' },
+  { id: 'strings', number: '10', name: 'Strings & Character Encoding', subtitle: 'Char to ASCII Code & Text Processing', programsCount: 1, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#8b5cf6' },
+  { id: 'arrays_1d', number: '11', name: '1D Arrays', subtitle: 'Array Sum/Max/Min, Linear Search & In-place Reverse', programsCount: 4, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
+  { id: 'arrays_2d', number: '12', name: '2D Arrays & Matrices', subtitle: '2D Matrix Traversal, Primary Diagonal Sum & Transpose', programsCount: 3, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#d97706' },
 ];
 
 const difficultyConfig = {

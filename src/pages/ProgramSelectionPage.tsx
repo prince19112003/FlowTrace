@@ -181,13 +181,19 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
     ]
   },
   java: {
-    data_types: [
+    variables: [
       { id: 'java_types', number: '01', friendlyName: 'Java Primitive Data Types (int, double, boolean, char)', description: 'Understand Java strongly-typed primitives, explicit byte sizes, and memory allocation.' },
-      { id: 'java_casting', number: '02', friendlyName: 'Implicit & Explicit Type Casting', description: 'Learn automatic widening and manual narrowing casting in Java.' },
-      { id: 'java_ascii', number: '03', friendlyName: 'Char to ASCII Integer Conversion', description: 'Understand character encoding and numeric ASCII representation in Java.' },
-      { id: 'java_temp_convert', number: '04', friendlyName: 'Temperature Converter (Celsius to Fahrenheit)', description: 'Learn mixed double expression evaluation and formula computation in Java.' },
-      { id: 'java_circle_area', number: '05', friendlyName: 'Area & Circumference of Circle', description: 'Learn floating point math formulas using double precision in Java.' },
-      { id: 'java_swap_temp', number: '06', friendlyName: 'Swap Two Variables (Using Temp Variable)', description: 'Understand variable swapping logic and temporary memory slot usage.' },
+      { id: 'java_swap_temp', number: '02', friendlyName: 'Swap Two Variables (Using Temp Variable)', description: 'Understand variable swapping logic and temporary memory slot usage.' },
+      { id: 'java_swap_no_temp', number: '03', friendlyName: 'Swap Two Variables (Without Temp Variable)', description: 'Swap two integer variables using arithmetic addition and subtraction.' },
+    ],
+    type_casting: [
+      { id: 'java_casting', number: '01', friendlyName: 'Implicit & Explicit Type Casting', description: 'Learn automatic widening and manual narrowing casting in Java.' },
+      { id: 'java_widening', number: '02', friendlyName: 'Automatic Widening Type Casting', description: 'Understand automatic conversion from smaller int [4B] to larger double [8B].' },
+    ],
+    operators_expressions: [
+      { id: 'java_temp_convert', number: '01', friendlyName: 'Temperature Converter (Celsius to Fahrenheit)', description: 'Learn mixed double expression evaluation and formula computation in Java.' },
+      { id: 'java_circle_area', number: '02', friendlyName: 'Area & Circumference of Circle', description: 'Learn floating point math formulas using double precision in Java.' },
+      { id: 'java_simple_interest', number: '03', friendlyName: 'Simple Interest Calculator', description: 'Compute interest formula (P * R * T) / 100 using double arithmetic expressions.' },
     ],
     if_else: [
       { id: 'java_even_odd', number: '01', friendlyName: 'Even or Odd Check', description: 'Understand binary branch decision execution using if-else and modulo % in Java.' },
@@ -219,14 +225,19 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
     do_while_loop: [
       { id: 'java_do_while', number: '01', friendlyName: 'Do-While Guaranteed Execution', description: 'Learn exit-controlled do-while loops in Java.' },
     ],
-    arrays: [
+    strings: [
+      { id: 'java_ascii', number: '01', friendlyName: 'Char to ASCII Integer Conversion', description: 'Understand character encoding and numeric ASCII representation in Java.' },
+    ],
+    arrays_1d: [
       { id: 'java_array_sum_1d', number: '01', friendlyName: '1D Array Sum & Average', description: 'Learn Java 1D array allocation, element indexing, and average computation.' },
       { id: 'java_array_max_1d', number: '02', friendlyName: 'Find Maximum & Minimum in 1D Array', description: 'Learn element comparisons and tracking extrema in Java arrays.' },
       { id: 'java_linear_search', number: '03', friendlyName: 'Linear Search in 1D Array', description: 'Learn target element search and early break execution in Java arrays.' },
       { id: 'java_array_reverse', number: '04', friendlyName: 'Reverse 1D Array Elements', description: 'Learn in-place array swapping using two pointers.' },
-      { id: 'java_matrix_2d', number: '05', friendlyName: '2D Matrix Declaration & Traversal', description: 'Understand 2D array matrix row and column indexing in Java.' },
-      { id: 'java_diagonal_sum_2d', number: '06', friendlyName: 'Primary Diagonal Sum of 2D Matrix', description: 'Learn matrix primary diagonal indexing (matrix[i][i]) in Java 2D arrays.' },
-      { id: 'java_matrix_transpose', number: '07', friendlyName: '2D Matrix Transpose', description: 'Learn row-column swapping matrix transposition in Java.' },
+    ],
+    arrays_2d: [
+      { id: 'java_matrix_2d', number: '01', friendlyName: '2D Matrix Declaration & Traversal', description: 'Understand 2D array matrix row and column indexing in Java.' },
+      { id: 'java_diagonal_sum_2d', number: '02', friendlyName: 'Primary Diagonal Sum of 2D Matrix', description: 'Learn matrix primary diagonal indexing (matrix[i][i]) in Java 2D arrays.' },
+      { id: 'java_matrix_transpose', number: '03', friendlyName: '2D Matrix Transpose', description: 'Learn row-column swapping matrix transposition in Java.' },
     ],
   }
 };

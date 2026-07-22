@@ -2002,6 +2002,181 @@ export const javaMatrixTranspose: LessonProgram = {
   executionSteps: []
 };
 
+export const javaSwapNoTemp: LessonProgram = {
+  id: 'java_swap_no_temp',
+  language: 'java',
+  topic: 'variables',
+  lessonNumber: 2,
+  friendlyName: 'Swap Two Variables (Without Temp Variable)',
+  learningObjective: 'Swap two integer variables using arithmetic addition and subtraction.',
+  lines: [
+    { lineNum: 1, tokens: [{ type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'class' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Main' }, { type: 'text', value: ' {' }] },
+    { lineNum: 2, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'static' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'void' }, { type: 'text', value: ' ' }, { type: 'function', value: 'main' }, { type: 'punctuation', value: '(' }, { type: 'keyword', value: 'String' }, { type: 'punctuation', value: '[]' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'args' }, { type: 'punctuation', value: ')' }, { type: 'text', value: ' {' }] },
+    { lineNum: 3, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'int' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '5', paramId: 'a' }, { type: 'punctuation', value: ';' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'int' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '10', paramId: 'b' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 4, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'b' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '-' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 6, tokens: [{ type: 'text', value: '        ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '-' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.println' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"a: "' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'a' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'string', value: '", b: "' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'b' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 8, tokens: [{ type: 'text', value: '    ' }, { type: 'punctuation', value: '}' }] },
+    { lineNum: 9, tokens: [{ type: 'punctuation', value: '}' }] },
+  ],
+  editableVariables: {
+    a: { default: 5, min: 1, max: 100, label: 'a (int)' },
+    b: { default: 10, min: 1, max: 100, label: 'b (int)' }
+  },
+  generateSteps: (vars): ExecutionStep[] => {
+    let aVal = Number(vars.a ?? 5);
+    let bVal = Number(vars.b ?? 10);
+    const sum = aVal + bVal;
+    const newB = sum - bVal;
+    const newA = sum - newB;
+
+    return [
+      {
+        step: 1, lineNum: 3,
+        explanationEnglish: `Initialize a = ${aVal}, b = ${bVal}.`,
+        explanationHinglish: `a = ${aVal} aur b = ${bVal} declare hua.`,
+        memorySnapshot: { a: `${aVal} [int]`, b: `${bVal} [int]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'a', value: aVal }
+      },
+      {
+        step: 2, lineNum: 4,
+        explanationEnglish: `a = a + b -> ${aVal} + ${bVal} = ${sum}.`,
+        explanationHinglish: `a me total sum (${sum}) store hua.`,
+        memorySnapshot: { a: `${sum} [int]`, b: `${bVal} [int]` },
+        animationEvent: { type: 'UPDATE_VARIABLE' as const, name: 'a', oldValue: aVal, newValue: sum }
+      },
+      {
+        step: 3, lineNum: 5,
+        explanationEnglish: `b = a - b -> ${sum} - ${bVal} = ${newB}. Original a restored into b!`,
+        explanationHinglish: `b = ${sum} - ${bVal} = ${newB}. Original a ki value b me aa gayi!`,
+        memorySnapshot: { a: `${sum} [int]`, b: `${newB} [int]` },
+        animationEvent: { type: 'UPDATE_VARIABLE' as const, name: 'b', oldValue: bVal, newValue: newB }
+      },
+      {
+        step: 4, lineNum: 6,
+        explanationEnglish: `a = a - b -> ${sum} - ${newB} = ${newA}. Swapping complete!`,
+        explanationHinglish: `a = ${sum} - ${newB} = ${newA}. Swapping without temp complete!`,
+        memorySnapshot: { a: `${newA} [int]`, b: `${newB} [int]` },
+        animationEvent: { type: 'UPDATE_VARIABLE' as const, name: 'a', oldValue: sum, newValue: newA }
+      },
+      {
+        step: 5, lineNum: 7,
+        explanationEnglish: `System.out.println prints a: ${newA}, b: ${newB}.`,
+        explanationHinglish: `Console pe "a: ${newA}, b: ${newB}" print hua.`,
+        memorySnapshot: { a: `${newA} [int]`, b: `${newB} [int]` },
+        consoleOutput: `a: ${newA}, b: ${newB}`,
+        animationEvent: { type: 'PRINT_VALUE' as const, variableName: 'a', outputValue: `${newA}, ${newB}` }
+      }
+    ];
+  },
+  executionSteps: []
+};
+
+export const javaWidening: LessonProgram = {
+  id: 'java_widening',
+  language: 'java',
+  topic: 'type_casting',
+  lessonNumber: 2,
+  friendlyName: 'Automatic Widening Type Casting',
+  learningObjective: 'Understand automatic conversion from smaller int [4B] to larger double [8B].',
+  lines: [
+    { lineNum: 1, tokens: [{ type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'class' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Main' }, { type: 'text', value: ' {' }] },
+    { lineNum: 2, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'static' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'void' }, { type: 'text', value: ' ' }, { type: 'function', value: 'main' }, { type: 'punctuation', value: '(' }, { type: 'keyword', value: 'String' }, { type: 'punctuation', value: '[]' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'args' }, { type: 'punctuation', value: ')' }, { type: 'text', value: ' {' }] },
+    { lineNum: 3, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'int' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'num' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '42', paramId: 'num' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 4, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'double' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'wideNum' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'num' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.println' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Wide: "' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'wideNum' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 6, tokens: [{ type: 'text', value: '    ' }, { type: 'punctuation', value: '}' }] },
+    { lineNum: 7, tokens: [{ type: 'punctuation', value: '}' }] },
+  ],
+  editableVariables: {
+    num: { default: 42, min: 1, max: 1000, label: 'num (int)' }
+  },
+  generateSteps: (vars): ExecutionStep[] => {
+    const val = Number(vars.num ?? 42);
+    const wideVal = val.toFixed(1);
+    return [
+      {
+        step: 1, lineNum: 3,
+        explanationEnglish: `Declare int num = ${val} [4 Bytes].`,
+        explanationHinglish: `int num = ${val} declare hua (4 Bytes).`,
+        memorySnapshot: { num: `${val} [int]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'num', value: val }
+      },
+      {
+        step: 2, lineNum: 4,
+        explanationEnglish: `Automatic widening: int ${val} is automatically converted to double ${wideVal} [8 Bytes].`,
+        explanationHinglish: `Automatic widening: int (${val}) double (${wideVal}) me convert ho gaya. No precision loss!`,
+        memorySnapshot: { num: `${val} [int]`, wideNum: `${wideVal} [double]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'wideNum', value: wideVal }
+      },
+      {
+        step: 3, lineNum: 5,
+        explanationEnglish: `System.out.println prints wideNum: ${wideVal}.`,
+        explanationHinglish: `Console pe "Wide: ${wideVal}" print hua.`,
+        memorySnapshot: { num: `${val} [int]`, wideNum: `${wideVal} [double]` },
+        consoleOutput: `Wide: ${wideVal}`,
+        animationEvent: { type: 'PRINT_VALUE' as const, variableName: 'wideNum', outputValue: wideVal }
+      }
+    ];
+  },
+  executionSteps: []
+};
+
+export const javaSimpleInterest: LessonProgram = {
+  id: 'java_simple_interest',
+  language: 'java',
+  topic: 'operators_expressions',
+  lessonNumber: 3,
+  friendlyName: 'Simple Interest Calculator',
+  learningObjective: 'Compute interest formula (P * R * T) / 100 using double arithmetic expressions.',
+  lines: [
+    { lineNum: 1, tokens: [{ type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'class' }, { type: 'text', value: ' ' }, { type: 'function', value: 'Main' }, { type: 'text', value: ' {' }] },
+    { lineNum: 2, tokens: [{ type: 'text', value: '    ' }, { type: 'keyword', value: 'public' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'static' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'void' }, { type: 'text', value: ' ' }, { type: 'function', value: 'main' }, { type: 'punctuation', value: '(' }, { type: 'keyword', value: 'String' }, { type: 'punctuation', value: '[]' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'args' }, { type: 'punctuation', value: ')' }, { type: 'text', value: ' {' }] },
+    { lineNum: 3, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'double' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'P' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '10000', paramId: 'P' }, { type: 'punctuation', value: ';' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'double' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'R' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '5.5', paramId: 'R' }, { type: 'punctuation', value: ';' }, { type: 'text', value: ' ' }, { type: 'keyword', value: 'double' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'T' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'number', value: '2', paramId: 'T' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 4, tokens: [{ type: 'text', value: '        ' }, { type: 'keyword', value: 'double' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'SI' }, { type: 'text', value: ' ' }, { type: 'operator', value: '=' }, { type: 'text', value: ' ' }, { type: 'punctuation', value: '(' }, { type: 'variable', value: 'P' }, { type: 'text', value: ' ' }, { type: 'operator', value: '*' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'R' }, { type: 'text', value: ' ' }, { type: 'operator', value: '*' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'T' }, { type: 'punctuation', value: ')' }, { type: 'text', value: ' ' }, { type: 'operator', value: '/' }, { type: 'text', value: ' ' }, { type: 'number', value: '100' }, { type: 'punctuation', value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text', value: '        ' }, { type: 'function', value: 'System.out.println' }, { type: 'punctuation', value: '(' }, { type: 'string', value: '"Interest: "' }, { type: 'text', value: ' ' }, { type: 'operator', value: '+' }, { type: 'text', value: ' ' }, { type: 'variable', value: 'SI' }, { type: 'punctuation', value: ');' }] },
+    { lineNum: 6, tokens: [{ type: 'text', value: '    ' }, { type: 'punctuation', value: '}' }] },
+    { lineNum: 7, tokens: [{ type: 'punctuation', value: '}' }] },
+  ],
+  editableVariables: {
+    P: { default: 10000, min: 1000, max: 100000, label: 'P (Principal)' },
+    R: { default: 5.5, min: 1, max: 20, label: 'R (Rate %)' },
+    T: { default: 2, min: 1, max: 10, label: 'T (Time Years)' }
+  },
+  generateSteps: (vars): ExecutionStep[] => {
+    const p = Number(vars.P ?? 10000);
+    const r = Number(vars.R ?? 5.5);
+    const t = Number(vars.T ?? 2);
+    const si = (p * r * t) / 100;
+    return [
+      {
+        step: 1, lineNum: 3,
+        explanationEnglish: `Initialize P = ${p}, R = ${r}%, T = ${t} years.`,
+        explanationHinglish: `P = ${p}, R = ${r}%, T = ${t} years declare hue.`,
+        memorySnapshot: { P: `${p} [double]`, R: `${r} [double]`, T: `${t} [double]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'P', value: p }
+      },
+      {
+        step: 2, lineNum: 4,
+        explanationEnglish: `Compute SI = (${p} * ${r} * ${t}) / 100 = ${si}.`,
+        explanationHinglish: `SI calculate hua -> (${p} * ${r} * ${t}) / 100 = ${si}.`,
+        memorySnapshot: { P: `${p} [double]`, R: `${r} [double]`, T: `${t} [double]`, SI: `${si} [double]` },
+        animationEvent: { type: 'CREATE_VARIABLE' as const, name: 'SI', value: si }
+      },
+      {
+        step: 3, lineNum: 5,
+        explanationEnglish: `System.out.println prints Interest: ${si}.`,
+        explanationHinglish: `Console pe "Interest: ${si}" print hua.`,
+        memorySnapshot: { P: `${p} [double]`, R: `${r} [double]`, T: `${t} [double]`, SI: `${si} [double]` },
+        consoleOutput: `Interest: ${si}`,
+        animationEvent: { type: 'PRINT_VALUE' as const, variableName: 'SI', outputValue: String(si) }
+      }
+    ];
+  },
+  executionSteps: []
+};
+
 // Export all Java lessons map
 export const javaLessons = {
   java_types: javaTypes,
@@ -2010,6 +2185,9 @@ export const javaLessons = {
   java_temp_convert: javaTempConvert,
   java_circle_area: javaCircleArea,
   java_swap_temp: javaSwapTemp,
+  java_swap_no_temp: javaSwapNoTemp,
+  java_widening: javaWidening,
+  java_simple_interest: javaSimpleInterest,
   java_even_odd: javaEvenOdd,
   java_largest_three: javaLargestThree,
   java_grade: javaGrade,

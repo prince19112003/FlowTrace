@@ -78,13 +78,19 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     },
   },
   java: {
-    data_types: {
+    variables: {
       java_types: javaLessons.java_types,
+      java_swap_temp: javaLessons.java_swap_temp,
+      java_swap_no_temp: javaLessons.java_swap_no_temp,
+    },
+    type_casting: {
       java_casting: javaLessons.java_casting,
-      java_ascii: javaLessons.java_ascii,
+      java_widening: javaLessons.java_widening,
+    },
+    operators_expressions: {
       java_temp_convert: javaLessons.java_temp_convert,
       java_circle_area: javaLessons.java_circle_area,
-      java_swap_temp: javaLessons.java_swap_temp,
+      java_simple_interest: javaLessons.java_simple_interest,
     },
     if_else: {
       java_even_odd: javaLessons.java_even_odd,
@@ -116,11 +122,16 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
     do_while_loop: {
       java_do_while: javaLessons.java_do_while,
     },
-    arrays: {
+    strings: {
+      java_ascii: javaLessons.java_ascii,
+    },
+    arrays_1d: {
       java_array_sum_1d: javaLessons.java_array_sum_1d,
       java_array_max_1d: javaLessons.java_array_max_1d,
       java_linear_search: javaLessons.java_linear_search,
       java_array_reverse: javaLessons.java_array_reverse,
+    },
+    arrays_2d: {
       java_matrix_2d: javaLessons.java_matrix_2d,
       java_diagonal_sum_2d: javaLessons.java_diagonal_sum_2d,
       java_matrix_transpose: javaLessons.java_matrix_transpose,
