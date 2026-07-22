@@ -27,11 +27,11 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
     // Phase transitions
     const assembleTimer = setTimeout(() => {
       setPhase('assemble');
-    }, 1800);
+    }, 1500);
 
     const resolvedTimer = setTimeout(() => {
       setPhase('resolved');
-    }, 2800);
+    }, 2500);
 
     const completeTimer = setTimeout(() => {
       if (onComplete) {
@@ -39,7 +39,7 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
       } else {
         navigate('/languages', { replace: true });
       }
-    }, 3800);
+    }, 3600);
 
     return () => {
       clearTimeout(assembleTimer);
@@ -65,77 +65,28 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
     };
     window.addEventListener('resize', handleResize);
 
-    const particleCount = 80;
+    const particleCount = 70;
     const particles: Particle[] = [];
 
-    // Predefined shape target coordinates for the flowchart logo assembly
-    const logoCenterY = height / 2 - 30;
     const logoCenterX = width / 2;
+    const logoCenterY = height / 2;
 
+    // Create target coordinates forming a glowing halo ring around the central name
     const targets: { x: number; y: number }[] = [];
-    
-    // Create Diamond outline targets (Condition Node)
-    const diamondPoints = 16;
-    for (let k = 0; k < diamondPoints; k++) {
-      const t = k / diamondPoints;
-      let dx = 0;
-      let dy = 0;
-      if (t < 0.25) {
-        const seg = t / 0.25;
-        dx = 60 * seg;
-        dy = -40 * (1 - seg);
-      } else if (t < 0.5) {
-        const seg = (t - 0.25) / 0.25;
-        dx = 60 * (1 - seg);
-        dy = 40 * seg;
-      } else if (t < 0.75) {
-        const seg = (t - 0.5) / 0.25;
-        dx = -60 * seg;
-        dy = 40 * (1 - seg);
-      } else {
-        const seg = (t - 0.75) / 0.25;
-        dx = -60 * (1 - seg);
-        dy = -40 * seg;
-      }
-      targets.push({ x: logoCenterX + dx, y: logoCenterY + dy - 30 });
-    }
-
-    // Process box targets (bottom rect)
-    const rectPoints = 20;
-    const rectWidth = 100;
-    const rectHeight = 35;
-    const rectY = logoCenterY + 45;
-    for (let k = 0; k < rectPoints; k++) {
-      const ratio = k / rectPoints;
-      let rx = 0;
-      let ry = 0;
-      if (ratio < 0.3) {
-        rx = -rectWidth / 2 + (rectWidth * (ratio / 0.3));
-        ry = rectY;
-      } else if (ratio < 0.5) {
-        rx = rectWidth / 2;
-        ry = rectY + (rectHeight * ((ratio - 0.3) / 0.2));
-      } else if (ratio < 0.8) {
-        rx = rectWidth / 2 - (rectWidth * ((ratio - 0.5) / 0.3));
-        ry = rectY + rectHeight;
-      } else {
-        rx = -rectWidth / 2;
-        ry = rectY + rectHeight - (rectHeight * ((ratio - 0.8) / 0.2));
-      }
-      targets.push({ x: logoCenterX + rx, y: ry });
-    }
-
-    // Connector arrow targets
-    const arrowYStart = logoCenterY + 10;
-    const arrowYEnd = logoCenterY + 45;
-    for (let k = 0; k < 6; k++) {
-      targets.push({ x: logoCenterX, y: arrowYStart + ((arrowYEnd - arrowYStart) * (k / 5)) });
+    const haloRadius = 140;
+    for (let k = 0; k < particleCount; k++) {
+      const angle = (k / particleCount) * Math.PI * 2;
+      const r = haloRadius + (Math.sin(k * 3) * 15);
+      targets.push({
+        x: logoCenterX + Math.cos(angle) * r,
+        y: logoCenterY + Math.sin(angle) * r,
+      });
     }
 
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const radius = 80 + Math.random() * 150;
+      const radius = 100 + Math.random() * 200;
       particles.push({
         x: width / 2 + Math.cos(angle) * radius,
         y: height / 2 + Math.sin(angle) * radius,
@@ -170,14 +121,14 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
 
       // Draw constellation connections
       if (animationPhase === 'constellation') {
-        ctx.strokeStyle = 'rgba(99, 102, 241, 0.07)';
+        ctx.strokeStyle = 'rgba(99, 102, 241, 0.08)';
         ctx.lineWidth = 0.8;
         for (let i = 0; i < particles.length; i++) {
           for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].x - particles[j].x;
             const dy = particles[i].y - particles[j].y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 85) {
+            if (dist < 90) {
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
@@ -195,12 +146,12 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
           const dy = p.targetY - p.y;
           p.x += dx * 0.12;
           p.y += dy * 0.12;
-          p.alpha = 0.8;
+          p.alpha = 0.85;
         } else if (animationPhase === 'resolved' && p.targetX && p.targetY) {
-          // Settle tightly on target
+          // Settle tightly on target halo ring
           p.x = p.targetX;
           p.y = p.targetY;
-          p.alpha = 0.45;
+          p.alpha = 0.5;
         } else {
           // Slow floating drift
           p.x += p.vx;
@@ -220,39 +171,12 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
 
         ctx.fillStyle = glowColor + p.alpha + ')';
         ctx.shadowColor = glowColor + p.alpha * 0.8 + ')';
-        ctx.shadowBlur = animationPhase === 'assemble' ? 8 : 4;
+        ctx.shadowBlur = animationPhase === 'assemble' ? 10 : 4;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0; // reset
       });
-
-      // Draw assembled flowchart silhouette connections
-      if (animationPhase === 'assemble' || animationPhase === 'resolved') {
-        ctx.strokeStyle = animationPhase === 'resolved' ? 'rgba(99, 102, 241, 0.25)' : 'rgba(99, 102, 241, 0.4)';
-        ctx.lineWidth = 1.8;
-        ctx.shadowColor = 'rgba(99, 102, 241, 0.3)';
-        ctx.shadowBlur = 6;
-
-        // Draw Diamond
-        ctx.beginPath();
-        ctx.moveTo(logoCenterX, logoCenterY - 30 - 40);
-        ctx.lineTo(logoCenterX + 60, logoCenterY - 30);
-        ctx.lineTo(logoCenterX, logoCenterY - 30 + 40);
-        ctx.lineTo(logoCenterX - 60, logoCenterY - 30);
-        ctx.closePath();
-        ctx.stroke();
-
-        // Draw Connector line
-        ctx.beginPath();
-        ctx.moveTo(logoCenterX, logoCenterY - 30 + 40);
-        ctx.lineTo(logoCenterX, rectY);
-        ctx.stroke();
-
-        // Draw Rectangle
-        ctx.strokeRect(logoCenterX - rectWidth / 2, rectY, rectWidth, rectHeight);
-        ctx.shadowBlur = 0;
-      }
 
       animationFrameId = requestAnimationFrame(renderLoop);
     };
@@ -285,10 +209,10 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
       />
 
       {/* 3. Glow Ambient Orbs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55vw] h-[55vw] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none" />
 
-      {/* 4. Text Reveal Container */}
-      <div className="flex flex-col items-center justify-center z-10 select-none mt-40">
+      {/* 4. Centered Text Reveal Container */}
+      <div className="flex flex-col items-center justify-center z-10 select-none">
         <AnimatePresence mode="wait">
           {phase === 'constellation' && (
             <motion.div
@@ -298,7 +222,7 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
               exit={{ opacity: 0 }}
               className="text-[10px] font-mono tracking-[0.3em] text-indigo-400 uppercase"
             >
-              Aligning neural flowchart net...
+              Aligning neural particle net...
             </motion.div>
           )}
 
@@ -311,10 +235,7 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
               className="text-center flex flex-col gap-1.5"
             >
               <span className="text-[11px] font-mono tracking-[0.35em] text-cyan-400 uppercase font-black">
-                ✨ assembling node matrix ✨
-              </span>
-              <span className="text-[9px] font-mono text-slate-500 uppercase">
-                mapping constellation points ➔ locked
+                ✨ Converging Particles ✨
               </span>
             </motion.div>
           )}
@@ -322,23 +243,23 @@ export const SplashPage: React.FC<SplashPageProps> = ({ onComplete }) => {
           {phase === 'resolved' && (
             <motion.div
               key="resolvedText"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center justify-center text-center"
             >
               {/* Premium Brand Title */}
-              <div className="relative py-2.5 px-8 flex items-center justify-center bg-[#070914]/90 backdrop-blur-xl rounded-2xl border border-white/5 shadow-[0_0_35px_rgba(99,102,241,0.25)]">
-                <span className="text-3xl md:text-5xl font-black tracking-tighter text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.3)] font-mono">
+              <div className="relative py-3.5 px-10 flex items-center justify-center bg-[#070914]/90 backdrop-blur-xl rounded-2xl border border-white/5 shadow-[0_0_40px_rgba(99,102,241,0.28)]">
+                <span className="text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.3)] font-mono">
                   Flow
                 </span>
-                <span className="text-3xl md:text-5xl font-black tracking-tighter bg-linear-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent ml-0.5 font-mono drop-shadow-[0_0_20px_rgba(99,102,241,0.55)]">
+                <span className="text-4xl md:text-6xl font-black tracking-tighter bg-linear-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent ml-0.5 font-mono drop-shadow-[0_0_20px_rgba(99,102,241,0.55)]">
                   Trace
                 </span>
               </div>
 
               {/* Subtitle tag */}
-              <p className="mt-4.5 font-mono text-[9px] md:text-xs tracking-[0.38em] text-indigo-300/40 uppercase">
+              <p className="mt-5 font-mono text-[10px] md:text-xs tracking-[0.4em] text-indigo-300/50 uppercase">
                 See how your code thinks
               </p>
             </motion.div>
