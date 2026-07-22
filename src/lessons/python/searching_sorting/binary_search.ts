@@ -24,35 +24,56 @@ export const binary_search: LessonProgram = {
     target: { default: 50, label: 'Search Target' },
   },
   generateSteps: ({ arr, target }): ExecutionStep[] => {
-    let items: Array<number> = [10, 20, 30, 40, 50, 60];
+    let rawItems: Array<number> = [10, 20, 30, 40, 50, 60];
     const rawVal = String(arr).trim();
     const cleaned = rawVal.replace(/[\[\]]/g, '').trim();
     if (cleaned) {
-      items = cleaned.split(',').map(s => {
+      rawItems = cleaned.split(',').map(s => {
         const n = Number(s.trim());
         return isNaN(n) ? 0 : n;
-      }).sort((a, b) => a - b);
+      });
     }
+
+    // Check if user input is unsorted
+    const isUnsorted = rawItems.some((val, idx) => idx > 0 && val < rawItems[idx - 1]);
+    const items = [...rawItems].sort((a, b) => a - b);
 
     const formatListStr = (a: Array<number>) => {
       return "[" + a.join(', ') + "]";
     };
 
-    const arrStr = formatListStr(items);
+    const rawArrStr = formatListStr(rawItems);
+    const sortedArrStr = formatListStr(items);
     const targetVal = Number(target) || 50;
 
     let stepNum = 1;
     const steps: ExecutionStep[] = [];
-    let mem: Record<string, string | number> = { arr: arrStr };
+    let mem: Record<string, string | number> = { arr: isUnsorted ? rawArrStr : sortedArrStr };
 
     // Step 1: Create arr
     steps.push({
       step: stepNum++, lineNum: 1,
-      explanationEnglish: `Initialize sorted array: ${arrStr}.`,
-      explanationHinglish: `Sorted array banaya: ${arrStr}.`,
+      explanationEnglish: isUnsorted
+        ? `⚠️ Warning: Input array ${rawArrStr} is unsorted! Binary search requires a sorted array.`
+        : `Initialize sorted array: ${sortedArrStr}.`,
+      explanationHinglish: isUnsorted
+        ? `⚠️ Warning: Input array ${rawArrStr} unsorted hai! Binary search ke liye array sorted honi chahiye.`
+        : `Sorted array banaya: ${sortedArrStr}.`,
       memorySnapshot: { ...mem },
-      animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: arrStr },
+      animationEvent: { type: 'CREATE_VARIABLE', name: 'arr', value: isUnsorted ? rawArrStr : sortedArrStr },
     });
+
+    // If unsorted, auto-sort warning step
+    if (isUnsorted) {
+      mem.arr = sortedArrStr;
+      steps.push({
+        step: stepNum++, lineNum: 1,
+        explanationEnglish: `Auto-sorting array for binary search execution: ${sortedArrStr}.`,
+        explanationHinglish: `Binary search ke liye array ko automatic sort kiya: ${sortedArrStr}.`,
+        memorySnapshot: { ...mem },
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'arr', oldValue: rawArrStr, newValue: sortedArrStr },
+      });
+    }
 
     // Step 2: Create target
     mem.target = targetVal;
@@ -80,8 +101,8 @@ export const binary_search: LessonProgram = {
     mem.high = high;
     steps.push({
       step: stepNum++, lineNum: 4,
-      explanationEnglish: `Initialize high pointer to len(arr) - 1 = ${high}. Active search window: [${low}...${high}].`,
-      explanationHinglish: `High pointer ko len(arr) - 1 = ${high} se set kiya. Active search range: [${low}...${high}].`,
+      explanationEnglish: `Initialize high pointer to len(arr) - 1 = ${high}. Active search window: [index ${low} to ${high}].`,
+      explanationHinglish: `High pointer ko len(arr) - 1 = ${high} se set kiya. Active search range: [index ${low} to ${high}].`,
       memorySnapshot: { ...mem },
       animationEvent: { type: 'CREATE_VARIABLE', name: 'high', value: high },
     });
@@ -120,7 +141,7 @@ export const binary_search: LessonProgram = {
       steps.push({
         step: stepNum++, lineNum: 7,
         explanationEnglish: `Check if arr[${mid}] (${midVal}) == target (${targetVal}).`,
-        explanationHinglish: `Check kiya kya arr[${mid}] (${currentValStr(midVal)}) == target (${targetVal}) hai.`,
+        explanationHinglish: `Check kiya kya arr[${mid}] (${midVal}) == target (${targetVal}) hai.`,
         memorySnapshot: { ...mem },
         animationEvent: { type: 'COMPUTE', inputs: [`arr[${mid}]`, 'target'], operator: '==', result: isMatch ? 'True' : 'False', storeIn: 'Condition' },
       });
@@ -151,7 +172,7 @@ export const binary_search: LessonProgram = {
         steps.push({
           step: stepNum++, lineNum: 10,
           explanationEnglish: `arr[${mid}] (${midVal}) < target (${targetVal}). Target lies in the right half! Eliminating left range [${low}...${mid}].`,
-          explanationHinglish: `arr[${mid}] (${midVal}) target (${targetVal}) se chhota hai. Target right half mein hoga! Left region [${low}...${mid}] eliminate (divide out) ho gaya.`,
+          explanationHinglish: `arr[${mid}] (${midVal}) target (${targetVal}) se chhota hai. Target right half mein hoga! Left region [${low}...${mid}] fade grey (ignored) ho gaya.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'NONE' },
         });
@@ -163,8 +184,8 @@ export const binary_search: LessonProgram = {
         delete mem.mid;
         steps.push({
           step: stepNum++, lineNum: 11,
-          explanationEnglish: `Shift low pointer to mid + 1 = ${low}. New search range: [${low}...${high}].`,
-          explanationHinglish: `Low pointer ko mid + 1 = ${low} par shift kiya. Naya active search range: [${low}...${high}].`,
+          explanationEnglish: `Shift low pointer to mid + 1 = ${low}. New search range: [index ${low}...${high}]. Ignored part faded grey.`,
+          explanationHinglish: `Low pointer ko mid + 1 = ${low} par shift kiya. Naya active search range: [index ${low}...${high}]. Ignored part fade grey.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'UPDATE_VARIABLE', name: 'low', oldValue: prevLow, newValue: low },
         });
@@ -173,7 +194,7 @@ export const binary_search: LessonProgram = {
         steps.push({
           step: stepNum++, lineNum: 12,
           explanationEnglish: `arr[${mid}] (${midVal}) > target (${targetVal}). Target lies in the left half! Eliminating right range [${mid}...${high}].`,
-          explanationHinglish: `arr[${mid}] (${midVal}) target (${targetVal}) se bada hai. Target left half mein hoga! Right region [${mid}...${high}] eliminate (divide out) ho gaya.`,
+          explanationHinglish: `arr[${mid}] (${midVal}) target (${targetVal}) se bada hai. Target left half mein hoga! Right region [${mid}...${high}] fade grey (ignored) ho gaya.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'NONE' },
         });
@@ -185,8 +206,8 @@ export const binary_search: LessonProgram = {
         delete mem.mid;
         steps.push({
           step: stepNum++, lineNum: 13,
-          explanationEnglish: `Shift high pointer to mid - 1 = ${high}. New search range: [${low}...${high}].`,
-          explanationHinglish: `High pointer ko mid - 1 = ${high} par shift kiya. Naya active search range: [${low}...${high}].`,
+          explanationEnglish: `Shift high pointer to mid - 1 = ${high}. New search range: [index ${low}...${high}]. Ignored part faded grey.`,
+          explanationHinglish: `High pointer ko mid - 1 = ${high} par shift kiya. Naya active search range: [index ${low}...${high}]. Ignored part fade grey.`,
           memorySnapshot: { ...mem },
           animationEvent: { type: 'UPDATE_VARIABLE', name: 'high', oldValue: prevHigh, newValue: high },
         });
@@ -197,7 +218,3 @@ export const binary_search: LessonProgram = {
   },
   executionSteps: [],
 };
-
-function currentValStr(val: number): string {
-  return String(val);
-}
