@@ -147,7 +147,7 @@ export const CustomFlowchartStage: React.FC = () => {
 
   const isMatchTopic = lesson.topic === 'match_case';
   const hasLoopKeyword = lesson.lines.some(l => l.tokens.some(t => t.type === 'keyword' && (t.value === 'for' || t.value === 'while')));
-  const isLoopTopic = ['for_loop', 'while_loop', 'nested_loop', 'loop_control'].includes(lesson.topic) || hasLoopKeyword;
+  const isLoopTopic = (['for_loop', 'while_loop', 'nested_loop', 'loop_control'].includes(lesson.topic) || hasLoopKeyword) && lesson.topic !== 'searching_sorting';
 
   // Parse cases from lesson lines dynamically (for match_case)
   const casesList: { value: string; displayValue: string }[] = [];
@@ -1560,24 +1560,29 @@ export const CustomFlowchartStage: React.FC = () => {
                             COMPLETED PASS HISTORY:
                           </span>
                           {mem.passSnapshots.map((pSnap: any, idx: number) => (
-                            <div key={idx} className="flex flex-col gap-1 bg-slate-900/90 border border-emerald-500/25 rounded-xl p-2 text-xs font-mono">
+                            <div key={idx} className="flex flex-col gap-1.5 bg-slate-900/90 border border-emerald-500/30 rounded-xl p-2.5 text-xs font-mono shadow-sm">
                               <div className="flex items-center justify-between">
                                 <span className="text-emerald-400 font-black">Pass {pSnap.pass}:</span>
-                                <span className="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded font-extrabold">
-                                  🔒 Locked: {pSnap.lockedValue}
+                                <span className="text-[10px] text-amber-300 bg-amber-500/15 border border-amber-500/40 px-2 py-0.5 rounded-md font-extrabold shadow-sm">
+                                  ✨ Locked: {pSnap.lockedValue} at [{pSnap.lockedIndex}]
                                 </span>
                               </div>
-                              <div className="flex gap-1 items-center font-bold overflow-x-auto custom-scrollbar py-0.5">
+                              <div className="flex gap-1 items-center font-bold overflow-x-auto custom-scrollbar py-1">
                                 {pSnap.array.map((val: any, cellIdx: number) => {
+                                  const isJustLocked = cellIdx === pSnap.lockedIndex;
                                   const isLocked = cellIdx >= pSnap.array.length - pSnap.pass;
                                   return (
                                     <span 
                                       key={cellIdx} 
-                                      className={`px-1.5 py-0.5 rounded text-[11px] ${
-                                        isLocked ? 'bg-emerald-500/25 text-emerald-200 border border-emerald-400/50 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]' : 'text-slate-300'
+                                      className={`px-2 py-1 rounded-md text-[11px] font-mono transition-all ${
+                                        isJustLocked
+                                          ? 'bg-amber-500/35 text-amber-200 border-2 border-amber-400 font-black shadow-[0_0_12px_rgba(245,158,11,0.6)] animate-pulse scale-105'
+                                          : isLocked
+                                          ? 'bg-emerald-500/25 text-emerald-200 border border-emerald-400/50 font-black shadow-[0_0_8px_rgba(16,185,129,0.3)]'
+                                          : 'bg-slate-950/80 text-slate-400 border border-slate-800'
                                       }`}
                                     >
-                                      {val}
+                                      [{cellIdx}]: {val}
                                     </span>
                                   );
                                 })}
