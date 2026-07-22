@@ -91,11 +91,19 @@ const pythonTopics = [
 ];
 
 const cTopics = [
-  { id: 'data_types', number: '01', name: 'Data Types & Variables', subtitle: 'int, float, double, char memory allocation', programsCount: 3, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#38bdf8' },
-  { id: 'if_else', number: '02', name: 'If Else & Conditionals', subtitle: 'Conditional Branching Execution', programsCount: 1, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
-  { id: 'loops', number: '03', name: 'Loops (For Loop)', subtitle: 'Counted Loop Repetition', programsCount: 1, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
-  { id: 'functions', number: '04', name: 'Functions', subtitle: 'Call Stack & Return Values', programsCount: 1, difficulty: 'Intermediate' as const, category: 'functions', accentColor: '#8b5cf6' },
-  { id: 'arrays', number: '05', name: '1D Arrays', subtitle: 'Contiguous Memory & Indexing', programsCount: 1, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
+  { id: 'variables', number: '01', name: 'Variables', subtitle: 'Data Types & Memory', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#38bdf8' },
+  { id: 'operators', number: '02', name: 'Operators', subtitle: 'Arithmetic & Expressions', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#10b981' },
+  { id: 'user_input', number: '03', name: 'User Input', subtitle: 'scanf Function Reading', programsCount: 3, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#14b8a6' },
+  { id: 'type_casting', number: '04', name: 'Type Casting', subtitle: 'Implicit & Explicit Casting', programsCount: 3, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#eab308' },
+  { id: 'if_else', number: '05', name: 'If Else', subtitle: 'Two-Path Decisions', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#6366f1' },
+  { id: 'if_elif_else', number: '06', name: 'If Else If', subtitle: 'Multi-Condition Ladder', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#4f46e5' },
+  { id: 'switch_case', number: '07', name: 'Switch Case', subtitle: 'Option & Menu Selection', programsCount: 4, difficulty: 'Beginner' as const, category: 'basics', accentColor: '#ec4899' },
+  { id: 'for_loop', number: '08', name: 'For Loop', subtitle: 'Counted Iteration', programsCount: 4, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#06b6d4' },
+  { id: 'while_loop', number: '09', name: 'While Loop', subtitle: 'Conditional Repetition', programsCount: 4, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#0891b2' },
+  { id: 'do_while_loop', number: '10', name: 'Do-While Loop', subtitle: 'Exit-Controlled Repetition', programsCount: 2, difficulty: 'Intermediate' as const, category: 'loops', accentColor: '#0284c7' },
+  { id: 'strings', number: '11', name: 'Strings', subtitle: 'Character Arrays & strlen', programsCount: 3, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#8b5cf6' },
+  { id: 'functions', number: '12', name: 'Functions', subtitle: 'Functions & Scope', programsCount: 3, difficulty: 'Intermediate' as const, category: 'functions', accentColor: '#a855f7' },
+  { id: 'arrays_1d', number: '13', name: '1D Arrays', subtitle: 'Indexed Contiguous Memory', programsCount: 3, difficulty: 'Intermediate' as const, category: 'data', accentColor: '#f59e0b' },
 ];
 
 const cppTopics = [

@@ -145,23 +145,77 @@ const mockProgramsByTopic: Record<string, { id: string; number: string; friendly
 
 const otherProgramsByLang: Record<string, Record<string, { id: string; number: string; friendlyName: string; description: string }[]>> = {
   c: {
-    data_types: [
+    variables: [
       { id: 'c_int', number: '01', friendlyName: 'Integer Data Type (int)', description: 'Understand how C allocates 4 bytes of memory for storing integers.' },
       { id: 'c_float', number: '02', friendlyName: 'Float & Double Data Types', description: 'Learn decimal storage with float and double precision in C.' },
-      { id: 'c_char', number: '03', friendlyName: 'Char & ASCII Storage', description: 'Learn how C stores single characters using 1-byte ASCII codes.' }
+      { id: 'c_char', number: '03', friendlyName: 'Char & ASCII Storage', description: 'Learn how C stores single characters using 1-byte ASCII codes.' },
+      { id: 'c_swap_temp', number: '04', friendlyName: 'Swap Two Variables (Using Temp)', description: 'Understand variable value swapping using a third temporary memory slot in C.' },
+    ],
+    operators: [
+      { id: 'c_arithmetic', number: '01', friendlyName: 'Arithmetic Operators (+, -, *, /, %)', description: 'Master C arithmetic operator evaluation rules and integer division vs modulo.' },
+      { id: 'c_relational_logical', number: '02', friendlyName: 'Relational & Logical Operators (&&, ||, !)', description: 'Combine multiple boolean evaluation conditions with logical operators in C.' },
+      { id: 'c_inc_dec', number: '03', friendlyName: 'Pre-increment vs Post-increment (++i vs i++)', description: 'Understand side effects and memory evaluation timing of ++ operators in C.' },
+      { id: 'c_circle_geometry', number: '04', friendlyName: 'Circle Area & Circumference Formulas', description: 'Apply mathematical float expressions for geometry calculations in C.' },
+    ],
+    user_input: [
+      { id: 'c_scanf_integer', number: '01', friendlyName: 'Read Console Integer Input (scanf)', description: 'Read standard user integer input using scanf with format specifiers.' },
+      { id: 'c_scanf_float', number: '02', friendlyName: 'Read Console Floating Point (scanf)', description: 'Read decimal floating point input using scanf.' },
+      { id: 'c_scanf_string', number: '03', friendlyName: 'Read String Input (scanf)', description: 'Read character array string input in C.' },
+    ],
+    type_casting: [
+      { id: 'c_implicit_casting', number: '01', friendlyName: 'Implicit Widening Type Casting', description: 'Learn automatic conversion from smaller int to float without precision loss.' },
+      { id: 'c_explicit_casting', number: '02', friendlyName: 'Explicit Type Casting ((int)val)', description: 'Perform explicit type conversions in C.' },
+      { id: 'c_char_ascii', number: '03', friendlyName: 'Char to ASCII Integer Code Conversion', description: 'Understand single character storage as 1-byte ASCII integer codes.' },
     ],
     if_else: [
-      { id: 'c_even_odd', number: '01', friendlyName: 'Even or Odd Check in C', description: 'Understand conditional branch execution using modulo % and if-else in C.' }
+      { id: 'c_even_odd', number: '01', friendlyName: 'Even or Odd Check in C', description: 'Understand conditional branch execution using modulo % and if-else in C.' },
+      { id: 'c_largest_three', number: '02', friendlyName: 'Largest of Three Numbers', description: 'Learn nested conditional evaluation using logical AND (&&) in C.' },
+      { id: 'c_leap_year', number: '03', friendlyName: 'Leap Year Checker', description: 'Evaluate compound leap year criteria (% 4, % 100, % 400).' },
+      { id: 'c_vowel_consonant', number: '04', friendlyName: 'Vowel or Consonant Check', description: 'Check vowel character matching in C if-else.' },
     ],
-    loops: [
-      { id: 'c_for_loop', number: '01', friendlyName: 'For Loop Counter in C', description: 'Understand initialization, condition check, and increment in C for loop.' }
+    if_elif_else: [
+      { id: 'c_marks_grade', number: '01', friendlyName: 'Student Grade System (If-Else Ladder)', description: 'Evaluate multi-tier marks grading system using if-else if ladder.' },
+      { id: 'c_tax_calc', number: '02', friendlyName: 'Income Tax Slab Calculator', description: 'Compute variable tax slabs based on total income in C.' },
+      { id: 'c_pos_neg_zero', number: '03', friendlyName: 'Positive, Negative, or Zero Checker', description: 'Classify any integer into Positive, Negative, or Zero.' },
+      { id: 'c_electricity_bill', number: '04', friendlyName: 'Tiered Electricity Bill Calculator', description: 'Calculate utility electricity bills by consumption units.' },
+    ],
+    switch_case: [
+      { id: 'c_switch_day', number: '01', friendlyName: 'Day of Week Switch Case', description: 'Understand C switch jump tables and break execution.' },
+      { id: 'c_switch_calc', number: '02', friendlyName: 'Menu-Driven Arithmetic Calculator', description: 'Build operation selector using char switch in C.' },
+      { id: 'c_switch_vowel', number: '03', friendlyName: 'Vowel or Consonant Check (Fallthrough)', description: 'Learn case fallthrough grouping for multiple matching conditions.' },
+      { id: 'c_switch_month', number: '04', friendlyName: 'Season Finder by Month Number', description: 'Map month ranges to seasonal weather using switch case.' },
+    ],
+    for_loop: [
+      { id: 'c_for_sum', number: '01', friendlyName: 'Sum of First N Natural Numbers', description: 'Accumulate sum inside a for loop counter in C.' },
+      { id: 'c_multiplication_table', number: '02', friendlyName: 'Multiplication Table Generator', description: 'Generate formatted multiplication tables using for loops.' },
+      { id: 'c_even_numbers', number: '03', friendlyName: 'Print Even Numbers up to N', description: 'Loop with step increment (i += 2) to filter even numbers.' },
+      { id: 'c_fibonacci', number: '04', friendlyName: 'Fibonacci Series Generator (N terms)', description: 'Generate N Fibonacci terms (0, 1, 1, 2, 3...) using for loops.' },
+    ],
+    while_loop: [
+      { id: 'c_while_basic', number: '01', friendlyName: 'While Loop Counter Accumulator', description: 'Learn while loop conditional repetition and state updates in C.' },
+      { id: 'c_digit_sum', number: '02', friendlyName: 'Sum of Digits (While Loop)', description: 'Extract digits using % 10 and / 10 inside a while loop.' },
+      { id: 'c_factorial', number: '03', friendlyName: 'Factorial Calculation', description: 'Compute multiplicative factorial sequence using while loops.' },
+      { id: 'c_reverse_num', number: '04', friendlyName: 'Reverse an Integer Number', description: 'Shift and reverse integer digits in C while loop.' },
+    ],
+    do_while_loop: [
+      { id: 'c_do_while_basic', number: '01', friendlyName: 'Do-While Guaranteed Execution', description: 'Understand exit-controlled loop execution guaranteed to run at least once.' },
+      { id: 'c_do_while_sum', number: '02', friendlyName: 'Accumulator Loop (Do-While)', description: 'Accumulate numbers inside a do-while loop in C.' },
+    ],
+    strings: [
+      { id: 'c_string_length', number: '01', friendlyName: 'String Length Calculation (strlen)', description: 'Measure null-terminated character array length.' },
+      { id: 'c_string_copy', number: '02', friendlyName: 'String Copy Operation (strcpy)', description: 'Copy character array contents into destination buffer.' },
+      { id: 'c_string_reverse', number: '03', friendlyName: 'Reverse a Character Array String', description: 'Reverse character array in-place using two-pointer swap.' },
     ],
     functions: [
-      { id: 'c_functions', number: '01', friendlyName: 'Function Declaration & Return in C', description: 'Learn function parameter passing and value returning in C.' }
+      { id: 'c_functions', number: '01', friendlyName: 'Function Declaration & Return in C', description: 'Learn function parameter passing and value returning in C.' },
+      { id: 'c_func_addition', number: '02', friendlyName: 'Custom Addition Function with Parameters', description: 'Pass multiple parameters to function and receive return value.' },
+      { id: 'c_func_call_by_val', number: '03', friendlyName: 'Call by Value Parameter Passing', description: 'Understand local stack parameter copies in C functions.' },
     ],
-    arrays: [
-      { id: 'c_array_sum', number: '01', friendlyName: '1D Array Declaration & Element Sum', description: 'Understand contiguous memory allocation and zero-based indexing in C arrays.' }
-    ]
+    arrays_1d: [
+      { id: 'c_array_sum', number: '01', friendlyName: '1D Array Declaration & Element Sum', description: 'Understand contiguous memory allocation and zero-based indexing in C arrays.' },
+      { id: 'c_array_max', number: '02', friendlyName: 'Find Maximum Element in 1D Array', description: 'Learn 1D array iteration and comparison logic in C.' },
+      { id: 'c_linear_search', number: '03', friendlyName: 'Linear Search in 1D Array', description: 'Search target element in array with early break execution.' },
+    ],
   },
   cpp: {
     variables: [
