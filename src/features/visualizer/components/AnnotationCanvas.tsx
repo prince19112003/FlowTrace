@@ -105,7 +105,9 @@ export const AnnotationCanvas: React.FC<AnnotationCanvasProps> = ({ isActive, co
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
       style={{
-        cursor: isActive ? 'crosshair' : 'default',
+        cursor: isActive 
+          ? `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z' fill='%23818cf8' stroke='white' stroke-width='1.5'/><path d='m15 5 4 4' stroke='white' stroke-width='1.5'/></svg>") 2 22, pointer`
+          : 'default',
         pointerEvents: isActive ? 'all' : 'none',
         touchAction: 'none',
         zIndex: 30,
