@@ -8,9 +8,10 @@ interface VariableBoxProps {
   isActive?: boolean;
   colorTheme?: 'default' | 'grey' | 'orange' | 'fuchsia' | 'teal';
   isSmall?: boolean;
+  varType?: string;
 }
 
-export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue, isActive, colorTheme = 'default', isSmall }) => {
+export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue, isActive, colorTheme = 'default', isSmall, varType }) => {
   const isLiteral = name === String(value);
   
   let colorClasses = isLiteral
@@ -25,8 +26,6 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
     colorClasses = isActive ? 'border-fuchsia-400 bg-fuchsia-500/20 text-fuchsia-200' : 'border-fuchsia-500/50 bg-fuchsia-900/30 text-fuchsia-400';
   } else if (colorTheme === 'teal') {
     colorClasses = isActive ? 'border-teal-400 bg-teal-500/20 text-teal-200' : 'border-teal-500/50 bg-teal-900/30 text-teal-400';
-  } else if (false) {
-    colorClasses = isActive ? 'border-orange-400 bg-orange-500/20 text-orange-200' : 'border-orange-500/50 bg-orange-900/30 text-orange-400';
   }
 
   const height = isSmall ? '2.5rem' : '3.5rem';
@@ -53,15 +52,22 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
 
   return (
     <div className="relative flex flex-col items-center">
-      {/* Name tag positioned above the box */}
+      {/* Name tag + type badge positioned above the box */}
       {name !== String(value) && (
-        <motion.span 
+        <motion.div 
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`absolute bottom-full ${labelMargin} left-1/2 -translate-x-1/2 ${labelSize} font-black tracking-wider text-blue-300 font-mono leading-none whitespace-nowrap px-1 z-10`}
+          className={`absolute bottom-full ${labelMargin} left-1/2 -translate-x-1/2 flex items-center gap-1 z-10 whitespace-nowrap`}
         >
-          {name}
-        </motion.span>
+          {varType && (
+            <span className="text-[9px] font-mono font-extrabold text-cyan-300 bg-cyan-950/80 border border-cyan-500/40 px-1 py-0.2 rounded leading-none uppercase tracking-wide">
+              {varType}
+            </span>
+          )}
+          <span className={`${labelSize} font-black tracking-wider text-blue-300 font-mono leading-none whitespace-nowrap px-0.5`}>
+            {name}
+          </span>
+        </motion.div>
       )}
 
       {/* The actual value box */}

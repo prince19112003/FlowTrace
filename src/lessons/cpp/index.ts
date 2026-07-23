@@ -50,7 +50,7 @@ export const cpp_types = createCppLesson(
       { step: 1, lineNum: 4, explanationEnglish: `Declare count = ${count} [4B].`, explanationHinglish: `Integer count (${count}) [4 Bytes] memory me allocate hua.`, memorySnapshot: { count: `${count} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'count', value: count } },
       { step: 2, lineNum: 5, explanationEnglish: `Declare gpa = ${gpa} [8B].`, explanationHinglish: `Double variable gpa (${gpa}) [8 Bytes] store hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [8B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'gpa', value: gpa } },
       { step: 3, lineNum: 6, explanationEnglish: `Declare isPassed = true [1B].`, explanationHinglish: `Boolean isPassed = true [1 Byte] slot me store hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [8B]`, isPassed: 'true [1B]' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'isPassed', value: 'true' } },
-      { step: 4, lineNum: 7, explanationEnglish: `cout prints output.`, explanationHinglish: `std::cout se terminal me Output display hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [8B]`, isPassed: 'true [1B]' }, consoleOutput: `Count: ${count} GPA: ${gpa}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'count', outputValue: count } }
+      { step: 4, lineNum: 7, explanationEnglish: `cout prints output.`, explanationHinglish: `std::cout se terminal me Output display hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [8B]`, isPassed: 'true [1B]' }, consoleOutput: `Count: ${count} GPA: ${gpa}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'cout', outputValue: `Count: ${count} GPA: ${gpa}` } }
     ];
   }
 );

@@ -101,6 +101,19 @@ const parseDataStructure = (val: any) => {
   }
 };
 
+const getVarTypeForLanguage = (varName: string, lessonLines: any[], language?: string) => {
+  if (!varName || !lessonLines || (language !== 'cpp' && language !== 'c' && language !== 'java')) return undefined;
+  for (const line of lessonLines) {
+    const tokens = line.tokens || [];
+    const varIdx = tokens.findIndex((t: any) => t.value === varName && (t.type === 'variable' || t.type === 'parameter'));
+    if (varIdx > 0) {
+      const kwToken = tokens.slice(0, varIdx).reverse().find((t: any) => t.type === 'keyword' && ['int', 'double', 'float', 'bool', 'char', 'void', 'long', 'string', 'short', 'auto', 'struct', 'const'].includes(t.value));
+      if (kwToken) return kwToken.value;
+    }
+  }
+  return undefined;
+};
+
 const getPointersAndRange = (memSnapshot: Record<string, any>) => {
   if (!memSnapshot) return { pointers: undefined, searchRange: undefined };
   const low = typeof memSnapshot.low === 'number' ? memSnapshot.low : undefined;
@@ -479,7 +492,7 @@ export const CustomFlowchartStage: React.FC = () => {
               const { variant, items } = parseDataStructure(ev.value);
               return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
             })() : (
-              <VariableBox name={ev.name} value={ev.value} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} />
+              <VariableBox name={ev.name} value={ev.value} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines, lesson.language)} />
             )
           )}
 
@@ -490,7 +503,7 @@ export const CustomFlowchartStage: React.FC = () => {
                   const { variant, items } = parseDataStructure(v.value);
                   return <DataStructureBox key={idx} name={v.name} variant={variant} items={items} isActive={isLatest} />;
                 })() : (
-                  <VariableBox key={idx} name={v.name} value={v.value} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} />
+                  <VariableBox key={idx} name={v.name} value={v.value} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(v.name, lesson.lines, lesson.language)} />
                 )
               ))}
             </div>
@@ -501,7 +514,7 @@ export const CustomFlowchartStage: React.FC = () => {
               const { variant, items } = parseDataStructure(ev.newValue);
               return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
             })() : (
-              <VariableBox name={ev.name} value={ev.newValue} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} />
+              <VariableBox name={ev.name} value={ev.newValue} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines, lesson.language)} />
             )
           )}
 

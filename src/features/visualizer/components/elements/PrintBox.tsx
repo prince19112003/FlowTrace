@@ -27,23 +27,27 @@ export const PrintBox: React.FC<PrintBoxProps> = ({ variableName, value, isActiv
     labelColor = 'text-teal-400';
   }
 
-  const height = isSmall ? '2.5rem' : '3.5rem';
+  const minHeight = isSmall ? '2.5rem' : '3.5rem';
   const minWidth = isSmall ? '3.5rem' : '4.5rem';
   const px = isSmall ? 'px-3' : 'px-5';
-  const textSize = isSmall ? 'text-sm' : 'text-xl';
+  const textSize = isSmall ? 'text-xs' : 'text-sm';
   const gap = isSmall ? 'gap-1' : 'gap-1.5';
   const labelSize = isSmall ? 'text-[9px]' : 'text-[11px]';
+
+  const displayText = (value !== undefined && value !== null && String(value).trim() !== '')
+    ? String(value)
+    : (variableName || '');
 
   return (
     <div className={`flex flex-col items-center ${gap}`}>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className={`flex items-center justify-center ${px} rounded-xl border-2 transition-colors duration-300 ${colorClasses}`}
-        style={{ height, minWidth }}
+        className={`flex items-center justify-center ${px} py-2 rounded-xl border-2 transition-colors duration-300 ${colorClasses} w-fit max-w-md text-center`}
+        style={{ minHeight, minWidth }}
       >
-        <span className={`font-mono font-bold ${textSize} text-white`}>
-          {variableName ? variableName : value}
+        <span className={`font-mono font-bold ${textSize} text-white whitespace-pre-wrap leading-tight`}>
+          {displayText}
         </span>
       </motion.div>
       <span className={`${labelSize} font-black tracking-wider font-mono leading-none ${labelColor}`}>
