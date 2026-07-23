@@ -277,22 +277,33 @@ export const cpp_arithmetic = createCppLesson(
 export const cpp_relational_logical = createCppLesson(
   'cpp_relational_logical', 'operators', 2,
   'Relational & Logical Operators (&&, ||, !)',
-  'Combine boolean logic conditions.',
+  'Understand comparison rules and combine conditions with boolean logic.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
     { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Relational & Logical Operators (&&, ||, !): "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'age' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '20', paramId: 'age' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'bool' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'hasID' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'true', paramId: 'hasID' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'bool' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'canVote' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'age' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '>=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '18' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '&&' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'hasID' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'bool' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'discount' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'age' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '12' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '||' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'age' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '>=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '60' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { age: { default: 20, label: 'age (int)' }, hasID: { default: 'true', label: 'hasID (bool)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const age = Number(vars.age ?? 20);
+    const hasID = String(vars.hasID ?? 'true') === 'true';
+    const canVote = age >= 18 && hasID;
+    const discount = age < 12 || age >= 60;
+    const hasIDStr = hasID ? 'true' : 'false';
+    const canVoteStr = canVote ? 'true' : 'false';
+    const discountStr = discount ? 'true' : 'false';
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: Condition (age >= 18 && hasID) is TRUE.`, explanationHinglish: `std::cout output display hua: Condition (age >= 18 && hasID) is TRUE.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `Condition (age >= 18 && hasID) is TRUE`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize age = ${age}.`, explanationHinglish: `Variable age (${age}) memory me allocate hua.`, memorySnapshot: { age: `${age} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'age', value: age } },
+      { step: 2, lineNum: 5, explanationEnglish: `Initialize hasID = ${hasIDStr}.`, explanationHinglish: `Boolean hasID (${hasIDStr}) memory me store hua.`, memorySnapshot: { age: `${age} [4B]`, hasID: `${hasIDStr} [1B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'hasID', value: hasIDStr } },
+      { step: 3, lineNum: 6, explanationEnglish: `Evaluate canVote = (age >= 18 && hasID) -> (${age} >= 18 && ${hasIDStr}) = ${canVoteStr}.`, explanationHinglish: `canVote (${canVoteStr}) calculate hokar store hua.`, memorySnapshot: { age: `${age} [4B]`, hasID: `${hasIDStr} [1B]`, canVote: `${canVoteStr} [1B]` }, animationEvent: { type: 'COMPUTE', inputs: ['age', 'hasID'], operator: '>= &&', storeIn: 'canVote', result: canVoteStr } },
+      { step: 4, lineNum: 7, explanationEnglish: `Evaluate discount = (age < 12 || age >= 60) -> (${age} < 12 || ${age} >= 60) = ${discountStr}.`, explanationHinglish: `discount (${discountStr}) calculate hokar store hua.`, memorySnapshot: { age: `${age} [4B]`, hasID: `${hasIDStr} [1B]`, canVote: `${canVoteStr} [1B]`, discount: `${discountStr} [1B]` }, animationEvent: { type: 'COMPUTE', inputs: ['age', 'age'], operator: '< || >=', storeIn: 'discount', result: discountStr } }
     ];
   }
 );
@@ -301,22 +312,29 @@ export const cpp_relational_logical = createCppLesson(
 export const cpp_inc_dec = createCppLesson(
   'cpp_inc_dec', 'operators', 3,
   'Pre-increment vs Post-increment (++i vs i++)',
-  'Understand ++ operator side effects.',
+  'Master prefix and postfix increment statements and memory updates.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
     { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Pre-increment vs Post-increment (++i vs i++): "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'x' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '5', paramId: 'x' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'y' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '++' }, { type: 'variable' as const, value: 'x' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'z' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'x' }, { type: 'operator' as const, value: '++' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { x: { default: 5, label: 'x (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const startX = Number(vars.x ?? 5);
+    const preX = startX + 1;
+    const postX = preX + 1;
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: Pre: ++x = 6, Post: y++ = 5 (y becomes 6).`, explanationHinglish: `std::cout output display hua: Pre: ++x = 6, Post: y++ = 5 (y becomes 6).`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `Pre: ++x = 6, Post: y++ = 5 (y becomes 6)`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize x = ${startX}.`, explanationHinglish: `Variable x (${startX}) memory me allocate hua.`, memorySnapshot: { x: `${startX} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'x', value: startX } },
+      { step: 2, lineNum: 5, explanationEnglish: `Pre-increment x first: x becomes ${preX}.`, explanationHinglish: `Pehle x ki value increment hokar ${preX} hui.`, memorySnapshot: { x: `${preX} [4B]` }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'x', newValue: preX, oldValue: startX } },
+      { step: 3, lineNum: 5, explanationEnglish: `Assign value to y: y = ${preX}.`, explanationHinglish: `y me incremented value (${preX}) store hui.`, memorySnapshot: { x: `${preX} [4B]`, y: `${preX} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'y', value: preX } },
+      { step: 4, lineNum: 6, explanationEnglish: `Assign current x to z first: z = ${preX}.`, explanationHinglish: `Pehle z me current x (${preX}) copy hua.`, memorySnapshot: { x: `${preX} [4B]`, y: `${preX} [4B]`, z: `${preX} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'z', value: preX } },
+      { step: 5, lineNum: 6, explanationEnglish: `Post-increment x afterwards: x becomes ${postX}.`, explanationHinglish: `Z me value copy karne ke baad x increment hokar ${postX} hua.`, memorySnapshot: { x: `${postX} [4B]`, y: `${preX} [4B]`, z: `${preX} [4B]` }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'x', newValue: postX, oldValue: preX } }
     ];
   }
 );
@@ -325,22 +343,37 @@ export const cpp_inc_dec = createCppLesson(
 export const cpp_circle_geometry = createCppLesson(
   'cpp_circle_geometry', 'operators', 4,
   'Circle Area & Circumference Formulas',
-  'Apply double arithmetic expressions.',
+  'Calculate circle properties using mathematical operators and constants.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
     { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Circle Area & Circumference Formulas: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'float' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'radius' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '5.0000f', paramId: 'radius' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'const' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'float' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'PI' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '3.1416f', paramId: 'PI' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'float' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'area' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'PI' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '*' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'radius' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '*' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'radius' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'float' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'circum' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '2.0000f' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '*' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'PI' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '*' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'radius' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { radius: { default: 5.0, label: 'radius (float)' }, PI: { default: 3.1416, label: 'PI (float)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const radiusRaw = Number(vars.radius ?? 5.0);
+    const piRaw = Number(vars.PI ?? 3.1416);
+
+    const radius = isNaN(radiusRaw) ? '5.0000' : radiusRaw.toFixed(4);
+    const PI = isNaN(piRaw) ? '3.1416' : piRaw.toFixed(4);
+
+    const areaVal = radiusRaw * radiusRaw * piRaw;
+    const circumVal = 2.0 * piRaw * radiusRaw;
+
+    const area = isNaN(areaVal) ? '78.5400' : areaVal.toFixed(4);
+    const circum = isNaN(circumVal) ? '31.4160' : circumVal.toFixed(4);
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: Area = 153.94, Circumference = 43.98.`, explanationHinglish: `std::cout output display hua: Area = 153.94, Circumference = 43.98.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `Area = 153.94, Circumference = 43.98`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize radius = ${radius}f.`, explanationHinglish: `Variable radius (${radius}) [4 Bytes] memory me allocate hua.`, memorySnapshot: { radius: `${radius} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'radius', value: radius } },
+      { step: 2, lineNum: 5, explanationEnglish: `Initialize constant PI = ${PI}f.`, explanationHinglish: `Constant PI (${PI}) memory me store hua.`, memorySnapshot: { radius: `${radius} [4B]`, PI: `${PI} [const]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'PI', value: PI } },
+      { step: 3, lineNum: 6, explanationEnglish: `Calculate area = PI * radius * radius = ${area}f.`, explanationHinglish: `area = ${PI} * ${radius} * ${radius} = ${area} store hua.`, memorySnapshot: { radius: `${radius} [4B]`, PI: `${PI} [const]`, area: `${area} [4B]` }, animationEvent: { type: 'COMPUTE', inputs: ['PI', 'radius', 'radius'], operator: '* *', storeIn: 'area', result: area } },
+      { step: 4, lineNum: 7, explanationEnglish: `Calculate circum = 2.0f * PI * radius = ${circum}f.`, explanationHinglish: `circum = 2.0 * ${PI} * ${radius} = ${circum} store hua.`, memorySnapshot: { radius: `${radius} [4B]`, PI: `${PI} [const]`, area: `${area} [4B]`, circum: `${circum} [4B]` }, animationEvent: { type: 'COMPUTE', inputs: ['PI', 'radius'], operator: '* *', storeIn: 'circum', result: circum } }
     ];
   }
 );
