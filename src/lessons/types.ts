@@ -24,8 +24,8 @@ export interface CodeLine {
 // ─── Animation Event Types ────────────────────────────────────────────────────
 
 export type AnimationEvent =
-  | { type: 'CREATE_VARIABLE'; name: string; value: string | number }
-  | { type: 'UPDATE_VARIABLE'; name: string; oldValue: string | number; newValue: string | number }
+  | { type: 'CREATE_VARIABLE'; name: string; value: string | number; formula?: string }
+  | { type: 'UPDATE_VARIABLE'; name: string; oldValue: string | number; newValue: string | number; formula?: string }
   | { type: 'COPY_VALUE'; from: string; to: string; value: string | number }
   | { type: 'PRINT_VALUE'; variableName: string; outputValue: string | number }
   | { type: 'COMPUTE'; inputs: string[]; operator: string; result: string | number; storeIn: string }
