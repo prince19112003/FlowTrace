@@ -494,7 +494,7 @@ export const ProgramSelectionPage: React.FC = () => {
                   aria-label={`Open program ${prog.friendlyName}`}
                   onClick={() => navigate(`/visualizer/${languageId}/${topicId}/${prog.id}`)}
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(`/visualizer/${languageId}/${topicId}/${prog.id}`); }}
-                  className="flex flex-col min-h-[200px] p-5 rounded-xl transition-all duration-200 group relative overflow-hidden"
+                  className="flex flex-col min-h-50 p-5 rounded-xl transition-all duration-200 group relative overflow-hidden"
                   style={{
                     background: 'rgba(15, 17, 23, 0.70)',
                     border: '1px solid rgba(255,255,255,0.06)',

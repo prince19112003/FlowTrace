@@ -270,7 +270,7 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
     <div className="flex items-center gap-3 relative">
       {/* 1. Left side: The inputs being calculated */}
       {isStringCalc ? (
-        <div className="flex flex-col items-center p-3 bg-slate-950/60 border border-slate-800/80 rounded-2xl gap-3 min-w-[240px] shadow-lg backdrop-blur-xs relative overflow-hidden">
+        <div className="flex flex-col items-center p-3 bg-slate-950/60 border border-slate-800/80 rounded-2xl gap-3 min-w-60 shadow-lg backdrop-blur-xs relative overflow-hidden">
           {/* Function badge */}
           <div className="text-[9px] font-black tracking-widest text-indigo-400 font-mono uppercase bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
             {operator === 'len()' ? 'len() function' : operator === 'upper()' ? '.upper() function' : '.lower() function'}
