@@ -202,17 +202,38 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
       }, 300);
 
       return () => clearInterval(timer);
-    } else if (operator === 'reverse()') {
-      let step = 0;
-      const len = itemsList.length;
-      if (len <= 1) return;
+      setCalcState('inputs');
+      const timer1 = setTimeout(() => {
+        setCalcState('calculating');
+      }, 600);
 
+      const timer2 = setTimeout(() => {
+        setCalcState('done');
+      }, 1400);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
+    }
+  }, [isActive, isStringCalc, itemsList.length]);
+
+  useEffect(() => {
+    if ((operator === 'index()' || operator === 'sort()' || operator === 'reverse()') && isActive && calcState === 'calculating') {
+      let step = 0;
+      const totalSteps = itemsList.length;
       const timer = setInterval(() => {
+        if (step >= totalSteps) {
+          clearInterval(timer);
+          setHighlightedIndices(undefined);
+          return;
+        }
+
         const left = step;
-        const right = len - 1 - step;
+        const right = totalSteps - 1 - step;
         if (left >= right) {
           clearInterval(timer);
-          setHighlightedIndices([]);
+          setHighlightedIndices(undefined);
         } else {
           setHighlightedIndices([left, right]);
           step++;
@@ -221,7 +242,7 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
 
       return () => clearInterval(timer);
     }
-  }, [calcState, operator, inputs, itemsList.length]);
+  }, [calcState, operator, isActive, itemsList.length]);
 
   return (
     <div className="flex items-center gap-3 relative">
@@ -297,19 +318,21 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
           return (
             <>
               {inputs.map((inp, i) => {
-                const val = prevMemorySnapshot[inp] ?? memorySnapshot[inp] ?? inp;
+                const rawVal = prevMemorySnapshot[inp] ?? memorySnapshot[inp] ?? inp;
+                const { value: cleanVal, varType } = cleanValueAndType(rawVal);
                 return (
                   <React.Fragment key={i}>
-                    {isDataStructure(val) ? (() => {
-                      const { variant, items } = parseDataStructure(val);
+                    {isDataStructure(cleanVal) ? (() => {
+                      const { variant, items } = parseDataStructure(cleanVal);
                       return <DataStructureBox name={inp} variant={variant} items={items} isActive={isActive && calcState === 'inputs'} highlightedIndex={highlightIdx} highlightedIndices={highlightedIndices} />;
                     })() : (
                       <VariableBox 
                         name={inp} 
-                        value={val} 
+                        value={cleanVal} 
                         isActive={isActive && calcState === 'inputs'} 
                         colorTheme={colorTheme} 
                         isSmall={isSmall}
+                        varType={varType}
                       />
                     )}
                     {i < inputs.length - 1 && <Operator symbol={operatorSymbols[i] || operatorSymbols[0] || '+'} isSmall={isSmall} />}
@@ -327,21 +350,23 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
       {/* 2. Right side: The Assignment Box */}
       <div className="relative flex items-center justify-center">
         {(() => {
-          const val = calcState === 'done' ? result : (prevMemorySnapshot[storeIn] ?? '');
+          const rawVal = calcState === 'done' ? result : (prevMemorySnapshot[storeIn] ?? '');
+          const { value: cleanVal, varType } = cleanValueAndType(rawVal);
           const showOutput = calcState === 'done';
           const outHighlightIdx = (operator === 'insert' && showOutput) ? Number(inputs[1]) : undefined;
           
-          return isDataStructure(val) ? (() => {
-            const { variant, items } = parseDataStructure(val);
+          return isDataStructure(cleanVal) ? (() => {
+            const { variant, items } = parseDataStructure(cleanVal);
             return <DataStructureBox name={storeIn} variant={variant} items={items} isActive={isActive && showOutput} highlightedIndex={outHighlightIdx} />;
           })() : (
             <VariableBox 
               name={storeIn} 
-              value={showOutput ? result : undefined} 
-              oldValue={prevMemorySnapshot[storeIn]}
+              value={showOutput ? cleanVal : undefined} 
+              oldValue={cleanValueAndType(prevMemorySnapshot[storeIn]).value}
               isActive={isActive && showOutput} 
               colorTheme={colorTheme}
               isSmall={isSmall}
+              varType={varType}
             />
           );
         })()}
