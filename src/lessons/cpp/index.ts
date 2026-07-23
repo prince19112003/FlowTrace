@@ -79,40 +79,41 @@ export const cpp_swap_temp = createCppLesson(
     return [
       {
         step: 1, lineNum: 4,
-        explanationEnglish: `Initialize int a = ${a}, int b = ${b}.`,
-        explanationHinglish: `Variables a (${a}) aur b (${b}) memory me allocate hue.`,
-        memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` },
-        animationEvent: {
-          type: 'MULTI_CREATE_VARIABLES',
-          variables: [
-            { name: 'a', value: a },
-            { name: 'b', value: b }
-          ]
-        }
+        explanationEnglish: `Declare int a = ${a}.`,
+        explanationHinglish: `Variable a (${a}) [4 Bytes] memory me allocate hua.`,
+        memorySnapshot: { a: `${a} [4B]` },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'a', value: a }
       },
       {
-        step: 2, lineNum: 5,
+        step: 2, lineNum: 4,
+        explanationEnglish: `Declare int b = ${b}.`,
+        explanationHinglish: `Variable b (${b}) [4 Bytes] memory me allocate hua.`,
+        memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'b', value: b }
+      },
+      {
+        step: 3, lineNum: 5,
         explanationEnglish: `int temp = a (${a}). Copy value of a to temp.`,
         explanationHinglish: `temp variable me a ki value (${a}) store ki.`,
         memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]`, temp: `${a} [4B]` },
         animationEvent: { type: 'CREATE_VARIABLE', name: 'temp', value: a }
       },
       {
-        step: 3, lineNum: 6,
+        step: 4, lineNum: 6,
         explanationEnglish: `a = b (${b}). Assign value of b into a.`,
         explanationHinglish: `b (${b}) ki value a me copy hui (a changed from ${a} -> ${b}).`,
         memorySnapshot: { a: `${b} [4B]`, b: `${b} [4B]`, temp: `${a} [4B]` },
         animationEvent: { type: 'COMPUTE', inputs: ['b'], operator: '=', storeIn: 'a', result: b }
       },
       {
-        step: 4, lineNum: 7,
+        step: 5, lineNum: 7,
         explanationEnglish: `b = temp (${a}). Assign value of temp into b. Swapping finished!`,
         explanationHinglish: `temp (${a}) ki value b me store hui -> b = ${a}. Swapping Complete!`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]`, temp: `${a} [4B]` },
         animationEvent: { type: 'COMPUTE', inputs: ['temp'], operator: '=', storeIn: 'b', result: a }
       },
       {
-        step: 5, lineNum: 8,
+        step: 6, lineNum: 8,
         explanationEnglish: `cout prints swapped values a: ${b}, b: ${a}.`,
         explanationHinglish: `Console par Swapped values display hui: a: ${b}, b: ${a}.`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]`, temp: `${a} [4B]` },
@@ -147,40 +148,41 @@ export const cpp_swap_no_temp = createCppLesson(
     return [
       {
         step: 1, lineNum: 4,
-        explanationEnglish: `Initialize int a = ${a}, int b = ${b}.`,
-        explanationHinglish: `a = ${a}, b = ${b} memory me store hue.`,
-        memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` },
-        animationEvent: {
-          type: 'MULTI_CREATE_VARIABLES',
-          variables: [
-            { name: 'a', value: a },
-            { name: 'b', value: b }
-          ]
-        }
+        explanationEnglish: `Declare int a = ${a}.`,
+        explanationHinglish: `a = ${a} memory me store hua.`,
+        memorySnapshot: { a: `${a} [4B]` },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'a', value: a }
       },
       {
-        step: 2, lineNum: 5,
+        step: 2, lineNum: 4,
+        explanationEnglish: `Declare int b = ${b}.`,
+        explanationHinglish: `b = ${b} memory me store hua.`,
+        memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` },
+        animationEvent: { type: 'CREATE_VARIABLE', name: 'b', value: b }
+      },
+      {
+        step: 3, lineNum: 5,
         explanationEnglish: `a = a + b -> ${a} + ${b} = ${sum}.`,
         explanationHinglish: `a me total sum store hua -> ${sum}.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${b} [4B]` },
         animationEvent: { type: 'COMPUTE', inputs: ['a', 'b'], operator: '+', storeIn: 'a', result: sum }
       },
       {
-        step: 3, lineNum: 6,
+        step: 4, lineNum: 6,
         explanationEnglish: `b = a - b -> ${sum} - ${b} = ${a}.`,
         explanationHinglish: `b me old a ki value aa gayi -> ${a}.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${a} [4B]` },
         animationEvent: { type: 'COMPUTE', inputs: ['a', 'b'], operator: '-', storeIn: 'b', result: a }
       },
       {
-        step: 4, lineNum: 7,
+        step: 5, lineNum: 7,
         explanationEnglish: `a = a - b -> ${sum} - ${a} = ${b}. Swapping Complete!`,
         explanationHinglish: `a me old b ki value store hui -> ${b}. Swapping finished!`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]` },
         animationEvent: { type: 'COMPUTE', inputs: ['a', 'b'], operator: '-', storeIn: 'a', result: b }
       },
       {
-        step: 5, lineNum: 8,
+        step: 6, lineNum: 8,
         explanationEnglish: `cout prints swapped values a: ${b}, b: ${a}.`,
         explanationHinglish: `Console pe Swapped values print hui: a: ${b}, b: ${a}.`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]` },
