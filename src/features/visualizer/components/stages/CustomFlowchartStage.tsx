@@ -517,17 +517,16 @@ export const CustomFlowchartStage: React.FC = () => {
               return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
             })() : (
               <div className="flex flex-col items-center gap-2">
+                <VariableBox name={ev.name} value={ev.newValue} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
                 {ev.formula && (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: -4 }}
+                    initial={{ opacity: 0, scale: 0.85, y: 4 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900/90 border border-amber-500/40 text-xs font-mono font-bold text-amber-300 shadow-lg shadow-amber-950/30"
+                    className="px-3 py-1 rounded-lg bg-slate-900/90 border border-amber-500/40 text-xs font-mono font-bold text-amber-300 shadow-md shadow-amber-950/30"
                   >
-                    <span className="text-amber-400">⚡ Operation:</span>
-                    <span>{ev.formula}</span>
+                    {ev.formula}
                   </motion.div>
                 )}
-                <VariableBox name={ev.name} value={ev.newValue} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
               </div>
             )
           )}
@@ -1280,17 +1279,16 @@ export const CustomFlowchartStage: React.FC = () => {
                           );
                         })() : (
                           <div className="flex flex-col items-center gap-3">
+                            <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
                             {ev.formula && (
                               <motion.div
-                                initial={{ opacity: 0, scale: 0.8, y: -4 }}
+                                initial={{ opacity: 0, scale: 0.85, y: 4 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                                className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900/90 border border-amber-500/40 text-xs font-mono font-bold text-amber-300 shadow-lg shadow-amber-950/30"
+                                className="px-3 py-1 rounded-lg bg-slate-900/90 border border-amber-500/40 text-xs font-mono font-bold text-amber-300 shadow-md shadow-amber-950/30"
                               >
-                                <span className="text-amber-400">⚡ Operation:</span>
-                                <span>{ev.formula}</span>
+                                {ev.formula}
                               </motion.div>
                             )}
-                            <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
                             {step.memorySnapshot?.arr && typeof step.memorySnapshot?.low === 'number' && typeof step.memorySnapshot?.high === 'number' && ev.name !== 'arr' && (() => {
                               const { variant, items } = parseDataStructure(step.memorySnapshot.arr);
                               const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);
