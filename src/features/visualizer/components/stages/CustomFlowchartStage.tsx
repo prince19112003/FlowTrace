@@ -101,13 +101,15 @@ const parseDataStructure = (val: any) => {
   }
 };
 
-const getVarTypeForLanguage = (varName: string, lessonLines: any[], language?: string) => {
-  if (!varName || !lessonLines || (language !== 'cpp' && language !== 'c' && language !== 'java')) return undefined;
+const getVarTypeForLanguage = (varName: string, lessonLines: any[]) => {
+  if (!varName || !lessonLines) return undefined;
   for (const line of lessonLines) {
-    const tokens = line.tokens || [];
-    const varIdx = tokens.findIndex((t: any) => t.value === varName && (t.type === 'variable' || t.type === 'parameter'));
+    const tokens = line?.tokens || [];
+    const varIdx = tokens.findIndex((t: any) => t.value === varName);
     if (varIdx > 0) {
-      const kwToken = tokens.slice(0, varIdx).reverse().find((t: any) => t.type === 'keyword' && ['int', 'double', 'float', 'bool', 'char', 'void', 'long', 'string', 'short', 'auto', 'struct', 'const'].includes(t.value));
+      const kwToken = tokens.slice(0, varIdx).reverse().find((t: any) => 
+        t.type === 'keyword' && ['int', 'double', 'float', 'bool', 'char', 'void', 'long', 'string', 'short', 'auto', 'struct', 'const'].includes(t.value)
+      );
       if (kwToken) return kwToken.value;
     }
   }
@@ -492,7 +494,7 @@ export const CustomFlowchartStage: React.FC = () => {
               const { variant, items } = parseDataStructure(ev.value);
               return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
             })() : (
-              <VariableBox name={ev.name} value={ev.value} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines, lesson.language)} />
+              <VariableBox name={ev.name} value={ev.value} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
             )
           )}
 
@@ -503,7 +505,7 @@ export const CustomFlowchartStage: React.FC = () => {
                   const { variant, items } = parseDataStructure(v.value);
                   return <DataStructureBox key={idx} name={v.name} variant={variant} items={items} isActive={isLatest} />;
                 })() : (
-                  <VariableBox key={idx} name={v.name} value={v.value} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(v.name, lesson.lines, lesson.language)} />
+                  <VariableBox key={idx} name={v.name} value={v.value} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(v.name, lesson.lines)} />
                 )
               ))}
             </div>
@@ -514,7 +516,7 @@ export const CustomFlowchartStage: React.FC = () => {
               const { variant, items } = parseDataStructure(ev.newValue);
               return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
             })() : (
-              <VariableBox name={ev.name} value={ev.newValue} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines, lesson.language)} />
+              <VariableBox name={ev.name} value={ev.newValue} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
             )
           )}
 
@@ -1235,7 +1237,7 @@ export const CustomFlowchartStage: React.FC = () => {
                             />
                           );
                         })() : (
-                          <VariableBox name={ev.name} value={ev.value} isActive={isLatest} />
+                          <VariableBox name={ev.name} value={ev.value} isActive={isLatest} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
                         )
                       )}
 
@@ -1266,7 +1268,7 @@ export const CustomFlowchartStage: React.FC = () => {
                           );
                         })() : (
                           <div className="flex flex-col items-center gap-3">
-                            <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} />
+                            <VariableBox name={ev.name} value={ev.newValue} oldValue={ev.oldValue} isActive={isLatest} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
                             {step.memorySnapshot?.arr && typeof step.memorySnapshot?.low === 'number' && typeof step.memorySnapshot?.high === 'number' && ev.name !== 'arr' && (() => {
                               const { variant, items } = parseDataStructure(step.memorySnapshot.arr);
                               const { pointers, searchRange } = getPointersAndRange(step.memorySnapshot);

@@ -37,6 +37,18 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
   const labelMargin = isSmall ? 'mb-1' : 'mb-1.5';
   const boxHeightLiteral = isSmall ? 'h-10 min-w-8' : 'h-14 min-w-12';
 
+  const formatFloatVal = (val?: string | number) => {
+    if (val === undefined || val === null) return val;
+    if (varType === 'float') {
+      const num = Number(val);
+      if (!isNaN(num)) return num.toFixed(4);
+    }
+    return val;
+  };
+
+  const displayVal = formatFloatVal(value);
+  const displayOldVal = formatFloatVal(oldValue);
+
   if (isLiteral) {
     return (
       <motion.div
@@ -45,7 +57,7 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
         animate={{ opacity: 1, scale: 1 }}
         className={`flex items-center justify-center font-mono font-bold ${textSize} text-slate-200 select-none ${px} ${boxHeightLiteral}`}
       >
-        {value}
+        {displayVal}
       </motion.div>
     );
   }
@@ -79,7 +91,7 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
         style={{ height, minWidth }}
       >
         <AnimatePresence mode="popLayout">
-          {oldValue !== undefined && isActive && (
+          {displayOldVal !== undefined && isActive && (
             <motion.span
               key="oldValue"
               initial={{ opacity: 1, scale: 1 }}
@@ -87,20 +99,20 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
               transition={{ duration: 0.5 }}
               className={`font-mono font-bold ${oldTextSize} text-slate-400 line-through mr-2 whitespace-nowrap`}
             >
-              {oldValue}
+              {displayOldVal}
             </motion.span>
           )}
-          {value !== undefined && (
+          {displayVal !== undefined && (
             <motion.span
-              key={String(value)}
+              key={String(displayVal)}
               // Value slides in from the top and slightly scales up
               initial={{ opacity: 0, y: -20, scale: 0.8 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25, delay: oldValue !== undefined ? 0.3 : 0 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25, delay: displayOldVal !== undefined ? 0.3 : 0 }}
               className={`font-mono font-bold ${textSize} text-white whitespace-nowrap`}
             >
-              {value}
+              {displayVal}
             </motion.span>
           )}
         </AnimatePresence>
