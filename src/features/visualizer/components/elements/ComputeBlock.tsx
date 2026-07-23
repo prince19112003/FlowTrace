@@ -62,6 +62,27 @@ const parseDataStructure = (val: any) => {
   }
 };
 
+const cleanValueAndType = (raw: any) => {
+  if (raw === undefined || raw === null) return { value: raw, varType: undefined };
+  const str = String(raw);
+  let varType: string | undefined = undefined;
+  
+  if (str.includes('[const]')) varType = 'const';
+  else if (str.includes('[4B]')) varType = 'float';
+  else if (str.includes('[8B]')) varType = 'double';
+  else if (str.includes('[1B]')) varType = 'bool';
+
+  const cleanedVal = str.replace(/\s*\[(4B|8B|1B|const|short|long)\]/gi, '').trim();
+  
+  if (cleanedVal.includes('.')) {
+    varType = 'float';
+  } else if (!isNaN(Number(cleanedVal)) && varType !== 'const') {
+    varType = 'int';
+  }
+
+  return { value: cleanedVal, varType };
+};
+
 interface ComputeBlockProps {
   inputs: string[];
   operator: string;
@@ -202,21 +223,22 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
       }, 300);
 
       return () => clearInterval(timer);
-      setCalcState('inputs');
-      const timer1 = setTimeout(() => {
-        setCalcState('calculating');
-      }, 600);
-
-      const timer2 = setTimeout(() => {
-        setCalcState('done');
-      }, 1400);
-
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
     }
-  }, [isActive, isStringCalc, itemsList.length]);
+
+    setCalcState('inputs');
+    const timer1 = setTimeout(() => {
+      setCalcState('calculating');
+    }, 600);
+
+    const timer2 = setTimeout(() => {
+      setCalcState('done');
+    }, 1400);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [isActive, isStringCalc, itemsList.length, operator, inputs]);
 
   useEffect(() => {
     if ((operator === 'index()' || operator === 'sort()' || operator === 'reverse()') && isActive && calcState === 'calculating') {
@@ -225,7 +247,7 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
       const timer = setInterval(() => {
         if (step >= totalSteps) {
           clearInterval(timer);
-          setHighlightedIndices(undefined);
+          setHighlightedIndices([]);
           return;
         }
 
@@ -233,7 +255,7 @@ export const ComputeBlock: React.FC<ComputeBlockProps> = ({
         const right = totalSteps - 1 - step;
         if (left >= right) {
           clearInterval(timer);
-          setHighlightedIndices(undefined);
+          setHighlightedIndices([]);
         } else {
           setHighlightedIndices([left, right]);
           step++;
