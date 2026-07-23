@@ -71,6 +71,7 @@ const EditableVariableToken: React.FC<{
         ref={inputRef}
         type={type === 'text' ? 'text' : 'number'}
         value={draft}
+        placeholder={String(defaultValue)}
         maxLength={type === 'text' ? 20 : undefined}
         onChange={e => setDraft(e.target.value)}
         onBlur={commit}
@@ -82,7 +83,7 @@ const EditableVariableToken: React.FC<{
           type === 'text' ? 'text-amber-400 border-amber-500/30 focus:border-amber-400' : 'text-orange-400'
         }`}
         style={{
-          width: `${Math.max(type === 'text' ? 4 : 5, draft.length + 2.5)}ch`,
+          width: `${Math.max(type === 'text' ? 4 : 5, (draft || String(defaultValue)).length + 2.5)}ch`,
           minWidth: type === 'text' ? '4.5rem' : '4.5rem',
           fontFeatureSettings: '"liga" 0',
           MozAppearance: 'textfield',

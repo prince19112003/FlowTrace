@@ -48,8 +48,8 @@ export const cpp_types = createCppLesson(
     count: { default: 10, label: 'count (int)' }, 
     gpa: { default: 3.85, label: 'gpa (float)' }, 
     salary: { default: 1250.75, label: 'salary (double)' },
-    isPassed: { default: 'true', label: 'isPassed (bool)' },
-    grade: { default: 'A', label: 'grade (char)' }
+    isPassed: { default: 'true', label: 'isPassed (bool)', type: 'text', noQuotes: true },
+    grade: { default: 'A', label: 'grade (char)', type: 'text' }
   },
   (vars) => {
     const count = Number(vars.count ?? 10);
@@ -289,7 +289,7 @@ export const cpp_relational_logical = createCppLesson(
     { lineNum: 8, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 9, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { age: { default: 20, label: 'age (int)' }, hasID: { default: 'true', label: 'hasID (bool)' } },
+  { age: { default: 20, label: 'age (int)' }, hasID: { default: 'true', label: 'hasID (bool)', type: 'text', noQuotes: true } },
   (vars) => {
     const age = Number(vars.age ?? 20);
     const hasID = String(vars.hasID ?? 'true') === 'true';
