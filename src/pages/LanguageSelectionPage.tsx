@@ -193,7 +193,7 @@ export const LanguageSelectionPage: React.FC = () => {
                   aria-label={lang.enabled ? `Select ${lang.name}` : `${lang.name} — Coming Soon`}
                   onClick={() => lang.enabled && navigate(`/topics/${lang.id}`)}
                   onKeyDown={e => { if (lang.enabled && (e.key === 'Enter' || e.key === ' ')) navigate(`/topics/${lang.id}`); }}
-                  className="relative flex flex-col overflow-hidden rounded-2xl transition-all duration-200 min-h-[260px] p-6"
+                  className="relative flex flex-col overflow-hidden rounded-2xl transition-all duration-200 min-h-65 p-6"
                   style={{
                     background: 'rgba(15, 17, 23, 0.65)',
                     border: `1px solid ${lang.enabled ? lang.accentBorder : 'rgba(255,255,255,0.05)'}`,

@@ -244,7 +244,7 @@ export const TopicSelectionPage: React.FC = () => {
                   aria-label={`Select topic ${topic.name}`}
                   onClick={() => navigate(`/topics/${languageId}/programs/${topic.id}`)}
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(`/topics/${languageId}/programs/${topic.id}`); }}
-                  className="relative flex flex-col overflow-hidden rounded-xl p-5 min-h-[190px] transition-all duration-200 group"
+                  className="relative flex flex-col overflow-hidden rounded-xl p-5 min-h-47.5 transition-all duration-200 group"
                   style={{
                     background: 'rgba(15, 17, 23, 0.70)',
                     border: '1px solid rgba(255,255,255,0.06)',
@@ -278,7 +278,7 @@ export const TopicSelectionPage: React.FC = () => {
                 >
                   {/* Left accent bar */}
                   <div
-                    className="accent-bar absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full transition-opacity duration-200"
+                    className="accent-bar absolute left-0 top-2 bottom-2 w-0.75 rounded-r-full transition-opacity duration-200"
                     style={{ background: topic.accentColor, opacity: 0 }}
                   />
 
