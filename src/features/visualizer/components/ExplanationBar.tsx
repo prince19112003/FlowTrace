@@ -12,11 +12,22 @@ const EVENT_LABEL: Record<string, { label: string; color: string }> = {
   SWAP:            { label: '🔄 Swap', color: 'bg-orange-500 text-black' },
   COMPLETE:        { label: '✅ Done', color: 'bg-emerald-500 text-black' },
   NONE:            { label: '▶ Run', color: 'bg-slate-600 text-white' },
+  // ── DSA Specific ────────────────────────────────────────────────────────
+  STACK_PUSH:      { label: '⬆ Push', color: 'bg-fuchsia-500 text-white' },
+  STACK_POP:       { label: '⬇ Pop', color: 'bg-rose-500 text-white' },
+  ENQUEUE:         { label: '↩ Enqueue', color: 'bg-cyan-500 text-black' },
+  DEQUEUE:         { label: '↪ Dequeue', color: 'bg-orange-500 text-black' },
+  SET_POINTERS:    { label: '🎯 Pointers', color: 'bg-indigo-500 text-white' },
+  COMPARE_INDICES: { label: '🔍 Compare', color: 'bg-blue-500 text-white' },
+  NODE_TRAVERSE:   { label: '→ Traverse', color: 'bg-purple-500 text-white' },
+  TREE_VISIT:      { label: '🌳 Visit', color: 'bg-green-600 text-white' },
+  LINKED_LIST_UPDATE: { label: '🔗 Link', color: 'bg-purple-600 text-white' }
 };
 
 export const ExplanationBar: React.FC = () => {
   const { currentStep, lesson, language, toggleLanguage } = useLesson();
-  const [zoomLevel, setZoomLevel] = useState(0.8);
+  const isDsa = lesson?.language === 'dsa';
+  const [zoomLevel, setZoomLevel] = useState(isDsa ? 1.2 : 0.8);
 
   if (!lesson) return null;
 

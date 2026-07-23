@@ -37,7 +37,17 @@ export type AnimationEvent =
   | { type: 'MULTI_CREATE_VARIABLES'; variables: Array<{ name: string; value: string | number }> }
   | { type: 'HIGHLIGHT_ARRAY_INDEX'; arrayName: string; index: number }
   | { type: 'COMPLETE' }
-  | { type: 'NONE' };
+  | { type: 'NONE' }
+  // ── DSA-Specific Events (language-independent) ──────────────────────────────
+  | { type: 'STACK_PUSH'; value: string | number; stackState: (string | number)[] }
+  | { type: 'STACK_POP'; poppedValue: string | number; stackState: (string | number)[] }
+  | { type: 'ENQUEUE'; value: string | number; queueState: (string | number)[] }
+  | { type: 'DEQUEUE'; dequeuedValue: string | number; queueState: (string | number)[] }
+  | { type: 'SET_POINTERS'; pointers: Record<string, number | null> }
+  | { type: 'COMPARE_INDICES'; arrayName: string; indexA: number; indexB: number; result: 'swap' | 'no-swap' | 'found' | 'not-found' }
+  | { type: 'NODE_TRAVERSE'; nodeId: string | number; fromId?: string | number }
+  | { type: 'TREE_VISIT'; nodeValue: string | number; traversalOrder: (string | number)[] }
+  | { type: 'LINKED_LIST_UPDATE'; nodes: Array<{ id: number; value: string | number; next: number | null }> };
 
 // ─── Execution Step ───────────────────────────────────────────────────────────
 

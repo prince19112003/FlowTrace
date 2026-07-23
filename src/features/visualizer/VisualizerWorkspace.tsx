@@ -6,12 +6,15 @@ import { OutputConsole } from './components/OutputConsole';
 import { ExplanationBar } from './components/ExplanationBar';
 import { PenMenu } from './components/PenMenu';
 import { CustomFlowchartStage } from './components/stages/CustomFlowchartStage';
+import { DsaAlgoStage } from './components/stages/DsaAlgoStage';
 import { useLesson } from '../../lessons/LessonContext';
 
 export const VisualizerWorkspace: React.FC = () => {
   const { lesson, isFullScreen } = useLesson();
   const [isConsoleFullScreen, setIsConsoleFullScreen] = useState(false);
-  
+
+  const isDsa = lesson?.language === 'dsa';
+
   const isFlowchartTopic = ['variables', 'type_casting', 'operators', 'operators_expressions', 'user_input', 'data_types', 'if_statement', 'if_else', 'if_elif_else', 'match_case', 'switch_case', 'for_loop', 'while_loop', 'do_while_loop', 'nested_loop', 'loop_control', 'loops', 'functions', 'recursion', 'strings', 'lists', 'tuples', 'dictionaries', 'arrays', 'arrays_1d', 'arrays_2d', 'searching_sorting', 'array_operations', 'searching', 'sorting', 'stack', 'queue', 'singly_linked_list', 'doubly_linked_list', 'recursion_dsa', 'binary_tree', 'graph_basics'].includes(lesson?.topic || '');
 
   if (isConsoleFullScreen) {
@@ -30,17 +33,46 @@ export const VisualizerWorkspace: React.FC = () => {
       <div className="flex h-screen w-screen overflow-hidden bg-[#050510] text-slate-200 relative p-1.5 gap-1.5">
         <StageControls />
         <div className="flex-1 h-full relative overflow-hidden flex flex-col">
-          {isFlowchartTopic ? <CustomFlowchartStage /> : <MemoryStage />}
+          {isDsa ? <DsaAlgoStage /> : isFlowchartTopic ? <CustomFlowchartStage /> : <MemoryStage />}
         </div>
         <PenMenu />
       </div>
     );
   }
 
+  /* ── DSA Layout: no CodeStepPanel, full-width algorithm stage ─────────── */
+  if (isDsa) {
+    return (
+      <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#050510] text-slate-200">
+        <div className="flex-1 flex gap-1.5 p-1.5 overflow-hidden bg-[#050510]">
+
+          {/* Left: Explanation Panel (40%) */}
+          <div className="w-[40%] flex flex-col gap-1.5 overflow-hidden shrink-0">
+            <ExplanationBar />
+          </div>
+
+          {/* Center: Playback Controls */}
+          <StageControls />
+
+          {/* Right: DSA Algorithm Stage (60%) */}
+          <div className="flex-1 flex flex-col gap-1.5 overflow-hidden relative">
+            <div className="h-[70%] relative overflow-hidden flex flex-col">
+              <DsaAlgoStage />
+              <PenMenu />
+            </div>
+            <div className="h-[30%] overflow-hidden flex flex-col">
+              <OutputConsole isFullScreen={isConsoleFullScreen} onToggleFullScreen={() => setIsConsoleFullScreen(!isConsoleFullScreen)} />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+  /* ── Standard Language Layout ─────────────────────────────────────────── */
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#050510] text-slate-200">
-
-      {/* ── Main Content Area ── */}
       <div className="flex-1 flex gap-1.5 p-1.5 overflow-hidden bg-[#050510]">
 
         {/* Left: Code Panel (38%) */}
@@ -56,7 +88,7 @@ export const VisualizerWorkspace: React.FC = () => {
         {/* Center: Vertical Playback Controls */}
         <StageControls />
 
-        {/* Right: Visualization Stage (Rest of the space) */}
+        {/* Right: Visualization Stage */}
         <div className="flex-1 flex flex-col gap-1.5 overflow-hidden relative">
           <div className="h-[70%] relative overflow-hidden flex flex-col">
             {isFlowchartTopic ? <CustomFlowchartStage /> : <MemoryStage />}
@@ -66,7 +98,9 @@ export const VisualizerWorkspace: React.FC = () => {
             <OutputConsole isFullScreen={isConsoleFullScreen} onToggleFullScreen={() => setIsConsoleFullScreen(!isConsoleFullScreen)} />
           </div>
         </div>
+
       </div>
     </div>
   );
 };
+
