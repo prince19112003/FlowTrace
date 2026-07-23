@@ -103,14 +103,14 @@ export const cpp_swap_temp = createCppLesson(
         explanationEnglish: `a = b (${b}). Assign value of b into a.`,
         explanationHinglish: `b (${b}) ki value a me copy hui (a changed from ${a} -> ${b}).`,
         memorySnapshot: { a: `${b} [4B]`, b: `${b} [4B]`, temp: `${a} [4B]` },
-        animationEvent: { type: 'COMPUTE', inputs: ['b'], operator: '=', storeIn: 'a', result: b }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: a, newValue: b }
       },
       {
         step: 5, lineNum: 7,
         explanationEnglish: `b = temp (${a}). Assign value of temp into b. Swapping finished!`,
         explanationHinglish: `temp (${a}) ki value b me store hui -> b = ${a}. Swapping Complete!`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]`, temp: `${a} [4B]` },
-        animationEvent: { type: 'COMPUTE', inputs: ['temp'], operator: '=', storeIn: 'b', result: a }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'b', oldValue: b, newValue: a }
       },
       {
         step: 6, lineNum: 8,
@@ -165,21 +165,21 @@ export const cpp_swap_no_temp = createCppLesson(
         explanationEnglish: `a = a + b -> ${a} + ${b} = ${sum}.`,
         explanationHinglish: `a me total sum store hua -> ${sum}.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${b} [4B]` },
-        animationEvent: { type: 'COMPUTE', inputs: ['a', 'b'], operator: '+', storeIn: 'a', result: sum }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: a, newValue: sum }
       },
       {
         step: 4, lineNum: 6,
         explanationEnglish: `b = a - b -> ${sum} - ${b} = ${a}.`,
         explanationHinglish: `b me old a ki value aa gayi -> ${a}.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${a} [4B]` },
-        animationEvent: { type: 'COMPUTE', inputs: ['a', 'b'], operator: '-', storeIn: 'b', result: a }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'b', oldValue: b, newValue: a }
       },
       {
         step: 5, lineNum: 7,
         explanationEnglish: `a = a - b -> ${sum} - ${a} = ${b}. Swapping Complete!`,
         explanationHinglish: `a me old b ki value store hui -> ${b}. Swapping finished!`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]` },
-        animationEvent: { type: 'COMPUTE', inputs: ['a', 'b'], operator: '-', storeIn: 'a', result: b }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: sum, newValue: b }
       },
       {
         step: 6, lineNum: 8,
