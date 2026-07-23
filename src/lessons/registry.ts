@@ -163,7 +163,6 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
       cpp_types: cppLessons.cpp_types,
       cpp_swap_temp: cppLessons.cpp_swap_temp,
       cpp_swap_no_temp: cppLessons.cpp_swap_no_temp,
-      cpp_constants: cppLessons.cpp_constants,
     },
     operators: {
       cpp_arithmetic: cppLessons.cpp_arithmetic,

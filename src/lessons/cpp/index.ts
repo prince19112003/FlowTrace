@@ -1326,7 +1326,6 @@ export const cppLessons: Record<string, LessonProgram> = {
   cpp_types: cpp_types,
   cpp_swap_temp: cpp_swap_temp,
   cpp_swap_no_temp: cpp_swap_no_temp,
-  cpp_constants: cpp_constants,
   cpp_arithmetic: cpp_arithmetic,
   cpp_relational_logical: cpp_relational_logical,
   cpp_inc_dec: cpp_inc_dec,

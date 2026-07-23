@@ -222,7 +222,6 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
       { id: 'cpp_types', number: '01', friendlyName: 'C++ Primitive Data Types (int, double, bool, char)', description: 'Learn C++ strongly-typed variable declarations and explicit memory storage.' },
       { id: 'cpp_swap_temp', number: '02', friendlyName: 'Swap Two Variables (Using Temp)', description: 'Understand variable value swapping using a third temporary memory slot in C++.' },
       { id: 'cpp_swap_no_temp', number: '03', friendlyName: 'Swap Two Variables (Without Temp)', description: 'Swap two variables using arithmetic addition and subtraction.' },
-      { id: 'cpp_constants', number: '04', friendlyName: 'Constants & Read-only Variables (const)', description: 'Learn const qualifier usage for immutable, read-only memory variables in C++.' },
     ],
     operators: [
       { id: 'cpp_arithmetic', number: '01', friendlyName: 'Arithmetic Operators (+, -, *, /, %)', description: 'Master C++ arithmetic operator evaluation rules and integer division vs modulo.' },
