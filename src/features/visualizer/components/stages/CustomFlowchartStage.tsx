@@ -1343,17 +1343,6 @@ export const CustomFlowchartStage: React.FC = () => {
                         )
                       )}
 
-                      {ev?.type === 'COMPUTE' && (
-                        <ComputeBlock
-                          inputs={ev.inputs}
-                          operator={ev.operator || '+'}
-                          storeIn={ev.storeIn}
-                          result={ev.result}
-                          memorySnapshot={step.memorySnapshot}
-                          prevMemorySnapshot={visibleSteps[visibleSteps.length - 2]?.memorySnapshot || {}}
-                          isActive={isLatest}
-                        />
-                      )}
 
                       {ev?.type === 'PRINT_VALUE' && (() => {
                         const match = ev.variableName?.match(/^([a-zA-Z_]\w*)\[(-?\d+)\]$/);
