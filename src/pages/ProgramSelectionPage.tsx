@@ -230,9 +230,8 @@ const otherProgramsByLang: Record<string, Record<string, { id: string; number: s
       { id: 'cpp_circle_geometry', number: '04', friendlyName: 'Circle Area & Circumference Formulas', description: 'Apply mathematical double expressions for geometry calculations.' },
     ],
     user_input: [
-      { id: 'cpp_cin_integer', number: '01', friendlyName: 'Read Console Integer Input (cin >> age)', description: 'Read standard user integer input using std::cin.' },
-      { id: 'cpp_cin_double', number: '02', friendlyName: 'Read Console Floating Point (cin >> price)', description: 'Read decimal floating point input using std::cin.' },
-      { id: 'cpp_cin_string', number: '03', friendlyName: 'Read Full String Line (getline(cin, name))', description: 'Read full line string input including spaces using std::getline().' },
+      { id: 'cpp_cin_primitives', number: '01', friendlyName: 'Read Primitive Inputs (cin >>)', description: 'Read different primitive data types (int, float, char) from console.' },
+      { id: 'cpp_cin_strings', number: '02', friendlyName: 'Read String Inputs (cin vs getline)', description: 'Compare reading single word strings with cin vs full lines with getline.' },
     ],
     type_casting: [
       { id: 'cpp_implicit_casting', number: '01', friendlyName: 'Implicit Widening Type Casting', description: 'Learn automatic conversion from smaller int to double without precision loss.' },

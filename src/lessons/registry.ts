@@ -171,9 +171,8 @@ export const lessonRegistry: Record<string, Record<string, Record<string, Lesson
       cpp_circle_geometry: cppLessons.cpp_circle_geometry,
     },
     user_input: {
-      cpp_cin_integer: cppLessons.cpp_cin_integer,
-      cpp_cin_double: cppLessons.cpp_cin_double,
-      cpp_cin_string: cppLessons.cpp_cin_string,
+      cpp_cin_primitives: cppLessons.cpp_cin_primitives,
+      cpp_cin_strings: cppLessons.cpp_cin_strings,
     },
     type_casting: {
       cpp_implicit_casting: cppLessons.cpp_implicit_casting,

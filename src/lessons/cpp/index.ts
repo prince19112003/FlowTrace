@@ -379,73 +379,80 @@ export const cpp_circle_geometry = createCppLesson(
 );
 
 
-export const cpp_cin_integer = createCppLesson(
-  'cpp_cin_integer', 'user_input', 1,
-  'Read Console Integer Input (cin >> age)',
-  'Read integer user input.',
+export const cpp_cin_primitives = createCppLesson(
+  'cpp_cin_primitives', 'user_input', 1,
+  'Read Primitive Inputs (cin >>)',
+  'Demonstrate console input for standard C++ primitives (int, float, char) using std::cin.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
     { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Read Console Integer Input (cin >> age): "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'age' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'float' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'gpa' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'char' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'grade' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cin' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '>>' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'age', paramId: 'age' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cin' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '>>' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'gpa', paramId: 'gpa' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cin' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '>>' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'grade', paramId: 'grade' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Age: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'age' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '", GPA: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'gpa' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '", Grade: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'grade' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 12, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  {
+    age: { default: 21, label: 'Input Age (int)' },
+    gpa: { default: 3.85, label: 'Input GPA (float)' },
+    grade: { default: 'A', label: 'Input Grade (char)', type: 'text' }
+  },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const age = Number(vars.age ?? 21);
+    const gpaRaw = Number(vars.gpa ?? 3.85);
+    const grade = String(vars.grade ?? 'A').replace(/['"]/g, '');
+    const gpa = isNaN(gpaRaw) ? '3.8500' : gpaRaw.toFixed(4);
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: cin read age = 21.`, explanationHinglish: `std::cout output display hua: cin read age = 21.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `cin read age = 21`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Declare age [4B].`, explanationHinglish: `Variable age memory me declare hua.`, memorySnapshot: {}, animationEvent: { type: 'CREATE_VARIABLE', name: 'age', value: '?' } },
+      { step: 2, lineNum: 5, explanationEnglish: `Declare gpa [4B].`, explanationHinglish: `Variable gpa memory me declare hua.`, memorySnapshot: { age: '? [4B]' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'gpa', value: '?' } },
+      { step: 3, lineNum: 6, explanationEnglish: `Declare grade [1B].`, explanationHinglish: `Variable grade memory me declare hua.`, memorySnapshot: { age: '? [4B]', gpa: '? [4B]' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'grade', value: '?' } },
+      { step: 4, lineNum: 7, explanationEnglish: `cin reads age = ${age} from console.`, explanationHinglish: `Console se user input age = ${age} read hokar store hua.`, memorySnapshot: { age: `${age} [4B]`, gpa: '? [4B]', grade: '? [1B]' }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'age', newValue: age, oldValue: '?' } },
+      { step: 5, lineNum: 8, explanationEnglish: `cin reads gpa = ${gpa} from console.`, explanationHinglish: `Console se user input gpa = ${gpa} read hokar store hua.`, memorySnapshot: { age: `${age} [4B]`, gpa: `${gpa} [4B]`, grade: '? [1B]' }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'gpa', newValue: gpa, oldValue: '?' } },
+      { step: 6, lineNum: 9, explanationEnglish: `cin reads grade = '${grade}' from console.`, explanationHinglish: `Console se user input grade = '${grade}' read hokar store hua.`, memorySnapshot: { age: `${age} [4B]`, gpa: `${gpa} [4B]`, grade: `'${grade}' [1B]` }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'grade', newValue: `'${grade}'`, oldValue: '?' } },
+      { step: 7, lineNum: 10, explanationEnglish: `cout prints: Age: ${age}, GPA: ${gpa}, Grade: ${grade}.`, explanationHinglish: `cout terminal me output display karega.`, memorySnapshot: { age: `${age} [4B]`, gpa: `${gpa} [4B]`, grade: `'${grade}' [1B]` }, consoleOutput: `Age: ${age}, GPA: ${gpa}, Grade: ${grade}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'grade', outputValue: `Age: ${age}, GPA: ${gpa}, Grade: ${grade}` } }
     ];
   }
 );
 
 
-export const cpp_cin_double = createCppLesson(
-  'cpp_cin_double', 'user_input', 2,
-  'Read Console Floating Point (cin >> price)',
-  'Read decimal user input.',
+export const cpp_cin_strings = createCppLesson(
+  'cpp_cin_strings', 'user_input', 2,
+  'Read String Inputs (cin vs getline)',
+  'Compare reading a single word with cin versus reading a full line with std::getline.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Read Console Floating Point (cin >> price): "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<string>' }] },
+    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 4, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'variable' as const, value: 'string' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'word' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'variable' as const, value: 'string' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'line' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cin' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '>>' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'word', paramId: 'word' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'getline' }, { type: 'punctuation' as const, value: '(' }, { type: 'function' as const, value: 'cin' }, { type: 'punctuation' as const, value: ',' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'line', paramId: 'line' }, { type: 'punctuation' as const, value: ')' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Word: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'word' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '", Line: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'line' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 11, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  {
+    word: { default: 'Hello', label: 'Input Word (string)', type: 'text', noQuotes: true },
+    line: { default: 'Welcome to FlowTrace', label: 'Input Line (string)', type: 'text', noQuotes: true }
+  },
   (vars) => {
-    const val = Number(vars.val ?? 10);
-    return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: cin read price = 49.99.`, explanationHinglish: `std::cout output display hua: cin read price = 49.99.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `cin read price = 49.99`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
-    ];
-  }
-);
+    const wordInput = String(vars.word ?? 'Hello').replace(/['"]/g, '');
+    const word = wordInput.split(/\s+/)[0] || 'Hello';
+    const line = String(vars.line ?? 'Welcome to FlowTrace').replace(/['"]/g, '');
 
-
-export const cpp_cin_string = createCppLesson(
-  'cpp_cin_string', 'user_input', 3,
-  'Read Full String Line (getline(cin, name))',
-  'Read full text line input.',
-  [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Read Full String Line (getline(cin, name)): "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
-  ],
-  { val: { default: 10, label: 'val (int)' } },
-  (vars) => {
-    const val = Number(vars.val ?? 10);
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: getline read name = "John Doe".`, explanationHinglish: `std::cout output display hua: getline read name = "John Doe".`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `getline read name = "John Doe"`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 5, explanationEnglish: `Declare word variable [string].`, explanationHinglish: `word variable memory me declare hua.`, memorySnapshot: {}, animationEvent: { type: 'CREATE_VARIABLE', name: 'word', value: '""' } },
+      { step: 2, lineNum: 6, explanationEnglish: `Declare line variable [string].`, explanationHinglish: `line variable memory me declare hua.`, memorySnapshot: { word: '""' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'line', value: '""' } },
+      { step: 3, lineNum: 7, explanationEnglish: `cin >> word reads first word: "${word}".`, explanationHinglish: `cin space se pehle tak ka word ("${word}") read karega.`, memorySnapshot: { word: `"${word}"`, line: '""' }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'word', newValue: `"${word}"`, oldValue: '""' } },
+      { step: 4, lineNum: 8, explanationEnglish: `getline(cin, line) reads full line: "${line}".`, explanationHinglish: `getline full text line ("${line}") read karke store karega.`, memorySnapshot: { word: `"${word}"`, line: `"${line}"` }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'line', newValue: `"${line}"`, oldValue: '""' } },
+      { step: 5, lineNum: 9, explanationEnglish: `cout prints: Word: ${word}, Line: ${line}.`, explanationHinglish: `cout terminal screen par outputs display karega.`, memorySnapshot: { word: `"${word}"`, line: `"${line}"` }, consoleOutput: `Word: ${word}, Line: ${line}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'line', outputValue: `Word: ${word}, Line: ${line}` } }
     ];
   }
 );
@@ -1395,9 +1402,8 @@ export const cppLessons: Record<string, LessonProgram> = {
   cpp_relational_logical: cpp_relational_logical,
   cpp_inc_dec: cpp_inc_dec,
   cpp_circle_geometry: cpp_circle_geometry,
-  cpp_cin_integer: cpp_cin_integer,
-  cpp_cin_double: cpp_cin_double,
-  cpp_cin_string: cpp_cin_string,
+  cpp_cin_primitives: cpp_cin_primitives,
+  cpp_cin_strings: cpp_cin_strings,
   cpp_implicit_casting: cpp_implicit_casting,
   cpp_explicit_casting: cpp_explicit_casting,
   cpp_char_ascii: cpp_char_ascii,
