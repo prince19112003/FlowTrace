@@ -165,21 +165,21 @@ export const cpp_swap_no_temp = createCppLesson(
         explanationEnglish: `a = a + b -> ${a} + ${b} = ${sum}. Calculate sum of both variables.`,
         explanationHinglish: `a = a + b (${a} + ${b} = ${sum}). a me dono variables ka total sum store hua -> ${sum}.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${b} [4B]` },
-        animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: a, newValue: sum }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: a, newValue: sum, formula: `a = ${a} + ${b} = ${sum}` }
       },
       {
         step: 4, lineNum: 6,
         explanationEnglish: `b = a - b -> ${sum} - ${b} = ${a}. Extract original a value into b.`,
         explanationHinglish: `b = a - b (${sum} - ${b} = ${a}). b me original a ki value (${a}) aagayi.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${a} [4B]` },
-        animationEvent: { type: 'UPDATE_VARIABLE', name: 'b', oldValue: b, newValue: a }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'b', oldValue: b, newValue: a, formula: `b = ${sum} - ${b} = ${a}` }
       },
       {
         step: 5, lineNum: 7,
         explanationEnglish: `a = a - b -> ${sum} - ${a} = ${b}. Extract original b value into a. Swapping Complete!`,
         explanationHinglish: `a = a - b (${sum} - ${a} = ${b}). a me original b ki value (${b}) aagayi. Swapping Complete!`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]` },
-        animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: sum, newValue: b }
+        animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: sum, newValue: b, formula: `a = ${sum} - ${a} = ${b}` }
       },
       {
         step: 6, lineNum: 8,
