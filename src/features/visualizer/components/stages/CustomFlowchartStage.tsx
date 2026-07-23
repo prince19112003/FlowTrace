@@ -542,6 +542,20 @@ export const CustomFlowchartStage: React.FC = () => {
             )
           )}
 
+          {ev?.type === 'COMPUTE' && (
+            <ComputeBlock
+              inputs={ev.inputs}
+              operator={ev.operator || '+'}
+              storeIn={ev.storeIn}
+              result={ev.result}
+              memorySnapshot={latestStep.memorySnapshot}
+              prevMemorySnapshot={visibleSteps[visibleSteps.length - 2]?.memorySnapshot || {}}
+              isActive={isLatest}
+              colorTheme={colorTheme}
+              isSmall={isFunctionBody}
+            />
+          )}
+
            {ev?.type === 'UPDATE_ARRAY_INDEX' && (
             (() => {
               const { variant, items } = parseDataStructure(latestStep.memorySnapshot[ev.arrayName]);
@@ -1327,6 +1341,18 @@ export const CustomFlowchartStage: React.FC = () => {
                             })()}
                           </div>
                         )
+                      )}
+
+                      {ev?.type === 'COMPUTE' && (
+                        <ComputeBlock
+                          inputs={ev.inputs}
+                          operator={ev.operator || '+'}
+                          storeIn={ev.storeIn}
+                          result={ev.result}
+                          memorySnapshot={step.memorySnapshot}
+                          prevMemorySnapshot={visibleSteps[idx - 1]?.memorySnapshot || {}}
+                          isActive={isLatest}
+                        />
                       )}
 
                       {ev?.type === 'PRINT_VALUE' && (() => {
