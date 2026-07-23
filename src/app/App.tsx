@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-route
 import { AnimatePresence } from 'motion/react';
 import { GlobalAppShell } from './layout/GlobalAppShell';
 import { LoadingSpinner } from '@shared/components/ui/LoadingSpinner';
-
+import { UpdateModal } from '@shared/components/ui/UpdateBanner';
 import { SplashPage } from '../pages/SplashPage';
 
 // Lazy loaded routes for scalability
@@ -96,6 +96,9 @@ export const App: React.FC = () => {
 
   return (
     <BrowserRouter>
+      {/* Global in-app update modal — renders above everything */}
+      <UpdateModal />
+
       {showSplash ? (
         <SplashPage onComplete={() => setShowSplash(false)} />
       ) : (

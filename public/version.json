@@ -1,0 +1,12 @@
+{
+  "version": "1.1.0",
+  "buildDate": "2026-07-23",
+  "changelog": [
+    "Complete DSA section with 10 topics and 34 programs",
+    "Advanced splash screen with glassmorphism and animated ring",
+    "Dynamic file header (main.py / main.cpp / Main.java / main.c)",
+    "C and C++ lesson programs with full execution flow"
+  ],
+  "releaseUrl": "https://github.com/prince19112003/FlowTrace/releases/latest",
+  "downloadUrl": "https://github.com/prince19112003/FlowTrace/archive/refs/heads/main.zip"
+}
