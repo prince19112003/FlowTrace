@@ -683,23 +683,41 @@ export const cpp_leap_year = createCppLesson(
 export const cpp_marks_grade = createCppLesson(
   'cpp_marks_grade', 'if_elif_else', 1,
   'Student Grade System (If-Else Ladder)',
-  'Multi-tier grading ladder.',
+  'Assign letter grades using a multi-tier if-else-if ladder based on marks.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Student Grade System (If-Else Ladder): "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'marks' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '85', paramId: 'marks' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'marks' }, { type: 'text' as const, value: ' >= 90) {' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Grade: A+"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'marks' }, { type: 'text' as const, value: ' >= 80) {' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Grade: A"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'marks' }, { type: 'text' as const, value: ' >= 70) {' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Grade: B"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'marks' }, { type: 'text' as const, value: ' >= 60) {' }] },
+    { lineNum: 12, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Grade: C"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 13, tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 14, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Grade: F"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 15, tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 16, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 17, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { marks: { default: 85, label: 'marks (int, 0-100)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
-    return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: Marks 85 -> Grade A.`, explanationHinglish: `std::cout output display hua: Marks 85 -> Grade A.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `Marks 85 -> Grade A`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+    const marks = Math.min(100, Math.max(0, Number(vars.marks ?? 85)));
+    const grade = marks >= 90 ? 'A+' : marks >= 80 ? 'A' : marks >= 70 ? 'B' : marks >= 60 ? 'C' : 'F';
+    const printLine = marks >= 90 ? 6 : marks >= 80 ? 8 : marks >= 70 ? 10 : marks >= 60 ? 12 : 14;
+
+    const steps: any[] = [
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize marks = ${marks}.`, explanationHinglish: `Variable marks = ${marks} [4B] memory me store hua.`, memorySnapshot: { marks: `${marks} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'marks', value: marks } },
+      { step: 2, lineNum: 5, explanationEnglish: `Check marks >= 90 → ${marks} >= 90 → ${marks >= 90}.`, explanationHinglish: `if (marks >= 90): ${marks} >= 90 → ${marks >= 90 ? 'true → Grade A+' : 'false → agla check'}.`, memorySnapshot: { marks: `${marks} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['marks'], operator: '>= 90', result: String(marks >= 90), storeIn: 'Condition' } },
     ];
+    if (marks < 90) steps.push({ step: 3, lineNum: 7, explanationEnglish: `Check marks >= 80 → ${marks} >= 80 → ${marks >= 80}.`, explanationHinglish: `else if (marks >= 80): ${marks} >= 80 → ${marks >= 80 ? 'true → Grade A' : 'false → agla check'}.`, memorySnapshot: { marks: `${marks} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['marks'], operator: '>= 80', result: String(marks >= 80), storeIn: 'Condition' } });
+    if (marks < 80) steps.push({ step: 4, lineNum: 9, explanationEnglish: `Check marks >= 70 → ${marks} >= 70 → ${marks >= 70}.`, explanationHinglish: `else if (marks >= 70): ${marks} >= 70 → ${marks >= 70 ? 'true → Grade B' : 'false → agla check'}.`, memorySnapshot: { marks: `${marks} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['marks'], operator: '>= 70', result: String(marks >= 70), storeIn: 'Condition' } });
+    if (marks < 70) steps.push({ step: 5, lineNum: 11, explanationEnglish: `Check marks >= 60 → ${marks} >= 60 → ${marks >= 60}.`, explanationHinglish: `else if (marks >= 60): ${marks} >= 60 → ${marks >= 60 ? 'true → Grade C' : 'false → Grade F'}.`, memorySnapshot: { marks: `${marks} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['marks'], operator: '>= 60', result: String(marks >= 60), storeIn: 'Condition' } });
+    steps.push({ step: steps.length + 1, lineNum: printLine, explanationEnglish: `cout prints: Grade: ${grade}.`, explanationHinglish: `cout output: "Grade: ${grade}" terminal par print hua.`, memorySnapshot: { marks: `${marks} [4B]` }, consoleOutput: `Grade: ${grade}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'marks', outputValue: `Grade: ${grade}` } });
+    return steps;
   }
 );
 
@@ -707,23 +725,46 @@ export const cpp_marks_grade = createCppLesson(
 export const cpp_tax_calc = createCppLesson(
   'cpp_tax_calc', 'if_elif_else', 2,
   'Income Tax Slab Calculator',
-  'Tiered income tax calculation.',
+  'Calculate income tax using tiered slab rates with if-else-if ladder.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Income Tax Slab Calculator: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'income' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '600000', paramId: 'income' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'double' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'tax' }, { type: 'text' as const, value: ' = 0;' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'income' }, { type: 'text' as const, value: ' <= 250000) {' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'variable' as const, value: 'tax' }, { type: 'text' as const, value: ' = 0;' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'income' }, { type: 'text' as const, value: ' <= 500000) {' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'variable' as const, value: 'tax' }, { type: 'text' as const, value: ' = (' }, { type: 'variable' as const, value: 'income' }, { type: 'text' as const, value: ' - 250000) * 0.05;' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'income' }, { type: 'text' as const, value: ' <= 1000000) {' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'variable' as const, value: 'tax' }, { type: 'text' as const, value: ' = 12500 + (' }, { type: 'variable' as const, value: 'income' }, { type: 'text' as const, value: ' - 500000) * 0.20;' }] },
+    { lineNum: 12, tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 13, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'variable' as const, value: 'tax' }, { type: 'text' as const, value: ' = 112500 + (' }, { type: 'variable' as const, value: 'income' }, { type: 'text' as const, value: ' - 1000000) * 0.30;' }] },
+    { lineNum: 14, tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 15, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Tax = "' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'tax' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 16, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 17, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { income: { default: 600000, label: 'income (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
-    return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: Income 600000 -> Tax = 30000.`, explanationHinglish: `std::cout output display hua: Income 600000 -> Tax = 30000.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `Income 600000 -> Tax = 30000`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+    const income = Number(vars.income ?? 600000);
+    let tax = 0;
+    let taxLine = 7;
+    if (income <= 250000) { tax = 0; taxLine = 7; }
+    else if (income <= 500000) { tax = (income - 250000) * 0.05; taxLine = 9; }
+    else if (income <= 1000000) { tax = 12500 + (income - 500000) * 0.20; taxLine = 11; }
+    else { tax = 112500 + (income - 1000000) * 0.30; taxLine = 13; }
+    const taxStr = tax.toFixed(2);
+
+    const steps: any[] = [
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize income = ${income}.`, explanationHinglish: `Variable income = ${income} [4B] memory me store hua.`, memorySnapshot: { income: `${income} [4B]`, tax: '0 [8B]' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'income', value: income } },
+      { step: 2, lineNum: 6, explanationEnglish: `Check income <= 250000 → ${income} <= 250000 → ${income <= 250000}.`, explanationHinglish: `if (income <= 250000): ${income <= 250000 ? 'true → tax = 0 (no tax slab)' : 'false → agla slab check'}.`, memorySnapshot: { income: `${income} [4B]`, tax: '0 [8B]' }, animationEvent: { type: 'COMPUTE' as const, inputs: ['income'], operator: '<= 250000', result: String(income <= 250000), storeIn: 'Condition' } },
     ];
+    if (income > 250000) steps.push({ step: 3, lineNum: 8, explanationEnglish: `Check income <= 500000 → ${income} <= 500000 → ${income <= 500000}.`, explanationHinglish: `else if (income <= 500000): ${income <= 500000 ? 'true → 5% tax slab' : 'false → agla slab'}.`, memorySnapshot: { income: `${income} [4B]`, tax: '0 [8B]' }, animationEvent: { type: 'COMPUTE' as const, inputs: ['income'], operator: '<= 500000', result: String(income <= 500000), storeIn: 'Condition' } });
+    if (income > 500000) steps.push({ step: 4, lineNum: 10, explanationEnglish: `Check income <= 1000000 → ${income} <= 1000000 → ${income <= 1000000}.`, explanationHinglish: `else if (income <= 1000000): ${income <= 1000000 ? 'true → 20% tax slab' : 'false → 30% slab'}.`, memorySnapshot: { income: `${income} [4B]`, tax: '0 [8B]' }, animationEvent: { type: 'COMPUTE' as const, inputs: ['income'], operator: '<= 1000000', result: String(income <= 1000000), storeIn: 'Condition' } });
+    steps.push({ step: steps.length + 1, lineNum: taxLine, explanationEnglish: `Tax computed = ${taxStr}.`, explanationHinglish: `Tax slab formula apply hokar tax = ${taxStr} calculate hua.`, memorySnapshot: { income: `${income} [4B]`, tax: `${taxStr} [8B]` }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'tax', newValue: taxStr, oldValue: '0' } });
+    steps.push({ step: steps.length + 1, lineNum: 15, explanationEnglish: `cout prints: Tax = ${taxStr}.`, explanationHinglish: `cout output: "Tax = ${taxStr}" terminal par print hua.`, memorySnapshot: { income: `${income} [4B]`, tax: `${taxStr} [8B]` }, consoleOutput: `Tax = ${taxStr}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'tax', outputValue: taxStr } });
+    return steps;
   }
 );
 
@@ -731,23 +772,37 @@ export const cpp_tax_calc = createCppLesson(
 export const cpp_pos_neg_zero = createCppLesson(
   'cpp_pos_neg_zero', 'if_elif_else', 3,
   'Positive, Negative, or Zero Checker',
-  'Classify integer polarity.',
+  'Classify an integer as positive, negative, or zero using if-else-if.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Positive, Negative, or Zero Checker: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '-15', paramId: 'n' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' > 0) {' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '" is Positive"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' < 0) {' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '" is Negative"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Zero"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 12, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 13, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { n: { default: -15, label: 'n (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
-    return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: -15 is Negative.`, explanationHinglish: `std::cout output display hua: -15 is Negative.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `-15 is Negative`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+    const n = Number(vars.n ?? -15);
+    const isPos = n > 0;
+    const isNeg = n < 0;
+    const label = isPos ? 'Positive' : isNeg ? 'Negative' : 'Zero';
+    const printLine = isPos ? 6 : isNeg ? 8 : 10;
+
+    const steps: any[] = [
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize n = ${n}.`, explanationHinglish: `Variable n = ${n} [4B] memory me store hua.`, memorySnapshot: { n: `${n} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'n', value: n } },
+      { step: 2, lineNum: 5, explanationEnglish: `Check n > 0 → ${n} > 0 → ${isPos}.`, explanationHinglish: `if (n > 0): ${n} > 0 → ${isPos ? 'true → Positive hai' : 'false → agla check'}.`, memorySnapshot: { n: `${n} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['n'], operator: '> 0', result: String(isPos), storeIn: 'Condition' } },
     ];
+    if (!isPos) steps.push({ step: 3, lineNum: 7, explanationEnglish: `Check n < 0 → ${n} < 0 → ${isNeg}.`, explanationHinglish: `else if (n < 0): ${n} < 0 → ${isNeg ? 'true → Negative hai' : 'false → Zero hai'}.`, memorySnapshot: { n: `${n} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['n'], operator: '< 0', result: String(isNeg), storeIn: 'Condition' } });
+    steps.push({ step: steps.length + 1, lineNum: printLine, explanationEnglish: `cout prints: ${n} is ${label}.`, explanationHinglish: `cout output: "${n} is ${label}" terminal par print hua.`, memorySnapshot: { n: `${n} [4B]` }, consoleOutput: `${n} is ${label}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'n', outputValue: `${n} is ${label}` } });
+    return steps;
   }
 );
 
@@ -755,23 +810,42 @@ export const cpp_pos_neg_zero = createCppLesson(
 export const cpp_electricity_bill = createCppLesson(
   'cpp_electricity_bill', 'if_elif_else', 4,
   'Tiered Electricity Bill Calculator',
-  'Calculate utility bill per unit.',
+  'Calculate monthly electricity bill using tiered unit slabs with if-else-if.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Tiered Electricity Bill Calculator: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'units' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '250', paramId: 'units' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'double' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'bill' }, { type: 'text' as const, value: ' = 0;' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'units' }, { type: 'text' as const, value: ' <= 100) {' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'variable' as const, value: 'bill' }, { type: 'text' as const, value: ' = ' }, { type: 'variable' as const, value: 'units' }, { type: 'text' as const, value: ' * 3.50;' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'units' }, { type: 'text' as const, value: ' <= 200) {' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'variable' as const, value: 'bill' }, { type: 'text' as const, value: ' = 350 + (' }, { type: 'variable' as const, value: 'units' }, { type: 'text' as const, value: ' - 100) * 5.00;' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'variable' as const, value: 'bill' }, { type: 'text' as const, value: ' = 850 + (' }, { type: 'variable' as const, value: 'units' }, { type: 'text' as const, value: ' - 200) * 6.50;' }] },
+    { lineNum: 12, tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 13, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Bill = "' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'bill' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 14, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 15, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { units: { default: 250, label: 'units (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
-    return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: Units 250 -> Bill = 1625.00.`, explanationHinglish: `std::cout output display hua: Units 250 -> Bill = 1625.00.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `Units 250 -> Bill = 1625.00`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+    const units = Math.max(0, Number(vars.units ?? 250));
+    let bill = 0;
+    let billLine = 7;
+    if (units <= 100) { bill = units * 3.50; billLine = 7; }
+    else if (units <= 200) { bill = 350 + (units - 100) * 5.00; billLine = 9; }
+    else { bill = 850 + (units - 200) * 6.50; billLine = 11; }
+    const billStr = bill.toFixed(2);
+
+    const steps: any[] = [
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize units = ${units}.`, explanationHinglish: `Variable units = ${units} [4B] memory me store hua.`, memorySnapshot: { units: `${units} [4B]`, bill: '0 [8B]' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'units', value: units } },
+      { step: 2, lineNum: 6, explanationEnglish: `Check units <= 100 → ${units} <= 100 → ${units <= 100}.`, explanationHinglish: `if (units <= 100): ${units <= 100 ? 'true → 3.50/unit slab' : 'false → agla slab check'}.`, memorySnapshot: { units: `${units} [4B]`, bill: '0 [8B]' }, animationEvent: { type: 'COMPUTE' as const, inputs: ['units'], operator: '<= 100', result: String(units <= 100), storeIn: 'Condition' } },
     ];
+    if (units > 100) steps.push({ step: 3, lineNum: 8, explanationEnglish: `Check units <= 200 → ${units} <= 200 → ${units <= 200}.`, explanationHinglish: `else if (units <= 200): ${units <= 200 ? 'true → 5.00/unit slab' : 'false → 6.50/unit slab'}.`, memorySnapshot: { units: `${units} [4B]`, bill: '0 [8B]' }, animationEvent: { type: 'COMPUTE' as const, inputs: ['units'], operator: '<= 200', result: String(units <= 200), storeIn: 'Condition' } });
+    steps.push({ step: steps.length + 1, lineNum: billLine, explanationEnglish: `Bill computed = ${billStr}.`, explanationHinglish: `Slab formula apply hokar bill = Rs. ${billStr} calculate hua.`, memorySnapshot: { units: `${units} [4B]`, bill: `${billStr} [8B]` }, animationEvent: { type: 'UPDATE_VARIABLE', name: 'bill', newValue: billStr, oldValue: '0' } });
+    steps.push({ step: steps.length + 1, lineNum: 13, explanationEnglish: `cout prints: Bill = ${billStr}.`, explanationHinglish: `cout output: "Bill = ${billStr}" terminal par print hua.`, memorySnapshot: { units: `${units} [4B]`, bill: `${billStr} [8B]` }, consoleOutput: `Bill = ${billStr}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'bill', outputValue: billStr } });
+    return steps;
   }
 );
 
