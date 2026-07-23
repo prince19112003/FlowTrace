@@ -1350,7 +1350,7 @@ export const CustomFlowchartStage: React.FC = () => {
                           storeIn={ev.storeIn}
                           result={ev.result}
                           memorySnapshot={step.memorySnapshot}
-                          prevMemorySnapshot={visibleSteps[idx - 1]?.memorySnapshot || {}}
+                          prevMemorySnapshot={visibleSteps[visibleSteps.length - 2]?.memorySnapshot || {}}
                           isActive={isLatest}
                         />
                       )}
