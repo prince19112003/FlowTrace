@@ -116,21 +116,31 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({ forceShow, onClosePrev
             }}
           />
 
-          {/* Modal */}
-          <motion.div
-            key="update-modal"
-            initial={{ opacity: 0, scale: 0.88, y: 24 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 16 }}
-            transition={{ type: 'spring', stiffness: 320, damping: 28 }}
-            style={{
-              position: 'fixed',
-              top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 9999,
-              width: 'min(520px, calc(100vw - 32px))',
-            }}
-          >
+          {/* Centering Wrapper */}
+          <div style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'none',
+            padding: '16px',
+          }}>
+            {/* Modal */}
+            <motion.div
+              key="update-modal"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+              style={{
+                width: 'min(500px, 100%)',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                pointerEvents: 'auto',
+              }}
+            >
             <div style={{
               background: 'rgba(5, 5, 18, 0.96)',
               border: '1px solid rgba(99, 102, 241, 0.35)',
@@ -505,8 +515,9 @@ export const UpdateModal: React.FC<UpdateModalProps> = ({ forceShow, onClosePrev
               </div>
             </div>
           </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+        </div>
+      </>
+    )}
+  </AnimatePresence>
   );
 };
