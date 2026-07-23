@@ -461,22 +461,24 @@ export const cpp_cin_strings = createCppLesson(
 export const cpp_implicit_casting = createCppLesson(
   'cpp_implicit_casting', 'type_casting', 1,
   'Implicit Widening Type Casting',
-  'Automatic widening conversion.',
+  'Automatic type conversion from smaller int to double without precision loss.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
     { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Implicit Widening Type Casting: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'num' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '15', paramId: 'num' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'double' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'decimal' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'num' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { num: { default: 15, label: 'num (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const num = Number(vars.num ?? 15);
+    const decimal = num.toFixed(4);
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: int 15 widened to double 15.0.`, explanationHinglish: `std::cout output display hua: int 15 widened to double 15.0.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `int 15 widened to double 15.0`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize num = ${num}.`, explanationHinglish: `Variable num (${num}) [4 Bytes] memory me initialize hua.`, memorySnapshot: { num: `${num} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'num', value: num } },
+      { step: 2, lineNum: 5, explanationEnglish: `num is implicitly widened and assigned to decimal = ${decimal}.`, explanationHinglish: `int num (${num}) automatically widening cast hokar double decimal (${decimal}) me copy hua.`, memorySnapshot: { num: `${num} [4B]`, decimal: `${decimal} [8B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'decimal', value: decimal } }
     ];
   }
 );
@@ -485,22 +487,25 @@ export const cpp_implicit_casting = createCppLesson(
 export const cpp_explicit_casting = createCppLesson(
   'cpp_explicit_casting', 'type_casting', 2,
   'Explicit Static Casting (static_cast)',
-  'Explicit type conversion in C++.',
+  'Force explicit type conversion using static_cast operator in C++.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
     { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Explicit Static Casting (static_cast): "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'double' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'price' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '9.8500', paramId: 'price' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'intPrice' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'static_cast' }, { type: 'operator' as const, value: '<' }, { type: 'keyword' as const, value: 'int' }, { type: 'operator' as const, value: '>' }, { type: 'punctuation' as const, value: '(' }, { type: 'variable' as const, value: 'price' }, { type: 'punctuation' as const, value: ')' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { price: { default: 9.85, label: 'price (double)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const priceRaw = Number(vars.price ?? 9.85);
+    const price = isNaN(priceRaw) ? '9.8500' : priceRaw.toFixed(4);
+    const intPrice = isNaN(priceRaw) ? 9 : Math.floor(priceRaw);
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: static_cast<int>(9.85) = 9.`, explanationHinglish: `std::cout output display hua: static_cast<int>(9.85) = 9.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `static_cast<int>(9.85) = 9`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize price = ${price}.`, explanationHinglish: `Variable price (${price}) [8 Bytes] memory me store hua.`, memorySnapshot: { price: `${price} [8B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'price', value: price } },
+      { step: 2, lineNum: 5, explanationEnglish: `Convert price explicitly using static_cast<int>(price) = ${intPrice}.`, explanationHinglish: `static_cast se double value ko int (${intPrice}) me explicitly convert kiya (fractional part truncate hua).`, memorySnapshot: { price: `${price} [8B]`, intPrice: `${intPrice} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'intPrice', value: intPrice } }
     ];
   }
 );
@@ -509,22 +514,25 @@ export const cpp_explicit_casting = createCppLesson(
 export const cpp_char_ascii = createCppLesson(
   'cpp_char_ascii', 'type_casting', 3,
   'Char to ASCII Integer Code Conversion',
-  'Character ASCII memory representation.',
+  'Convert single characters to their 1-byte ASCII integer value representation.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
     { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Char to ASCII Integer Code Conversion: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'char' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'ch' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: "'A'", paramId: 'ch' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'ascii' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'static_cast' }, { type: 'operator' as const, value: '<' }, { type: 'keyword' as const, value: 'int' }, { type: 'operator' as const, value: '>' }, { type: 'punctuation' as const, value: '(' }, { type: 'variable' as const, value: 'ch' }, { type: 'punctuation' as const, value: ')' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { ch: { default: 'A', label: 'ch (char)', type: 'text' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const rawCh = String(vars.ch ?? 'A').replace(/['"]/g, '');
+    const ch = rawCh ? rawCh[0] : 'A';
+    const ascii = ch.charCodeAt(0);
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: 'A' converted to ASCII 65.`, explanationHinglish: `std::cout output display hua: 'A' converted to ASCII 65.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `'A' converted to ASCII 65`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize ch = '${ch}' [1B].`, explanationHinglish: `Variable ch ('${ch}') [1 Byte] memory me allocate hua.`, memorySnapshot: { ch: `'${ch}' [1B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'ch', value: `'${ch}'` } },
+      { step: 2, lineNum: 5, explanationEnglish: `Explicitly cast ch to int: ascii = ${ascii}.`, explanationHinglish: `static_cast se char '${ch}' ki ASCII numerical value (${ascii}) read hokar ascii variable me store hui.`, memorySnapshot: { ch: `'${ch}' [1B]`, ascii: `${ascii} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'ascii', value: ascii } }
     ];
   }
 );
