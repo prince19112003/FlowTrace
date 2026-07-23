@@ -49,23 +49,6 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
   const displayVal = formatFloatVal(value);
   const displayOldVal = formatFloatVal(oldValue);
 
-  const getTypeBadgeStyle = (type: string) => {
-    const t = type.toLowerCase();
-    if (t === 'int') {
-      return 'bg-emerald-500/25 text-emerald-300 border-emerald-400/80 shadow-[0_0_10px_rgba(52,211,153,0.5)]';
-    }
-    if (t === 'float' || t === 'double') {
-      return 'bg-cyan-500/25 text-cyan-200 border-cyan-400/80 shadow-[0_0_10px_rgba(34,211,238,0.5)]';
-    }
-    if (t === 'bool' || t === 'boolean') {
-      return 'bg-amber-500/25 text-amber-200 border-amber-400/80 shadow-[0_0_10px_rgba(251,191,36,0.5)]';
-    }
-    if (t === 'char') {
-      return 'bg-purple-500/25 text-purple-200 border-purple-400/80 shadow-[0_0_10px_rgba(192,132,252,0.5)]';
-    }
-    return 'bg-indigo-500/25 text-indigo-200 border-indigo-400/80 shadow-[0_0_10px_rgba(129,140,248,0.5)]';
-  };
-
   if (isLiteral) {
     return (
       <motion.div
@@ -81,15 +64,15 @@ export const VariableBox: React.FC<VariableBoxProps> = ({ name, value, oldValue,
 
   return (
     <div className="relative flex flex-col items-center">
-      {/* Name tag + type badge positioned above the box */}
+      {/* Name tag + clean white type text positioned above the box */}
       {name !== String(value) && (
         <motion.div 
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`absolute bottom-full ${labelMargin} left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10 whitespace-nowrap`}
+          className={`absolute bottom-full ${labelMargin} left-1/2 -translate-x-1/2 flex items-center gap-1 z-10 whitespace-nowrap`}
         >
           {varType && (
-            <span className={`text-[10px] font-mono font-black px-1.5 py-0.5 rounded-md border leading-none uppercase tracking-wider ${getTypeBadgeStyle(varType)}`}>
+            <span className="text-[11px] font-mono font-bold text-white uppercase tracking-wider">
               {varType}
             </span>
           )}
