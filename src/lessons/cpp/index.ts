@@ -540,23 +540,34 @@ export const cpp_char_ascii = createCppLesson(
 
 export const cpp_if_else = createCppLesson(
   'cpp_if_else', 'if_else', 1,
-  'Max of Two Numbers in C++',
-  'Two-path conditional branching.',
+  'Max of Two Numbers (if-else)',
+  'Compare two integers and print the larger one using if-else branching.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Max of Two Numbers in C++: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'a' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '25', paramId: 'a' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'b' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '15', paramId: 'b' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'a' }, { type: 'operator' as const, value: ' > ' }, { type: 'variable' as const, value: 'b' }, { type: 'text' as const, value: ') {' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Max = "' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'a' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Max = "' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'b' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 12, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { a: { default: 25, label: 'a (int)' }, b: { default: 15, label: 'b (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const a = Number(vars.a ?? 25);
+    const b = Number(vars.b ?? 15);
+    const condResult = a > b;
+    const maxVal = condResult ? a : b;
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: 25 is greater than 15.`, explanationHinglish: `std::cout output display hua: 25 is greater than 15.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `25 is greater than 15`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize a = ${a}.`, explanationHinglish: `Variable a = ${a} [4B] memory me store hua.`, memorySnapshot: { a: `${a} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'a', value: a } },
+      { step: 2, lineNum: 5, explanationEnglish: `Initialize b = ${b}.`, explanationHinglish: `Variable b = ${b} [4B] memory me store hua.`, memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'b', value: b } },
+      { step: 3, lineNum: 6, explanationEnglish: `Evaluate condition: a > b → ${a} > ${b} → ${condResult}.`, explanationHinglish: `if condition: ${a} > ${b} evaluate hua → ${condResult ? 'true (if block execute hoga)' : 'false (else block execute hoga)'}.`, memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['a', 'b'], operator: '>', result: String(condResult), storeIn: 'Condition' } },
+      { step: 4, lineNum: condResult ? 7 : 9, explanationEnglish: `cout prints: Max = ${maxVal}.`, explanationHinglish: `cout output: Max = ${maxVal} terminal par print hua.`, memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` }, consoleOutput: `Max = ${maxVal}`, animationEvent: { type: 'PRINT_VALUE', variableName: condResult ? 'a' : 'b', outputValue: maxVal } },
     ];
   }
 );
@@ -565,22 +576,30 @@ export const cpp_if_else = createCppLesson(
 export const cpp_even_odd = createCppLesson(
   'cpp_even_odd', 'if_else', 2,
   'Even or Odd Number Checker',
-  'Modulo parity evaluation.',
+  'Determine parity of a number using modulo operator and if-else branching.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Even or Odd Number Checker: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '8', paramId: 'n' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '%' }, { type: 'text' as const, value: ' 2 == 0) {' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '" is Even"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'n' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '" is Odd"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 11, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { n: { default: 8, label: 'n (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const n = Number(vars.n ?? 8);
+    const remainder = n % 2;
+    const isEven = remainder === 0;
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: 8 % 2 == 0 -> Even.`, explanationHinglish: `std::cout output display hua: 8 % 2 == 0 -> Even.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `8 % 2 == 0 -> Even`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize n = ${n}.`, explanationHinglish: `Variable n = ${n} [4B] memory me store hua.`, memorySnapshot: { n: `${n} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'n', value: n } },
+      { step: 2, lineNum: 5, explanationEnglish: `Evaluate condition: n % 2 == 0 → ${n} % 2 = ${remainder} → ${isEven}.`, explanationHinglish: `if condition: ${n} % 2 = ${remainder} evaluate hua → ${isEven ? 'true (Even branch chalega)' : 'false (Odd branch chalega)'}.`, memorySnapshot: { n: `${n} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['n'], operator: '% 2', result: remainder, storeIn: 'Condition' } },
+      { step: 3, lineNum: isEven ? 6 : 8, explanationEnglish: `cout prints: ${n} is ${isEven ? 'Even' : 'Odd'}.`, explanationHinglish: `cout output: "${n} is ${isEven ? 'Even' : 'Odd'}" terminal par print hua.`, memorySnapshot: { n: `${n} [4B]` }, consoleOutput: `${n} is ${isEven ? 'Even' : 'Odd'}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'n', outputValue: `${n} is ${isEven ? 'Even' : 'Odd'}` } },
     ];
   }
 );
@@ -589,22 +608,37 @@ export const cpp_even_odd = createCppLesson(
 export const cpp_largest_three = createCppLesson(
   'cpp_largest_three', 'if_else', 3,
   'Largest of Three Numbers',
-  'Logical AND in nested decision tree.',
+  'Use nested if-else with logical AND to find the greatest among three integers.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Largest of Three Numbers: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'a' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '12', paramId: 'a' }, { type: 'punctuation' as const, value: ',' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'b' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '45', paramId: 'b' }, { type: 'punctuation' as const, value: ',' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'c' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '29', paramId: 'c' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'a' }, { type: 'text' as const, value: ' >= ' }, { type: 'variable' as const, value: 'b' }, { type: 'text' as const, value: ' && ' }, { type: 'variable' as const, value: 'a' }, { type: 'text' as const, value: ' >= ' }, { type: 'variable' as const, value: 'c' }, { type: 'text' as const, value: ') {' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Largest = "' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'a' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else if' }, { type: 'text' as const, value: ' (' }, { type: 'variable' as const, value: 'b' }, { type: 'text' as const, value: ' >= ' }, { type: 'variable' as const, value: 'c' }, { type: 'text' as const, value: ') {' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Largest = "' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'b' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '"Largest = "' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'c' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 12, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 13, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { a: { default: 12, label: 'a (int)' }, b: { default: 45, label: 'b (int)' }, c: { default: 29, label: 'c (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const a = Number(vars.a ?? 12);
+    const b = Number(vars.b ?? 45);
+    const c = Number(vars.c ?? 29);
+    const cond1 = a >= b && a >= c;
+    const cond2 = b >= c;
+    const largest = cond1 ? a : cond2 ? b : c;
+    const branch = cond1 ? 6 : cond2 ? 8 : 10;
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: Largest of (12, 45, 29) is 45.`, explanationHinglish: `std::cout output display hua: Largest of (12, 45, 29) is 45.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `Largest of (12, 45, 29) is 45`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize a=${a}, b=${b}, c=${c}.`, explanationHinglish: `Teeno variables a=${a}, b=${b}, c=${c} memory me store hue.`, memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]`, c: `${c} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'a', value: a } },
+      { step: 2, lineNum: 5, explanationEnglish: `Check if a >= b && a >= c → ${a} >= ${b} && ${a} >= ${c} → ${cond1}.`, explanationHinglish: `1st if condition: a>=${b} AND a>=${c} → ${cond1 ? 'true (a sabse bada hai)' : 'false (agla condition check hoga)'}.`, memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]`, c: `${c} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['a', 'b', 'c'], operator: '>= && >=', result: String(cond1), storeIn: 'Condition' } },
+      ...(!cond1 ? [{ step: 3, lineNum: 7, explanationEnglish: `Check if b >= c → ${b} >= ${c} → ${cond2}.`, explanationHinglish: `else-if condition: b>=${c} → ${cond2 ? 'true (b sabse bada hai)' : 'false (c sabse bada hai)'}.`, memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]`, c: `${c} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['b', 'c'], operator: '>=', result: String(cond2), storeIn: 'Condition' } }] : []),
+      { step: !cond1 ? 4 : 3, lineNum: branch, explanationEnglish: `cout prints: Largest = ${largest}.`, explanationHinglish: `cout output: "Largest = ${largest}" terminal par print hua.`, memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]`, c: `${c} [4B]` }, consoleOutput: `Largest = ${largest}`, animationEvent: { type: 'PRINT_VALUE', variableName: cond1 ? 'a' : cond2 ? 'b' : 'c', outputValue: largest } },
     ];
   }
 );
@@ -613,22 +647,34 @@ export const cpp_largest_three = createCppLesson(
 export const cpp_leap_year = createCppLesson(
   'cpp_leap_year', 'if_else', 4,
   'Leap Year Checker',
-  'Evaluate leap year rules (%4, %100, %400).',
+  'Evaluate divisibility by 4, 100, 400 to determine if a year is a leap year.',
   [
-    { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
-    { lineNum: 2, tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'namespace' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
-    { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Leap Year Checker: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'val' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 1,  tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
+    { lineNum: 2,  tokens: [{ type: 'keyword' as const, value: 'using' }, { type: 'text' as const, value: ' namespace ' }, { type: 'variable' as const, value: 'std' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 3,  tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 4,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'year' }, { type: 'text' as const, value: ' = ' }, { type: 'number' as const, value: '2024', paramId: 'year' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 5,  tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'if' }, { type: 'text' as const, value: ' ((' }, { type: 'variable' as const, value: 'year' }, { type: 'text' as const, value: ' % 4 == 0 && ' }, { type: 'variable' as const, value: 'year' }, { type: 'text' as const, value: ' % 100 != 0) ||' }] },
+    { lineNum: 6,  tokens: [{ type: 'text' as const, value: '        (' }, { type: 'variable' as const, value: 'year' }, { type: 'text' as const, value: ' % 400 == 0)) {' }] },
+    { lineNum: 7,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'year' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '" is a Leap Year"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8,  tokens: [{ type: 'text' as const, value: '    } ' }, { type: 'keyword' as const, value: 'else' }, { type: 'text' as const, value: ' {' }] },
+    { lineNum: 9,  tokens: [{ type: 'text' as const, value: '        ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' << ' }, { type: 'variable' as const, value: 'year' }, { type: 'text' as const, value: ' << ' }, { type: 'string' as const, value: '" is Not a Leap Year"' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    }' }] },
+    { lineNum: 11, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' 0;' }] },
+    { lineNum: 12, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { val: { default: 10, label: 'val (int)' } },
+  { year: { default: 2024, label: 'year (int)' } },
   (vars) => {
-    const val = Number(vars.val ?? 10);
+    const year = Number(vars.year ?? 2024);
+    const div4    = year % 4 === 0;
+    const div100  = year % 100 === 0;
+    const div400  = year % 400 === 0;
+    const isLeap  = (div4 && !div100) || div400;
+
     return [
-      { step: 1, lineNum: 4, explanationEnglish: `Initialize val = ${val} [4Bytes].`, explanationHinglish: `Variable val (${val}) memory me store hua.`, memorySnapshot: { val: `${val} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'val', value: val } },
-      { step: 2, lineNum: 5, explanationEnglish: `cout prints output: 2024 is a Leap Year.`, explanationHinglish: `std::cout output display hua: 2024 is a Leap Year.`, memorySnapshot: { val: `${val} [4B]` }, consoleOutput: `2024 is a Leap Year`, animationEvent: { type: 'PRINT_VALUE', variableName: 'val', outputValue: val } }
+      { step: 1, lineNum: 4, explanationEnglish: `Initialize year = ${year}.`, explanationHinglish: `Variable year = ${year} [4B] memory me store hua.`, memorySnapshot: { year: `${year} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'year', value: year } },
+      { step: 2, lineNum: 5, explanationEnglish: `Evaluate: (${year} % 4==0 && ${year} % 100!=0) → (${div4} && ${!div100}) → ${div4 && !div100}.`, explanationHinglish: `Pehla part: year%4==0 AND year%100!=0 → (${div4} AND ${!div100}) → ${div4 && !div100}.`, memorySnapshot: { year: `${year} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['year'], operator: '%4==0 && %100!=0', result: String(div4 && !div100), storeIn: 'Condition' } },
+      { step: 3, lineNum: 6, explanationEnglish: `Evaluate: ${year} % 400 == 0 → ${div400}. Full condition → ${isLeap}.`, explanationHinglish: `Doosra part: year%400==0 → ${div400}. Pura condition: ${isLeap ? 'true (Leap Year hai)' : 'false (Leap Year nahi hai)'}.`, memorySnapshot: { year: `${year} [4B]` }, animationEvent: { type: 'COMPUTE' as const, inputs: ['year'], operator: '%400==0', result: String(div400), storeIn: 'Condition' } },
+      { step: 4, lineNum: isLeap ? 7 : 9, explanationEnglish: `cout prints: ${year} is ${isLeap ? '' : 'Not '}a Leap Year.`, explanationHinglish: `cout output: "${year} is ${isLeap ? '' : 'Not '}a Leap Year" terminal par print hua.`, memorySnapshot: { year: `${year} [4B]` }, consoleOutput: `${year} is ${isLeap ? '' : 'Not '}a Leap Year`, animationEvent: { type: 'PRINT_VALUE', variableName: 'year', outputValue: `${year} is ${isLeap ? '' : 'Not '}a Leap Year` } },
     ];
   }
 );
