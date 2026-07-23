@@ -964,7 +964,7 @@ export const CustomFlowchartStage: React.FC = () => {
                             )}
                           </svg>
                           {/* Arrow head pointing up/right into the loop header */}
-                          <div className="absolute top-[-5px] right-0 w-0 h-0 border-y-4 border-y-transparent border-l-[6px] border-l-orange-500/60" />
+                          <div className="absolute -top-1.25 right-0 w-0 h-0 border-y-4 border-y-transparent border-l-[6px] border-l-orange-500/60" />
                         </div>
                       );
                     })()}
@@ -1023,7 +1023,7 @@ export const CustomFlowchartStage: React.FC = () => {
                                     />
                                   )}
                                 </svg>
-                                <div className="absolute top-[-5px] left-0 w-0 h-0 border-y-4 border-y-transparent border-r-[6px] border-r-fuchsia-500/60" />
+                                <div className="absolute -top-1.25 left-0 w-0 h-0 border-y-4 border-y-transparent border-r-[6px] border-r-fuchsia-500/60" />
                               </div>
                             );
                           })()}
@@ -1065,13 +1065,13 @@ export const CustomFlowchartStage: React.FC = () => {
                 >
                   {/* Fixed Top Headers for Split Layout */}
                   <div className="absolute -top-20 left-0 right-0 flex justify-center gap-24 px-10">
-                    <div className="w-1/2 min-w-[300px] flex flex-col items-center">
+                    <div className="w-1/2 min-w-75 flex flex-col items-center">
                       <span className="text-indigo-400 text-xs font-bold tracking-[0.25em] uppercase opacity-90 select-none">
                         MAIN PROGRAM FLOW
                       </span>
                       <div className="w-24 h-px bg-linear-to-r from-transparent via-indigo-500/40 to-transparent mt-1.5" />
                     </div>
-                    <div className="w-1/2 min-w-[350px] flex flex-col items-center">
+                    <div className="w-1/2 min-w-87.5 flex flex-col items-center">
                       <span className="text-amber-400 text-xs font-bold tracking-[0.25em] uppercase opacity-90 select-none">
                         FUNCTION SPACE
                       </span>
@@ -1088,7 +1088,7 @@ export const CustomFlowchartStage: React.FC = () => {
                   />
 
                   {/* Left Column: MAIN PROGRAM FLOW */}
-                  <div className={`flex flex-col items-center gap-10 w-1/2 min-w-[300px] z-10 pt-4 transition-all duration-700 ease-in-out ${
+                  <div className={`flex flex-col items-center gap-10 w-1/2 min-w-75 z-10 pt-4 transition-all duration-700 ease-in-out ${
                     functionPhase === 'executing' 
                       ? 'opacity-30 scale-95 blur-[2px]' 
                       : 'opacity-100 scale-100'
@@ -1097,7 +1097,7 @@ export const CustomFlowchartStage: React.FC = () => {
                   </div>
 
                   {/* Right Column: FUNCTION SPACE */}
-                  <div className={`flex flex-col items-center pt-20 w-1/2 min-w-[350px] relative z-10 transition-all duration-700 ease-in-out ${
+                  <div className={`flex flex-col items-center pt-20 w-1/2 min-w-87.5 relative z-10 transition-all duration-700 ease-in-out ${
                     functionPhase === 'executing' 
                       ? 'opacity-100 scale-105 filter-none' 
                       : functionPhase === 'calling' || functionPhase === 'returning' 
@@ -1113,7 +1113,7 @@ export const CustomFlowchartStage: React.FC = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.3 }}
-                            className="w-[310px] h-[180px] border-2 border-dashed border-slate-800/60 rounded-2xl flex flex-col items-center justify-center text-slate-600 gap-2 backdrop-blur-xs select-none"
+                            className="w-77.5 h-45 border-2 border-dashed border-slate-800/60 rounded-2xl flex flex-col items-center justify-center text-slate-600 gap-2 backdrop-blur-xs select-none"
                           >
                             <svg className="w-6 h-6 opacity-30 text-indigo-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
