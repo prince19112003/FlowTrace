@@ -494,7 +494,18 @@ export const CustomFlowchartStage: React.FC = () => {
               const { variant, items } = parseDataStructure(ev.value);
               return <DataStructureBox name={ev.name} variant={variant} items={items} isActive={isLatest} />;
             })() : (
-              <VariableBox name={ev.name} value={ev.value} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
+              <div className="flex flex-col items-center gap-2">
+                <VariableBox name={ev.name} value={ev.value} oldValue={oldValue} isActive={isLatest} colorTheme={colorTheme} isSmall={isFunctionBody} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
+                {ev.formula && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.85, y: 4 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    className="px-3 py-1 rounded-lg bg-slate-900/90 border border-amber-500/40 text-xs font-mono font-bold text-amber-300 shadow-md shadow-amber-950/30"
+                  >
+                    {ev.formula}
+                  </motion.div>
+                )}
+              </div>
             )
           )}
 
@@ -1248,7 +1259,18 @@ export const CustomFlowchartStage: React.FC = () => {
                             />
                           );
                         })() : (
-                          <VariableBox name={ev.name} value={ev.value} isActive={isLatest} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
+                          <div className="flex flex-col items-center gap-2">
+                            <VariableBox name={ev.name} value={ev.value} isActive={isLatest} varType={getVarTypeForLanguage(ev.name, lesson.lines)} />
+                            {ev.formula && (
+                              <motion.div
+                                initial={{ opacity: 0, scale: 0.85, y: 4 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                className="px-3 py-1 rounded-lg bg-slate-900/90 border border-amber-500/40 text-xs font-mono font-bold text-amber-300 shadow-md shadow-amber-950/30"
+                              >
+                                {ev.formula}
+                              </motion.div>
+                            )}
+                          </div>
                         )
                       )}
 
