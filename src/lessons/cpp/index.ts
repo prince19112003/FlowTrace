@@ -29,7 +29,7 @@ function createCppLesson(
 
 export const cpp_types = createCppLesson(
   'cpp_types', 'variables', 1,
-  'C++ Primitive Data Types (int, float, bool, char)',
+  'C++ Primitive Data Types (int, float, double, bool, char)',
   'Learn C++ strongly-typed variable declarations and explicit memory storage.',
   [
     { lineNum: 1, tokens: [{ type: 'keyword' as const, value: '#include' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '<iostream>' }] },
@@ -37,21 +37,27 @@ export const cpp_types = createCppLesson(
     { lineNum: 3, tokens: [{ type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'function' as const, value: 'main' }, { type: 'punctuation' as const, value: '()' }, { type: 'text' as const, value: ' {' }] },
     { lineNum: 4, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'int' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'count' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '10', paramId: 'count' }, { type: 'punctuation' as const, value: ';' }] },
     { lineNum: 5, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'float' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'gpa' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '3.8500f', paramId: 'gpa' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'bool' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'isPassed' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'true' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 7, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Count: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'count' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '" GPA: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'gpa' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 8, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
-    { lineNum: 9, tokens: [{ type: 'punctuation' as const, value: '}' }] },
+    { lineNum: 6, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'double' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'salary' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '1250.7500', paramId: 'salary' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 7, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'bool' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'isPassed' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'keyword' as const, value: 'true' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 8, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'char' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'grade' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '=' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: "'A'" }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 9, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'function' as const, value: 'cout' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'string' as const, value: '"Grade: "' }, { type: 'text' as const, value: ' ' }, { type: 'operator' as const, value: '<<' }, { type: 'text' as const, value: ' ' }, { type: 'variable' as const, value: 'grade' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 10, tokens: [{ type: 'text' as const, value: '    ' }, { type: 'keyword' as const, value: 'return' }, { type: 'text' as const, value: ' ' }, { type: 'number' as const, value: '0' }, { type: 'punctuation' as const, value: ';' }] },
+    { lineNum: 11, tokens: [{ type: 'punctuation' as const, value: '}' }] },
   ],
-  { count: { default: 10, label: 'count (int)' }, gpa: { default: 3.85, label: 'gpa (float)' } },
+  { count: { default: 10, label: 'count (int)' }, gpa: { default: 3.85, label: 'gpa (float)' }, salary: { default: 1250.75, label: 'salary (double)' } },
   (vars) => {
     const count = Number(vars.count ?? 10);
     const gpaRaw = Number(vars.gpa ?? 3.85);
+    const salaryRaw = Number(vars.salary ?? 1250.75);
     const gpa = isNaN(gpaRaw) ? '3.8500' : gpaRaw.toFixed(4);
+    const salary = isNaN(salaryRaw) ? '1250.7500' : salaryRaw.toFixed(4);
     return [
       { step: 1, lineNum: 4, explanationEnglish: `Declare count = ${count} [4B].`, explanationHinglish: `Integer count (${count}) [4 Bytes] memory me allocate hua.`, memorySnapshot: { count: `${count} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'count', value: count } },
       { step: 2, lineNum: 5, explanationEnglish: `Declare gpa = ${gpa}f [4B].`, explanationHinglish: `Float variable gpa (${gpa}) [4 Bytes] store hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [4B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'gpa', value: gpa } },
-      { step: 3, lineNum: 6, explanationEnglish: `Declare isPassed = true [1B].`, explanationHinglish: `Boolean isPassed = true [1 Byte] slot me store hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [4B]`, isPassed: 'true [1B]' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'isPassed', value: 'true' } },
-      { step: 4, lineNum: 7, explanationEnglish: `cout prints output.`, explanationHinglish: `std::cout se terminal me Output display hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [4B]`, isPassed: 'true [1B]' }, consoleOutput: `Count: ${count} GPA: ${gpa}`, animationEvent: { type: 'PRINT_VALUE', variableName: 'cout', outputValue: `Count: ${count} GPA: ${gpa}` } }
+      { step: 3, lineNum: 6, explanationEnglish: `Declare salary = ${salary} [8B].`, explanationHinglish: `Double variable salary (${salary}) [8 Bytes] allocate hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [4B]`, salary: `${salary} [8B]` }, animationEvent: { type: 'CREATE_VARIABLE', name: 'salary', value: salary } },
+      { step: 4, lineNum: 7, explanationEnglish: `Declare isPassed = true [1B].`, explanationHinglish: `Boolean isPassed = true [1 Byte] slot me store hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [4B]`, salary: `${salary} [8B]`, isPassed: 'true [1B]' }, animationEvent: { type: 'CREATE_VARIABLE', name: 'isPassed', value: 'true' } },
+      { step: 5, lineNum: 8, explanationEnglish: `Declare grade = 'A' [1B].`, explanationHinglish: `Character grade ('A') [1 Byte] memory slot me allocate hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [4B]`, salary: `${salary} [8B]`, isPassed: 'true [1B]', grade: "'A' [1B]" }, animationEvent: { type: 'CREATE_VARIABLE', name: 'grade', value: "'A'" } },
+      { step: 6, lineNum: 9, explanationEnglish: `cout prints output: Grade: A.`, explanationHinglish: `std::cout se terminal me Grade: A display hua.`, memorySnapshot: { count: `${count} [4B]`, gpa: `${gpa} [4B]`, salary: `${salary} [8B]`, isPassed: 'true [1B]', grade: "'A' [1B]" }, consoleOutput: 'Grade: A', animationEvent: { type: 'PRINT_VALUE', variableName: 'grade', outputValue: 'Grade: A' } }
     ];
   }
 );
