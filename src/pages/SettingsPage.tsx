@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Monitor, Zap, Globe, Info, Moon, Sun, Laptop, ChevronRight } from 'lucide-react';
 import { PageTransition } from '@shared/components/ui/PageTransition';
 import { motion } from 'motion/react';
+import { UpdateModal } from '@shared/components/ui/UpdateBanner';
 
 /* =========================================================
    SETTINGS PAGE
@@ -11,6 +12,7 @@ export const SettingsPage: React.FC = () => {
   const [fontSizeVal, setFontSizeVal] = useState(16);
   const [themeVal, setThemeVal] = useState<'dark' | 'light' | 'system'>('dark');
   const [langVal, setLangVal] = useState('English');
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
 
   const sections = [
     {
@@ -121,16 +123,24 @@ export const SettingsPage: React.FC = () => {
       icon: Info,
       iconColor: '#8b5cf6',
       content: (
-        <div className="space-y-3 text-sm" style={{ color: '#8b92a8' }}>
-          <div className="flex items-center justify-between">
-            <span style={{ color: '#525870' }}>Version</span>
-            <span
-              className="font-mono text-xs px-2.5 py-1 rounded"
-              style={{ color: '#6366f1', background: 'rgba(99,102,241,0.10)', border: '1px solid rgba(99,102,241,0.20)' }}
-            >
-              v1.0.0
-            </span>
-          </div>
+        <div className="space-y-4 text-sm" style={{ color: '#8b92a8' }}>
+          <SettingRow label="FlowTrace Version" description="Current installed version: v1.1.0">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowPreviewModal(true)}
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 shadow-md"
+                style={{
+                  background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+                  color: '#ffffff',
+                }}
+              >
+                Preview Update Modal 🚀
+              </button>
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-md" style={{ background: 'rgba(99,102,241,0.12)', color: '#818cf8', border: '1px solid rgba(99,102,241,0.25)' }}>
+                v1.1.0 (Latest)
+              </span>
+            </div>
+          </SettingRow>
           <p style={{ color: '#525870', fontSize: '13px' }}>
             FlowTrace — An animation-first learning platform for school students, BCA, DCA, and B.Tech students.
           </p>
@@ -221,6 +231,9 @@ export const SettingsPage: React.FC = () => {
           })}
         </div>
       </div>
+      {showPreviewModal && (
+        <UpdateModal forceShow={true} onClosePreview={() => setShowPreviewModal(false)} />
+      )}
     </PageTransition>
   );
 };

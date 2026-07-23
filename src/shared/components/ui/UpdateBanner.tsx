@@ -4,15 +4,37 @@ import { useUpdateChecker } from '@shared/hooks/useUpdateChecker';
 
 // ─── Update Modal ─────────────────────────────────────────────────────────────
 
-export const UpdateModal: React.FC = () => {
+export interface UpdateModalProps {
+  forceShow?: boolean;
+  onClosePreview?: () => void;
+}
+
+export const UpdateModal: React.FC<UpdateModalProps> = ({ forceShow, onClosePreview }) => {
   const {
-    hasUpdate,
-    latestVersion,
+    hasUpdate: realHasUpdate,
+    latestVersion: realLatestVersion,
     currentVersion,
-    changelog,
-    downloadUrl,
-    dismiss,
+    changelog: realChangelog,
+    downloadUrl: realDownloadUrl,
+    dismiss: realDismiss,
   } = useUpdateChecker();
+
+  const isPreview = Boolean(forceShow);
+  const hasUpdate = isPreview || realHasUpdate;
+  const latestVersion = isPreview ? '1.2.0' : (realLatestVersion || '1.2.0');
+  const changelog = isPreview
+    ? [
+        'Added Graphs (DFS & BFS Animations)',
+        'Polyglot Code Switcher (Python, C++, Java, C)',
+        'New High-Performance Desktop Visualizer Stage',
+        'Offline Auto-Updater Support'
+      ]
+    : realChangelog;
+  const downloadUrl = isPreview ? 'https://github.com/prince19112003/FlowTrace/archive/refs/heads/main.zip' : realDownloadUrl;
+  const dismiss = () => {
+    if (onClosePreview) onClosePreview();
+    realDismiss();
+  };
 
   const [phase, setPhase] = useState<'idle' | 'downloading' | 'done'>('idle');
   const [progress, setProgress] = useState(0);
