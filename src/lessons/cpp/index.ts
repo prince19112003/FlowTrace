@@ -149,42 +149,42 @@ export const cpp_swap_no_temp = createCppLesson(
       {
         step: 1, lineNum: 4,
         explanationEnglish: `Declare int a = ${a}.`,
-        explanationHinglish: `a = ${a} memory me store hua.`,
+        explanationHinglish: `Variable a (${a}) [4 Bytes] memory me allocate hua.`,
         memorySnapshot: { a: `${a} [4B]` },
         animationEvent: { type: 'CREATE_VARIABLE', name: 'a', value: a }
       },
       {
         step: 2, lineNum: 4,
         explanationEnglish: `Declare int b = ${b}.`,
-        explanationHinglish: `b = ${b} memory me store hua.`,
+        explanationHinglish: `Variable b (${b}) [4 Bytes] memory me allocate hua.`,
         memorySnapshot: { a: `${a} [4B]`, b: `${b} [4B]` },
         animationEvent: { type: 'CREATE_VARIABLE', name: 'b', value: b }
       },
       {
         step: 3, lineNum: 5,
-        explanationEnglish: `a = a + b -> ${a} + ${b} = ${sum}.`,
-        explanationHinglish: `a me total sum store hua -> ${sum}.`,
+        explanationEnglish: `a = a + b -> ${a} + ${b} = ${sum}. Calculate sum of both variables.`,
+        explanationHinglish: `a = a + b (${a} + ${b} = ${sum}). a me dono variables ka total sum store hua -> ${sum}.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${b} [4B]` },
         animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: a, newValue: sum }
       },
       {
         step: 4, lineNum: 6,
-        explanationEnglish: `b = a - b -> ${sum} - ${b} = ${a}.`,
-        explanationHinglish: `b me old a ki value aa gayi -> ${a}.`,
+        explanationEnglish: `b = a - b -> ${sum} - ${b} = ${a}. Extract original a value into b.`,
+        explanationHinglish: `b = a - b (${sum} - ${b} = ${a}). b me original a ki value (${a}) aagayi.`,
         memorySnapshot: { a: `${sum} [4B]`, b: `${a} [4B]` },
         animationEvent: { type: 'UPDATE_VARIABLE', name: 'b', oldValue: b, newValue: a }
       },
       {
         step: 5, lineNum: 7,
-        explanationEnglish: `a = a - b -> ${sum} - ${a} = ${b}. Swapping Complete!`,
-        explanationHinglish: `a me old b ki value store hui -> ${b}. Swapping finished!`,
+        explanationEnglish: `a = a - b -> ${sum} - ${a} = ${b}. Extract original b value into a. Swapping Complete!`,
+        explanationHinglish: `a = a - b (${sum} - ${a} = ${b}). a me original b ki value (${b}) aagayi. Swapping Complete!`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]` },
         animationEvent: { type: 'UPDATE_VARIABLE', name: 'a', oldValue: sum, newValue: b }
       },
       {
         step: 6, lineNum: 8,
         explanationEnglish: `cout prints swapped values a: ${b}, b: ${a}.`,
-        explanationHinglish: `Console pe Swapped values print hui: a: ${b}, b: ${a}.`,
+        explanationHinglish: `Console par Swapped values display hui: a: ${b}, b: ${a}.`,
         memorySnapshot: { a: `${b} [4B]`, b: `${a} [4B]` },
         consoleOutput: `a: ${b}, b: ${a}`,
         animationEvent: { type: 'PRINT_VALUE', variableName: 'cout', outputValue: `a: ${b}, b: ${a}` }
